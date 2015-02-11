@@ -62,8 +62,7 @@ public class CommandEditorConsole extends javax.swing.JPanel {
             int i = 0;
             for (String line : tmp) {
                 String[] cmd = line.split("\t");
-                tabCmd[i] = new Command();
-                tabCmd[i].setName(Command.CommandName.valueOf(cmd[0]));
+                tabCmd[i] = new Command(Command.CommandName.valueOf(cmd[0]));
                 tabCmd[i].setParameter1(cmd[1]);
                 tabCmd[i].setParameter2(cmd[2]);
             }

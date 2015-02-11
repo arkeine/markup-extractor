@@ -19,7 +19,7 @@ public class Command {
 
     public enum CommandName {
 
-        DELETE("delete"), CUT("cut"), COPY("copy"), RELOAD("reload");
+        DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD");
         
         private final String name;
 
@@ -37,11 +37,17 @@ public class Command {
     private String parameter1;
     private String parameter2;
 
+    public Command(CommandName name) {
+        this.name = name;
+    }
+
     public CommandName getName() {
         return name;
     }
 
     public void setName(CommandName name) {
+        assert name != null : "command name is null";
+        
         this.name = name;
     }
 

@@ -22,23 +22,24 @@ package ch.arkeine.markupextractor.extractor;
 public class Extractor implements Runnable {
 
     //INPUT
-    private Command[] cmd;
-    private String[] doc;
+    private final Command[] cmd;
+    private final String[] doc;
 
     //TOOL
     private boolean isWorkDone;
 
     //OUTPUT
-    private OutputArray extracted;
+    private final OutputArray extracted;
 
     public Extractor(Command[] cmd, String[] doc) {
         this.cmd = cmd;
         this.doc = doc;
+        extracted = new OutputArray();
     }
 
     public String getExtractedToCSV(String separator) {
         separator = separator.isEmpty() ? "," : separator;
-        
+
         return extracted.toCSV(separator);
     }
 
@@ -53,7 +54,7 @@ public class Extractor implements Runnable {
             extractData(doc1);
             extracted.nextRecord();
         }
-        
+
         isWorkDone = true;
     }
 
@@ -63,13 +64,13 @@ public class Extractor implements Runnable {
         for (Command cmd1 : cmd) {
             switch (cmd1.getName()) {
                 case COPY:
-                    copy(txtWork, cmd1);
+                    copy(txtWork, cmd1.getParameter1(), cmd1.getParameter2());
                     break;
                 case CUT:
-                    cut(txtWork, cmd1);
+                    cut(txtWork, cmd1.getParameter1(), cmd1.getParameter2());
                     break;
                 case DELETE:
-                    delete(txtWork, cmd1);
+                    delete(txtWork, cmd1.getParameter1(), cmd1.getParameter2());
                     break;
                 case RELOAD:
                     txtWork.setLength(0);
@@ -79,59 +80,31 @@ public class Extractor implements Runnable {
         }
     }
 
-    private void delete(StringBuilder s, Command c) {
-        try {
-            int val1 = Integer.valueOf(c.getParameter1());
-            int val2 = Integer.valueOf(c.getParameter2());
+    private void delete(StringBuilder s, String p1, String p2) {
+        int val1 = s.indexOf(p1);
+        int val2 = s.indexOf(p2, val1) + p2.length();
+        val2 = val1 > val2 ? val1 : val2;
+        val2 = p2.equals("") ? s.length() : val2;
 
+        if (val1 >= 0) {
             s.delete(val1, val2);
-        } catch (NumberFormatException e) {
-
-            int val1 = s.indexOf(c.getParameter1());
-            int val2 = s.indexOf(c.getParameter2(), val1);
-            val2 = val1 > val2 ? val1 : val2;
-
-            if (val1 > 0) {
-                s.delete(val1, val2);
-            }
         }
+
     }
 
-    private void cut(StringBuilder s, Command c) {
-        try {
-            int val1 = Integer.valueOf(c.getParameter1());
-            int val2 = Integer.valueOf(c.getParameter2());
-
-            extracted.addRecordData(s.substring(val2, val2));
-            s.delete(val1, val2);
-        } catch (NumberFormatException e) {
-
-            int val1 = s.indexOf(c.getParameter1());
-            int val2 = s.indexOf(c.getParameter2(), val1);
-            val2 = val1 > val2 ? val1 : val2;
-
-            if (val1 > 0) {
-                extracted.addRecordData(s.substring(val2, val2));
-                s.delete(val1, val2);
-            }
-        }
+    private void cut(StringBuilder s, String p1, String p2) {
+        copy(s, p1, p2);
+        delete(s, p1, p2);
     }
 
-    private void copy(StringBuilder s, Command c) {
-        try {
-            int val1 = Integer.valueOf(c.getParameter1());
-            int val2 = Integer.valueOf(c.getParameter2());
+    private void copy(StringBuilder s, String p1, String p2) {
+        int val1 = s.indexOf(p1) + p1.length();
+        int val2 = s.indexOf(p2, val1);
+        val2 = val1 > val2 ? val1 : val2;
+        val2 = p2.equals("") ? s.length() : val2;
 
-            extracted.addRecordData(s.substring(val2, val2));
-        } catch (NumberFormatException e) {
-
-            int val1 = s.indexOf(c.getParameter1());
-            int val2 = s.indexOf(c.getParameter2(), val1);
-            val2 = val1 > val2 ? val1 : val2;
-
-            if (val1 > 0) {
-                extracted.addRecordData(s.substring(val2, val2));
-            }
+        if (val1 >= 0) {
+            extracted.addRecordData(s.substring(val1, val2));
         }
     }
 }

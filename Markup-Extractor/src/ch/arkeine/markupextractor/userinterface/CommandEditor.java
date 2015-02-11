@@ -16,6 +16,8 @@
 package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.extractor.Command;
+import ch.arkeine.markupextractor.extractor.Extractor;
+import ch.arkeine.markupextractor.tool.UrlTool;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -60,21 +62,22 @@ public class CommandEditor extends javax.swing.JFrame {
         commandEditorConsole1 = new ch.arkeine.markupextractor.userinterface.CommandEditorConsole();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Command editor");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
+        setTitle(bundle.getString("CommandEditor.title")); // NOI18N
 
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setResizeWeight(1.0);
 
-        panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder("Files"));
+        panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CommandEditor.panFiles.border.title"))); // NOI18N
 
-        btSaveCommand.setText("Save");
+        btSaveCommand.setText(bundle.getString("CommandEditor.btSaveCommand.text")); // NOI18N
         btSaveCommand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSaveCommandActionPerformed(evt);
             }
         });
 
-        btLoadCommand.setText("Open");
+        btLoadCommand.setText(bundle.getString("CommandEditor.btLoadCommand.text")); // NOI18N
         btLoadCommand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoadCommandActionPerformed(evt);
@@ -102,9 +105,14 @@ public class CommandEditor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panOther.setBorder(javax.swing.BorderFactory.createTitledBorder("Other"));
+        panOther.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CommandEditor.panOther.border.title"))); // NOI18N
 
-        btTestScript.setText("Test script");
+        btTestScript.setText(bundle.getString("CommandEditor.btTestScript.text")); // NOI18N
+        btTestScript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTestScriptActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panOtherLayout = new javax.swing.GroupLayout(panOther);
         panOther.setLayout(panOtherLayout);
@@ -123,9 +131,9 @@ public class CommandEditor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder("Generate script"));
+        panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("CommandEditor.panGenerate.border.title"))); // NOI18N
 
-        btMarkupFinder.setText("Markup finder");
+        btMarkupFinder.setText(bundle.getString("CommandEditor.btMarkupFinder.text")); // NOI18N
         btMarkupFinder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMarkupFinderActionPerformed(evt);
@@ -235,13 +243,36 @@ public class CommandEditor extends javax.swing.JFrame {
         assert markups.length == 2 : "error in markups array";
         
         Command[] cmd = new Command[1];
-        cmd[0] = new Command();
-        cmd[0].setName(Command.CommandName.COPY);
+        cmd[0] = new Command(Command.CommandName.COPY);
         cmd[0].setParameter1(markups[0]);
         cmd[0].setParameter2(markups[1]);
         
         commandEditorConsole1.loadCommand(cmd);
     }//GEN-LAST:event_btMarkupFinderActionPerformed
+
+    private void btTestScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTestScriptActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String[] url = new String[1];
+        try {
+            url[0] = UrlTool.loadURL(JOptionPane.showInputDialog(this, bundle.getString(
+                    "CommandEditor.inputUrl.message")),"").toString();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, bundle.getString(
+                    "CommandEditor.invalidUrl.message"));
+            Logger.getLogger(CommandEditor.class.getName()).log(Level.WARNING,
+                    null, ex);
+        }
+        
+        String separator = JOptionPane.showInputDialog(this, bundle.getString(
+                    "CommandEditor.separator.message"));
+        
+        Extractor extractor = new Extractor(commandEditorConsole1.saveCommand(), 
+                url);
+        extractor.run();
+        
+        JOptionPane.showMessageDialog(this, extractor.getExtractedToCSV(separator));
+    }//GEN-LAST:event_btTestScriptActionPerformed
 
     /**
      * @param args the command line arguments

@@ -126,7 +126,6 @@ public class MarkupToolTest {
         String expResult = "qwert";
         Object obj = pieces;
         String result = (String) searchEndMarkup.invoke(null, obj);
-        System.out.println(result);
         assertEquals(expResult, result);
     }
 
