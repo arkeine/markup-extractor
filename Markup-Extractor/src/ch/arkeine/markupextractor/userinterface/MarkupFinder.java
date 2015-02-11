@@ -33,7 +33,8 @@ public class MarkupFinder extends javax.swing.JDialog {
     /**
      * Creates new form MarkupFinder
      */
-    public MarkupFinder() {
+    public MarkupFinder(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         renameTab();
         enableRemoveButton();
@@ -99,7 +100,6 @@ public class MarkupFinder extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("MarkupFinder.title")); // NOI18N
-        setModal(true);
 
         split.setDividerLocation(500);
         split.setResizeWeight(0.8);
@@ -417,7 +417,15 @@ public class MarkupFinder extends javax.swing.JDialog {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MarkupFinder().setVisible(true);
+                MarkupFinder dialog = new MarkupFinder(new javax.swing.JFrame(),
+                        true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

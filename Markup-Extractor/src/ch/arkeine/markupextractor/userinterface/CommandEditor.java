@@ -236,7 +236,7 @@ public class CommandEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_btLoadCommandActionPerformed
 
     private void btMarkupFinderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMarkupFinderActionPerformed
-        MarkupFinder m = new MarkupFinder();
+        MarkupFinder m = new MarkupFinder(this, true);
         m.setVisible(true);
         
         String[] markups = m.getMarkups();

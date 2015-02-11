@@ -16,6 +16,7 @@
 
 package ch.arkeine.markupextractor;
 
+import ch.arkeine.markupextractor.userinterface.MainMenu;
 import ch.arkeine.markupextractor.userinterface.MarkupFinder;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -48,7 +49,7 @@ public class UseMarkupExtractor {
            // handle exception
         }
 
-        new MarkupFinder().show();
+        new MainMenu().show();
     }
     
 }
