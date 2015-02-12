@@ -45,15 +45,20 @@ public class OutputArray {
 
     public String toCSV(String separator) {
         StringBuilder sb = new StringBuilder();
-        
+
         for (ArrayList<String> al : records) {
-            for (String s : al) {
-                sb.append(s);
-                sb.append(separator);
+            if (!al.isEmpty()) {
+                for (String s : al) {
+                    sb.append(s);
+                    sb.append(separator);
+                }
+                if (sb.lastIndexOf(separator) != -1) {
+                    sb.replace(sb.lastIndexOf(separator), sb.length(), "");
+                }
+                sb.append("\n");
             }
-            sb.append("\n");
         }
-        
+
         return sb.toString();
     }
 }

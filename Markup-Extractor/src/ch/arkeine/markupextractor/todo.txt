@@ -2,3 +2,4 @@ Run long task in separate thread
 Adding some other methods to find beacon
 Object hierarchies for the command sript editor
 Big text popup
+Loggin and assert

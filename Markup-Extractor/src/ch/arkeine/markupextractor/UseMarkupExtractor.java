@@ -17,7 +17,7 @@
 package ch.arkeine.markupextractor;
 
 import ch.arkeine.markupextractor.userinterface.MainMenu;
-import ch.arkeine.markupextractor.userinterface.MarkupFinder;
+import ch.arkeine.markupextractor.userinterface.wizard.MarkupFinder;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

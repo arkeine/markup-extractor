@@ -44,7 +44,7 @@ public class ExtractorTest {
         Extractor instance = new Extractor(cmd, doc);
         instance.run();
         
-        String expResult = "d" + separator;
+        String expResult = "d";
         String result = instance.getExtractedToCSV(separator).trim();
         assertEquals(expResult, result);
     }   
@@ -65,7 +65,7 @@ public class ExtractorTest {
         Extractor instance = new Extractor(cmd, doc);
         instance.run();
         
-        String expResult = "d" + separator;
+        String expResult = "d";
         String result = instance.getExtractedToCSV(separator).trim();
         assertEquals(expResult, result);
     }   
@@ -92,7 +92,7 @@ public class ExtractorTest {
         Extractor instance = new Extractor(cmd, doc);
         instance.run();
         
-        String expResult = "marie" + separator +"joel"+ separator;
+        String expResult = "marie" + separator +"joel";
         String result = instance.getExtractedToCSV(separator).trim();
         assertEquals(expResult, result);
     }    

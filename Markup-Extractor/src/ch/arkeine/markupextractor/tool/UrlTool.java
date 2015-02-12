@@ -63,4 +63,19 @@ public class UrlTool {
         
         return doc;
     }
+    
+    public static String urlsToString(String[] urls) {
+        StringBuilder s = new StringBuilder();
+
+        for (String url : urls) {
+            s.append(url);
+            s.append("\n");
+        }
+
+        return s.toString();
+    }
+
+    public static String[] stringToUrls(String s) {
+        return s.split("\n");
+    }
 }

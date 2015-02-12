@@ -15,6 +15,13 @@
  */
 package ch.arkeine.markupextractor.extractor;
 
+import ch.arkeine.markupextractor.tool.UrlTool;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Nils Ryter
@@ -29,18 +36,42 @@ public class Extractor implements Runnable {
     private boolean isWorkDone;
 
     //OUTPUT
-    private final OutputArray extracted;
+    private final OutputArray extractedData;
+    private final List<String> noExtractedDoc;
+    private final List<String> extractedDoc;
 
     public Extractor(Command[] cmd, String[] doc) {
         this.cmd = cmd;
         this.doc = doc;
-        extracted = new OutputArray();
+        extractedData = new OutputArray();
+        noExtractedDoc = new LinkedList();
+        extractedDoc = new LinkedList();
+    }
+
+    public String[] getDoc() {
+        return doc;
+    }
+
+    public String[] getExtractedDoc() {
+        String[] s = new String[extractedDoc.size()];
+        s = extractedDoc.toArray(s);
+        return s;
     }
 
     public String getExtractedToCSV(String separator) {
         separator = separator.isEmpty() ? "," : separator;
 
-        return extracted.toCSV(separator);
+        return extractedData.toCSV(separator);
+    }
+
+    public String[] getNoExtractedDoc() {
+        String[] s = new String[noExtractedDoc.size()];
+        s = noExtractedDoc.toArray(s);
+        return s;
+    }
+
+    public boolean isIsWorkDone() {
+        return isWorkDone;
     }
 
     @Override
@@ -51,8 +82,16 @@ public class Extractor implements Runnable {
         }
 
         for (String doc1 : doc) {
-            extractData(doc1);
-            extracted.nextRecord();
+            try {
+                String extract = UrlTool.loadURL(doc1, "").toString();
+                extractData(extract);
+                extractedData.nextRecord();
+                extractedDoc.add(doc1);
+            } catch (IOException ex) {
+                noExtractedDoc.add(doc1);
+                Logger.getLogger(Extractor.class.getName()).log(Level.SEVERE,
+                        null, ex);
+            }
         }
 
         isWorkDone = true;
@@ -104,7 +143,7 @@ public class Extractor implements Runnable {
         val2 = p2.equals("") ? s.length() : val2;
 
         if (val1 >= 0) {
-            extracted.addRecordData(s.substring(val1, val2));
+            extractedData.addRecordData(s.substring(val1, val2));
         }
     }
 }
