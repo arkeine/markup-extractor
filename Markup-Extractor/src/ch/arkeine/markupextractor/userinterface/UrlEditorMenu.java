@@ -17,6 +17,7 @@ package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.tool.FileTool;
 import ch.arkeine.markupextractor.tool.UrlTool;
+import ch.arkeine.markupextractor.userinterface.wizard.UrlGenerator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -120,6 +121,11 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panGenerate.border.title"))); // NOI18N
 
         btUrlGenerator.setText(bundle.getString("UrlEditorMenu.btUrlGenerator.text")); // NOI18N
+        btUrlGenerator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUrlGeneratorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panGenerateLayout = new javax.swing.GroupLayout(panGenerate);
         panGenerate.setLayout(panGenerateLayout);
@@ -273,6 +279,17 @@ public class UrlEditorMenu extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btOpenUrlsActionPerformed
+
+    private void btUrlGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUrlGeneratorActionPerformed
+        UrlGenerator dialog = new UrlGenerator(null, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        
+        if(dialog.isOk())
+        {
+            txtUrls.setText(UrlTool.urlsToString(dialog.getUrlsGenerated()));
+        }
+    }//GEN-LAST:event_btUrlGeneratorActionPerformed
 
     /**
      * @param args the command line arguments

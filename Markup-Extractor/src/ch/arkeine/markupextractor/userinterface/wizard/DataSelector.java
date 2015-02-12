@@ -27,14 +27,14 @@ import org.apache.commons.lang3.StringUtils;
  * @author Nils Ryter
  */
 public class DataSelector extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form DataSelector
      */
     public DataSelector() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

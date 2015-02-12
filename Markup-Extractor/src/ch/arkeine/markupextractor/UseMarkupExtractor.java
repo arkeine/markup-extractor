@@ -17,7 +17,6 @@
 package ch.arkeine.markupextractor;
 
 import ch.arkeine.markupextractor.userinterface.MainMenu;
-import ch.arkeine.markupextractor.userinterface.wizard.MarkupFinder;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -36,16 +35,8 @@ public class UseMarkupExtractor {
         UIManager.setLookAndFeel(
             UIManager.getSystemLookAndFeelClassName());
         } 
-        catch (UnsupportedLookAndFeelException e) {
-           // handle exception
-        }
-        catch (ClassNotFoundException e) {
-           // handle exception
-        }
-        catch (InstantiationException e) {
-           // handle exception
-        }
-        catch (IllegalAccessException e) {
+        catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
+                InstantiationException | IllegalAccessException e) {
            // handle exception
         }
 

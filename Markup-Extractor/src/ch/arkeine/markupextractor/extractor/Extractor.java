@@ -34,6 +34,8 @@ public class Extractor implements Runnable {
 
     //TOOL
     private boolean isWorkDone;
+    private boolean isIncludeBegin;
+    private boolean isIncludeEnd;
 
     //OUTPUT
     private final OutputArray extractedData;
@@ -46,6 +48,8 @@ public class Extractor implements Runnable {
         extractedData = new OutputArray();
         noExtractedDoc = new LinkedList();
         extractedDoc = new LinkedList();
+        isIncludeBegin = false;
+        isIncludeEnd = false;
     }
 
     public String[] getDoc() {
@@ -111,6 +115,12 @@ public class Extractor implements Runnable {
                 case DELETE:
                     delete(txtWork, cmd1.getParameter1(), cmd1.getParameter2());
                     break;
+                case INCLUDE_BEGIN:
+                    isIncludeBegin = Boolean.valueOf(cmd1.getParameter1());
+                    break;
+                case INCLUDE_END:
+                    isIncludeEnd = Boolean.valueOf(cmd1.getParameter1());
+                    break;
                 case RELOAD:
                     txtWork.setLength(0);
                     txtWork.append(d);
@@ -119,9 +129,25 @@ public class Extractor implements Runnable {
         }
     }
 
+    private int getBeginIndex(StringBuilder s, String p) {
+        if (isIncludeBegin) {
+            return s.indexOf(p);
+        } else {
+            return s.indexOf(p) + p.length();
+        }
+    }
+
+    private int getEndIndex(StringBuilder s, String p, int fromIndex) {
+        if (isIncludeEnd) {
+            return s.indexOf(p, fromIndex) + p.length();
+        } else {
+            return s.indexOf(p, fromIndex);
+        }
+    }
+
     private void delete(StringBuilder s, String p1, String p2) {
-        int val1 = s.indexOf(p1);
-        int val2 = s.indexOf(p2, val1) + p2.length();
+        int val1 = getBeginIndex(s, p1);
+        int val2 = getEndIndex(s, p2, val1);
         val2 = val1 > val2 ? val1 : val2;
         val2 = p2.equals("") ? s.length() : val2;
 
@@ -137,8 +163,8 @@ public class Extractor implements Runnable {
     }
 
     private void copy(StringBuilder s, String p1, String p2) {
-        int val1 = s.indexOf(p1) + p1.length();
-        int val2 = s.indexOf(p2, val1);
+        int val1 = getBeginIndex(s, p1);
+        int val2 = getEndIndex(s, p2, val1);
         val2 = val1 > val2 ? val1 : val2;
         val2 = p2.equals("") ? s.length() : val2;
 

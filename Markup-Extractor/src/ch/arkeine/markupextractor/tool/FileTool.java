@@ -67,6 +67,8 @@ public class FileTool {
     public static String readStringFromFile(String path)
             throws IOException {
         File f = new File(path);
+        
+        if(!f.exists()) return null;
 
         try (BufferedReader in = new BufferedReader(
                 new FileReader(f))) {
