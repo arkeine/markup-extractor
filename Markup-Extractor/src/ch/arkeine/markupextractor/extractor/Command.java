@@ -19,7 +19,8 @@ public class Command {
 
     public enum CommandName {
 
-        DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD");
+        DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD"),
+        INCLUDE_BEGIN("INCLUDE_BEGIN"), INCLUDE_END("INCLUDE_END");
         
         private final String name;
 
