@@ -15,7 +15,9 @@
  */
 package ch.arkeine.markupextractor.extractor;
 
-public class Command {
+import java.io.Serializable;
+
+public class Command implements Serializable, Cloneable{
 
     public enum CommandName {
 
@@ -40,8 +42,19 @@ public class Command {
 
     public Command(CommandName name) {
         this.name = name;
+        parameter1 = "";
+        parameter2 = "";
     }
 
+    
+    public Command cloneOf()
+    {
+        Command n = new Command(name);
+        n.parameter1 = this.parameter1;
+        n.parameter2 = this.parameter2;
+        return n;
+    }
+    
     public CommandName getName() {
         return name;
     }
@@ -66,5 +79,10 @@ public class Command {
 
     public void setParameter2(String parameter2) {
         this.parameter2 = parameter2;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return cloneOf();
     }
 }

@@ -45,14 +45,14 @@ public class MarkupToolTest {
             Class params[] = new Class[2];
             params[0] = String.class;
             params[1] = String.class;
-            Class myTarget = MarkupTool.class;
+            Class myTarget = ToolMarkups.class;
             cutDocument = myTarget.getDeclaredMethod("cutDocument", params);
             cutDocument.setAccessible(true);
         }
         {
             Class params[] = new Class[1];
             params[0] = String[][].class;
-            Class myTarget = MarkupTool.class;
+            Class myTarget = ToolMarkups.class;
             searchBeginMarkup = myTarget.getDeclaredMethod("searchBeginMarkup",
                     params);
             searchBeginMarkup.setAccessible(true);
@@ -60,7 +60,7 @@ public class MarkupToolTest {
         {
             Class params[] = new Class[1];
             params[0] = String[][].class;
-            Class myTarget = MarkupTool.class;
+            Class myTarget = ToolMarkups.class;
             searchEndMarkup = myTarget.getDeclaredMethod("searchEndMarkup",
                     params);
             searchEndMarkup.setAccessible(true);

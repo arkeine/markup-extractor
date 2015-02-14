@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package ch.arkeine.markupextractor.userinterface.scripteditor;
+package ch.arkeine.markupextractor.extractor;
 
-import ch.arkeine.markupextractor.extractor.Command;
-import javax.swing.JPanel;
+import java.util.EventListener;
 
 /**
  *
  * @author Nils Ryter
  */
-public abstract class ScriptEditor extends JPanel{
-    public abstract Command[] getCommandScript();
-    public abstract boolean isCommandScriptValid();
-    public abstract void setCommandScript(Command[] cmds);
+public interface ExtractorListener extends EventListener{
+    public void progressUpdate(double percent); 
+    public void extractionFinish(); 
 }

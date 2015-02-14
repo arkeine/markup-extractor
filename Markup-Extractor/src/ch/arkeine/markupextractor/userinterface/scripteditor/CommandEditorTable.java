@@ -13,37 +13,66 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package ch.arkeine.markupextractor.userinterface.scripteditor;
 
 import ch.arkeine.markupextractor.extractor.Command;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author Nils Ryter
  */
-public class CommandEditorTable extends ScriptEditor {
+public class CommandEditorTable extends javax.swing.JPanel {
 
     /**
      * Creates new form Com
      */
     public CommandEditorTable() {
         initComponents();
+        initailizeColumnModel();
     }
 
-    @Override
     public Command[] getCommandScript() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ((CommandTableModel) tabCommands.getModel()).getCommands();
     }
 
-    @Override
-    public void setCommandScript(Command[] cmds) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setCommandScript(Command[] c) {
+        ((CommandTableModel) tabCommands.getModel()).setCommands(c);
     }
 
-    @Override
-    public boolean isCommandScriptValid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertCommandScript(Command[] c) {
+        for (Command command : c) {
+            ((CommandTableModel) tabCommands.getModel()).addCommand(command);
+        }
+    }
+
+    private void initailizeColumnModel() {
+
+        JComboBox cbCommand = new JComboBox(Command.CommandName.values());
+
+        TableColumn colCmd = tabCommands.getColumnModel().getColumn(0);
+        TableColumn colParam1 = tabCommands.getColumnModel().getColumn(1);
+        TableColumn colParam2 = tabCommands.getColumnModel().getColumn(2);
+
+        colCmd.setCellEditor(new DefaultCellEditor(cbCommand));
+        colParam1.setCellEditor(new ButtonEditor());
+        colParam2.setCellEditor(new ButtonEditor());
+
+    }
+
+    private AbstractTableModel createModel() {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+
+        String[] s = new String[3];
+        s[0] = bundle.getString("CommandEditorTable.tabCommands.titleColumn1"); // NOI18N
+        s[1] = bundle.getString("CommandEditorTable.tabCommands.titleColumn2"); // NOI18N
+        s[2] = bundle.getString("CommandEditorTable.tabCommands.titleColumn3"); // NOI18N
+
+        return new CommandTableModel(s);
     }
 
     /**
@@ -58,27 +87,43 @@ public class CommandEditorTable extends ScriptEditor {
         btRemoveCommand = new javax.swing.JButton();
         btNewCommand = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabCommands = new javax.swing.JTable();
+        btUp = new javax.swing.JButton();
+        btDown = new javax.swing.JButton();
 
-        btRemoveCommand.setText("Remove");
-
-        btNewCommand.setText("New");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
+        btRemoveCommand.setText(bundle.getString("CommandEditorTable.btRemoveCommand.text")); // NOI18N
+        btRemoveCommand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveCommandActionPerformed(evt);
             }
-        ));
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setDragEnabled(true);
-        jTable1.setDropMode(javax.swing.DropMode.INSERT_ROWS);
-        jScrollPane1.setViewportView(jTable1);
+        });
+
+        btNewCommand.setText(bundle.getString("CommandEditorTable.btNewCommand.text")); // NOI18N
+        btNewCommand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNewCommandActionPerformed(evt);
+            }
+        });
+
+        tabCommands.setModel(createModel());
+        tabCommands.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabCommands.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tabCommands);
+
+        btUp.setText(bundle.getString("CommandEditorTable.btUp.text")); // NOI18N
+        btUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUpActionPerformed(evt);
+            }
+        });
+
+        btDown.setText(bundle.getString("CommandEditorTable.btDown.text")); // NOI18N
+        btDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDownActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,6 +133,10 @@ public class CommandEditorTable extends ScriptEditor {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btUp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btDown)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btNewCommand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btRemoveCommand))
@@ -102,16 +151,50 @@ public class CommandEditorTable extends ScriptEditor {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNewCommand)
-                    .addComponent(btRemoveCommand))
+                    .addComponent(btRemoveCommand)
+                    .addComponent(btUp)
+                    .addComponent(btDown))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btNewCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewCommandActionPerformed
+        Command c = new Command(Command.CommandName.CUT);
+        ((CommandTableModel) tabCommands.getModel()).addCommand(c);
+    }//GEN-LAST:event_btNewCommandActionPerformed
+
+    private void btUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpActionPerformed
+        CommandTableModel model = (CommandTableModel) tabCommands.getModel();
+        int[] rows = tabCommands.getSelectedRows();
+        if (rows.length > 0) {
+            model.moveRow(rows[0], rows[rows.length - 1], rows[0] - 1);
+            tabCommands.setRowSelectionInterval(rows[0] - 1,
+                    rows[rows.length - 1] - 1);
+        }
+    }//GEN-LAST:event_btUpActionPerformed
+
+    private void btDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDownActionPerformed
+        CommandTableModel model = (CommandTableModel) tabCommands.getModel();
+        int[] rows = tabCommands.getSelectedRows();
+        if (rows.length > 0) {
+            model.moveRow(rows[0], rows[rows.length - 1], rows[0] + 1);
+            tabCommands.setRowSelectionInterval(rows[0] + 1,
+                    rows[rows.length - 1] + 1);
+        }
+    }//GEN-LAST:event_btDownActionPerformed
+
+    private void btRemoveCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveCommandActionPerformed
+        ((CommandTableModel) tabCommands.getModel()).removeCommand(
+                tabCommands.getSelectedRow());
+    }//GEN-LAST:event_btRemoveCommandActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btDown;
     private javax.swing.JButton btNewCommand;
     private javax.swing.JButton btRemoveCommand;
+    private javax.swing.JButton btUp;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabCommands;
     // End of variables declaration//GEN-END:variables
 }

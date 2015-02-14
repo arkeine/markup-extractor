@@ -16,7 +16,7 @@
 
 package ch.arkeine.markupextractor.extractor;
 
-import ch.arkeine.markupextractor.tool.FileTool;
+import ch.arkeine.markupextractor.tool.ToolFiles;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -39,7 +39,7 @@ public class ExtractorTest {
         File temp = new File("textTest.txt");
         
         try {
-            System.out.println("ici : "+FileTool.readStringFromFile(temp.getAbsolutePath()));
+            System.out.println("ici : "+ToolFiles.readStringFromFile(temp.getAbsolutePath()));
             
 //        String expResult = "Ceci est un fichier de test dont le contenu"
 //                + " est totalement arbitraire\n";

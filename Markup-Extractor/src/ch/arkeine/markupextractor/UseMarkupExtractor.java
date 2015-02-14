@@ -39,7 +39,7 @@ public class UseMarkupExtractor {
                 InstantiationException | IllegalAccessException e) {
            // handle exception
         }
-
+        
         new MainMenu().show();
     }
     

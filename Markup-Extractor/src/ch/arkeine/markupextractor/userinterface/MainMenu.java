@@ -13,27 +13,60 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.extractor.Command;
 import ch.arkeine.markupextractor.extractor.Extractor;
+import ch.arkeine.markupextractor.extractor.ExtractorListener;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Nils Ryter
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
 
     private Command[] cmds;
     private String[] urlsToDo;
     private Extractor extractor;
-    
+
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
+        cmds = new Command[0];
+        urlsToDo = new String[0];
+    }
+
+    @Override
+    public void extractionFinish() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                SummaryMenu dialog = new SummaryMenu(MainMenu.this, true,
+                        extractor);
+                dialog.setLocationRelativeTo(MainMenu.this);
+                dialog.setVisible(true);
+                setEnable(true);
+            }
+        });
+    }
+
+    @Override
+    public void progressUpdate(double percent) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                pbTotalProgress.setValue((int) percent);
+            }
+        });
+    }
+
+    public void setEnable(boolean b) {
+        btExtract.setEnabled(b);
+        btScript.setEnabled(b);
+        btUrl.setEnabled(b);
     }
 
     /**
@@ -66,6 +99,8 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("MainMenu.title")); // NOI18N
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -111,7 +146,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titleSetScript)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btScript)
                 .addContainerGap())
         );
@@ -291,38 +326,41 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btScriptActionPerformed
-        ScriptEditorMenu dialog = new ScriptEditorMenu(this, true);
+        Command[] newCmds = new Command[cmds.length];
+        for (int i = 0; i < newCmds.length; i++) {
+            newCmds[i] = cmds[i].cloneOf();            
+        }
+        
+        ScriptEditorMenu dialog = new ScriptEditorMenu(this, true, newCmds);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
-        if(dialog.isOk())
-        {
+
+        if (dialog.isOk()) {
             cmds = dialog.getCommands();
         }
     }//GEN-LAST:event_btScriptActionPerformed
 
     private void btUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUrlActionPerformed
-        UrlEditorMenu dialog = new UrlEditorMenu(this, true);
+        UrlEditorMenu dialog = new UrlEditorMenu(this, true, urlsToDo);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
-        if(dialog.isOk())
-        {
+
+        if (dialog.isOk()) {
             urlsToDo = dialog.getUrls();
         }
     }//GEN-LAST:event_btUrlActionPerformed
 
     private void btExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExtractActionPerformed
-        System.out.println(cmds.length);
-        System.out.println(urlsToDo.length);
-        
+        assert cmds != null : "command script is null";
+        assert urlsToDo != null : "urls array is null";
+
+        setEnable(false);
+
         extractor = new Extractor(cmds, urlsToDo);
-        
-        extractor.run();
-        
-        SummaryMenu dialog = new SummaryMenu(this, true, extractor);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
+        extractor.addExtractorListener(this);
+
+        Thread t = new Thread(extractor);
+        t.start();
     }//GEN-LAST:event_btExtractActionPerformed
 
     /**

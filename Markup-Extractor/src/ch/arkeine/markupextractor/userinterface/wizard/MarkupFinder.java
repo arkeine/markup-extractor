@@ -15,7 +15,7 @@
  */
 package ch.arkeine.markupextractor.userinterface.wizard;
 
-import ch.arkeine.markupextractor.tool.MarkupTool;
+import ch.arkeine.markupextractor.tool.ToolMarkups;
 import java.awt.Component;
 import java.util.LinkedList;
 import java.util.List;
@@ -95,12 +95,13 @@ public class MarkupFinder extends javax.swing.JDialog {
         txtEndMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
         titleMaxMarkupLength = new javax.swing.JLabel();
         spMaxMarkupLength = new javax.swing.JSpinner();
-        btCreateScript = new javax.swing.JButton();
+        btAddToScript = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("MarkupFinder.title")); // NOI18N
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         split.setDividerLocation(500);
         split.setResizeWeight(0.8);
@@ -239,10 +240,10 @@ public class MarkupFinder extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        btCreateScript.setText(bundle.getString("MarkupFinder.btCreateScript.text")); // NOI18N
-        btCreateScript.addActionListener(new java.awt.event.ActionListener() {
+        btAddToScript.setText(bundle.getString("MarkupFinder.btAddToScript.text")); // NOI18N
+        btAddToScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCreateScriptActionPerformed(evt);
+                btAddToScriptActionPerformed(evt);
             }
         });
 
@@ -263,7 +264,7 @@ public class MarkupFinder extends javax.swing.JDialog {
                     .addComponent(panInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btCreateScript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAddToScript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -273,11 +274,11 @@ public class MarkupFinder extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCreateScript)
+                    .addComponent(btAddToScript)
                     .addComponent(btCancel))
                 .addContainerGap())
         );
@@ -340,7 +341,7 @@ public class MarkupFinder extends javax.swing.JDialog {
 
             //Search the best markup
             int maxLen = (int) spMaxMarkupLength.getValue();
-            String[] m = MarkupTool.searchMarkup(arrDoc, arrKey, arrOccu);
+            String[] m = ToolMarkups.searchMarkup(arrDoc, arrKey, arrOccu);
             txtBeginMarkup.setText(m[0].substring(
                     Math.max(m[0].length() - maxLen, 0), m[0].length()));
             txtEndMarkup.setText(m[1].substring(0, Math.min(maxLen,
@@ -367,10 +368,10 @@ public class MarkupFinder extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btShowDataActionPerformed
 
-    private void btCreateScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateScriptActionPerformed
+    private void btAddToScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToScriptActionPerformed
         isOk = true;
         dispose();
-    }//GEN-LAST:event_btCreateScriptActionPerformed
+    }//GEN-LAST:event_btAddToScriptActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         dispose();
@@ -430,8 +431,8 @@ public class MarkupFinder extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddToScript;
     private javax.swing.JButton btCancel;
-    private javax.swing.JButton btCreateScript;
     private javax.swing.JButton btFindMarkup;
     private javax.swing.JButton btNewData;
     private javax.swing.JButton btRemoveData;

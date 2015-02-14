@@ -15,7 +15,7 @@
  */
 package ch.arkeine.markupextractor.userinterface.wizard;
 
-import ch.arkeine.markupextractor.tool.UrlTool;
+import ch.arkeine.markupextractor.tool.ToolUrls;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,7 +92,7 @@ public class DataSelector extends javax.swing.JPanel {
                 .addGroup(panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtOccurenceText)
                     .addComponent(spOccurenceNumber)
-                    .addComponent(btLoadFromSelection, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(btLoadFromSelection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panOccurenceLayout.createSequentialGroup()
                         .addGroup(panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +129,7 @@ public class DataSelector extends javax.swing.JPanel {
         panContent.setLayout(panContentLayout);
         panContentLayout.setHorizontalGroup(
             panContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         panContentLayout.setVerticalGroup(
             panContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,7 @@ public class DataSelector extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(txtUrl)
+                .addComponent(txtUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btLoadUrl)
                 .addContainerGap())
@@ -194,9 +194,8 @@ public class DataSelector extends javax.swing.JPanel {
 
     private void btLoadUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadUrlActionPerformed
         try {
-            StringBuilder content = UrlTool.loadURL(txtUrl.getText(), "");
-            txtContent.setText(content.toString());
-        } catch (IOException ex) {
+            txtContent.setText(ToolUrls.loadURL(txtUrl.getText()));
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
             Logger.getLogger(DataSelector.class.getName()).log(Level.SEVERE,
                     null, ex);

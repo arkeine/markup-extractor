@@ -15,8 +15,8 @@
  */
 package ch.arkeine.markupextractor.userinterface;
 
-import ch.arkeine.markupextractor.tool.FileTool;
-import ch.arkeine.markupextractor.tool.UrlTool;
+import ch.arkeine.markupextractor.tool.ToolFiles;
+import ch.arkeine.markupextractor.tool.ToolUrls;
 import ch.arkeine.markupextractor.userinterface.wizard.UrlGenerator;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -31,20 +31,30 @@ import javax.swing.JOptionPane;
 public class UrlEditorMenu extends javax.swing.JDialog {
 
     private boolean isOk;
-    private String[] urls;
 
     /**
      * Creates new form UrlEditorMenu
      */
     public UrlEditorMenu(java.awt.Frame parent, boolean modal) {
+        this(parent, modal, new String[0]);
+    }
+    
+    /**
+     * Creates new form UrlEditorMenu
+     */
+    public UrlEditorMenu(java.awt.Frame parent, boolean modal, String[] urls) {
         super(parent, modal);
         initComponents();
         isOk = false;
-        urls = new String[0];
+        txtUrls.setText(ToolUrls.urlsToString(urls));
     }
 
     public String[] getUrls() {
-        return urls;
+        return ToolUrls.stringToUrls(txtUrls.getText());
+    }
+    
+    public void setUrls(String[] urls) {
+        txtUrls.setText(ToolUrls.urlsToString(urls));
     }
 
     public boolean isOk() {
@@ -78,7 +88,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("UrlEditorMenu.title")); // NOI18N
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(300);
         jSplitPane1.setResizeWeight(1.0);
 
         panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panFiles.border.title"))); // NOI18N
@@ -178,7 +188,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 .addComponent(panFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(btOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancel)
@@ -191,6 +201,8 @@ public class UrlEditorMenu extends javax.swing.JDialog {
 
         txtUrls.setColumns(20);
         txtUrls.setRows(5);
+        txtUrls.setDragEnabled(true);
+        txtUrls.setDropMode(javax.swing.DropMode.INSERT);
         jScrollPane1.setViewportView(txtUrls);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -200,7 +212,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(titleUrls)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -212,7 +224,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(titleUrls)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -233,7 +245,6 @@ public class UrlEditorMenu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
-        urls = txtUrls.getText().split("\n");
         isOk = true;
         dispose();
     }//GEN-LAST:event_btOkActionPerformed
@@ -244,14 +255,15 @@ public class UrlEditorMenu extends javax.swing.JDialog {
 
     private void btSaveUrlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlsActionPerformed
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(FileTool.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getUrlsFilter());
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
-
+            
             try {
-                FileTool.writeStringToFile(fc.getSelectedFile().getAbsolutePath(),
-                        UrlTool.urlsToString(urls), FileTool.URL_FILE_EXTENSION);
+                ToolFiles.writeStringToFile(txtUrls.getText(),
+                        fc.getSelectedFile().getAbsolutePath(),
+                        ToolFiles.URL_FILE_EXTENSION);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -263,14 +275,15 @@ public class UrlEditorMenu extends javax.swing.JDialog {
 
     private void btOpenUrlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOpenUrlsActionPerformed
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(FileTool.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getUrlsFilter());
         fc.showOpenDialog(this);
 
         if (fc.getSelectedFile() != null) {
 
             try {
-                urls = UrlTool.stringToUrls(FileTool.readStringFromFile(
-                        fc.getSelectedFile().getAbsolutePath()));
+                String textRead = ToolFiles.readStringFromFile(
+                        fc.getSelectedFile().getAbsolutePath());
+                txtUrls.setText(textRead);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -284,10 +297,9 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         UrlGenerator dialog = new UrlGenerator(null, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
-        if(dialog.isOk())
-        {
-            txtUrls.setText(UrlTool.urlsToString(dialog.getUrlsGenerated()));
+
+        if (dialog.isOk()) {
+            txtUrls.setText(ToolUrls.urlsToString(dialog.getUrlsGenerated()));
         }
     }//GEN-LAST:event_btUrlGeneratorActionPerformed
 

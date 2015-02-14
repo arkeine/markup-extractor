@@ -16,8 +16,8 @@
 package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.extractor.Extractor;
-import ch.arkeine.markupextractor.tool.FileTool;
-import ch.arkeine.markupextractor.tool.UrlTool;
+import ch.arkeine.markupextractor.tool.ToolFiles;
+import ch.arkeine.markupextractor.tool.ToolUrls;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,15 +62,15 @@ public class SummaryMenu extends javax.swing.JDialog {
 
     private void writeUrlsFile(String[] urls) {
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(FileTool.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getUrlsFilter());
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
 
             try {
-                FileTool.writeStringToFile(
+                ToolFiles.writeStringToFile(ToolUrls.urlsToString(urls),
                         fc.getSelectedFile().getAbsolutePath(),
-                        UrlTool.urlsToString(urls), FileTool.URL_FILE_EXTENSION);
+                        ToolFiles.URL_FILE_EXTENSION);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -358,10 +358,10 @@ public class SummaryMenu extends javax.swing.JDialog {
         if (separator != null && !separator.isEmpty() && fc.getSelectedFile() != null) {
 
             try {
-                FileTool.writeStringToFile(
+                ToolFiles.writeStringToFile(
                         extractor.getExtractedToCSV(separator),
                         fc.getSelectedFile().getAbsolutePath(),
-                        FileTool.EXTRACTED_FILE_EXTENSION);
+                        ToolFiles.EXTRACTED_FILE_EXTENSION);
             } catch (IOException ex) {
                 Logger.getLogger(SummaryMenu.class.getName()).log(Level.SEVERE,
                         null, ex);
@@ -372,7 +372,7 @@ public class SummaryMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_btSaveDataActionPerformed
 
     private void btSaveUrlErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlErrorActionPerformed
-         writeUrlsFile(extractor.getNoExtractedDoc());
+        writeUrlsFile(extractor.getNoExtractedDoc());
     }//GEN-LAST:event_btSaveUrlErrorActionPerformed
 
     private void btSaveUrlSuccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlSuccessActionPerformed

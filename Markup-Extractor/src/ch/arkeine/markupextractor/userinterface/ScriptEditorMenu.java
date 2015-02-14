@@ -18,86 +18,84 @@ package ch.arkeine.markupextractor.userinterface;
 import ch.arkeine.markupextractor.userinterface.wizard.MarkupFinder;
 import ch.arkeine.markupextractor.extractor.Command;
 import ch.arkeine.markupextractor.extractor.Extractor;
-import ch.arkeine.markupextractor.tool.FileTool;
-import ch.arkeine.markupextractor.tool.UrlTool;
-import ch.arkeine.markupextractor.userinterface.scripteditor.ScriptEditor;
-import java.awt.Component;
+import ch.arkeine.markupextractor.tool.ToolFiles;
+import ch.arkeine.markupextractor.tool.ToolMessages;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Nils Ryter
  */
 public class ScriptEditorMenu extends javax.swing.JDialog {
-    
-    public static String commandsToString(Command[] cmds) {
-        StringBuilder s = new StringBuilder();
-
-        for (Command c : cmds) {
-            s.append(c.getName().toString());
-            s.append("\n");
-            s.append(c.getParameter1());
-            s.append("\n");
-            s.append(c.getParameter2());
-            s.append("\n");
-        }
-
-        return s.toString();
-    }
-
-    public static Command[] stringToCommands(String s) {
-        String[] strCmds = s.split("\n");
-
-        if ((strCmds.length - 1) % 3 == 0) {
-            Command[] cmds = new Command[strCmds.length - 1];
-
-            for (int i = 0; i < cmds.length; i++) {
-                cmds[i] = new Command(Command.CommandName.valueOf(strCmds[i]));
-                cmds[i].setParameter1(strCmds[i + 1]);
-                cmds[i].setParameter2(strCmds[i + 2]);
-            }
-
-            return cmds;
-        } else {
-            return new Command[0];
-        }
-    }
 
     private boolean isOk;
-    private Command[] cmds;
 
     /**
      * Creates new form CommandEditor
      */
     public ScriptEditorMenu(java.awt.Frame parent, boolean modal) {
+        this(parent, modal, new Command[0]);
+    }
+
+    public ScriptEditorMenu(java.awt.Frame parent, boolean modal, Command[] cmds) {
         super(parent, modal);
         initComponents();
         isOk = false;
-        cmds = new Command[0];
+        commandEditorTable.setCommandScript(cmds);
     }
 
     public boolean isOk() {
         return isOk;
     }
-    
+
     public Command[] getCommands() {
-        return cmds;
+        return commandEditorTable.getCommandScript();
     }
 
-    private void setCommandSript(Command[] cmds) {
-        this.cmds = cmds;
+    public void setCommands(Command[] cmds) {
+        commandEditorTable.setCommandScript(cmds);
+    }
 
-        for (Component comp : jTabbedPane1.getComponents()) {
-            ScriptEditor se = (ScriptEditor) comp;
-            se.setCommandScript(cmds);
+    public void setEnable(boolean b) {
+        btCancel.setEnabled(b);
+        btLoadCommand.setEnabled(b);
+        btMarkupFinder.setEnabled(b);
+        btOk.setEnabled(b);
+        btSaveCommand.setEnabled(b);
+        btTestScript.setEnabled(b);
+        if (!b) {
+            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        } else {
+            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         }
     }
-    
-    
+
+    private void showDataExtracted(String data) {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        final String title = bundle.getString(
+                "ScriptEditorMenu.message.testExtractedTitle");
+        final String summary = bundle.getString(
+                "ScriptEditorMenu.message.testExtractedSummary");
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        setEnable(true);
+
+                        ToolMessages.showBigMessage(ScriptEditorMenu.this,
+                                summary, title, data,
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
+                });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,7 +107,7 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         panFiles = new javax.swing.JPanel();
         btSaveCommand = new javax.swing.JButton();
         btLoadCommand = new javax.swing.JButton();
@@ -119,14 +117,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         btMarkupFinder = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
         btOk = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        commandEditorConsole1 = new ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorConsole();
+        commandEditorTable = new ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("ScriptEditorMenu.title")); // NOI18N
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(400);
         jSplitPane1.setResizeWeight(1.0);
 
         panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panFiles.border.title"))); // NOI18N
@@ -263,16 +260,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         );
 
         jSplitPane1.setRightComponent(jPanel1);
-
-        jTabbedPane1.addTab(bundle.getString("ScriptEditorMenu.commandEditorConsole1.TabConstraints.tabTitle"), commandEditorConsole1); // NOI18N
-
-        jSplitPane1.setLeftComponent(jTabbedPane1);
+        jSplitPane1.setLeftComponent(commandEditorTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,15 +278,17 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
 
     private void btSaveCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveCommandActionPerformed
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(FileTool.getCommandScriptFilter());
+        fc.setFileFilter(ToolFiles.getCommandScriptFilter());
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
 
-            try{
-                FileTool.writeStringToFile(commandsToString(cmds), 
+            try {
+                List<Command> l = Arrays.asList(
+                        commandEditorTable.getCommandScript());
+                ToolFiles.writeObjectToFile(l,
                         fc.getSelectedFile().getAbsolutePath(),
-                        FileTool.COMMAND_FILE_EXTENSION);
+                        ToolFiles.COMMAND_FILE_EXTENSION);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -304,16 +300,17 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
 
     private void btLoadCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadCommandActionPerformed
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(FileTool.getCommandScriptFilter());
+        fc.setFileFilter(ToolFiles.getCommandScriptFilter());
         fc.showOpenDialog(this);
 
         if (fc.getSelectedFile() != null) {
 
             try {
-                setCommandSript(stringToCommands(
-                        FileTool.readStringFromFile(
-                                fc.getSelectedFile().getAbsolutePath())));
-            } catch (IOException ex) {
+                List<Command> l = (List<Command>) ToolFiles.readObjectFromFile(
+                        fc.getSelectedFile().getAbsolutePath());
+                Command[] c = l.toArray(new Command[l.size()]);
+                setCommands(c);
+            } catch (IOException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
                         Level.WARNING,
@@ -335,7 +332,7 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
             cmd[0].setParameter1(markups[0]);
             cmd[0].setParameter2(markups[1]);
 
-            setCommandSript(cmd);
+            commandEditorTable.insertCommandScript(cmd);
         }
     }//GEN-LAST:event_btMarkupFinderActionPerformed
 
@@ -343,27 +340,26 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
 
-        String[] url = new String[1];
-        try {
-            url[0] = UrlTool.loadURL(JOptionPane.showInputDialog(this,
-                    bundle.getString(
-                            "CommandEditor.input.url")), "").toString();
+        String url = JOptionPane.showInputDialog(this,
+                bundle.getString("ScriptEditorMenu.input.url"));
+        String separator = JOptionPane.showInputDialog(this,
+                bundle.getString("ScriptEditorMenu.input.separator"));
 
-            String separator = JOptionPane.showInputDialog(this,
-                    bundle.getString(
-                            "CommandEditor.input.separator"));
+        setEnable(false);
+        Thread t = new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] lstUrl = new String[1];
+                        lstUrl[0] = url;
 
-            Extractor extractor = new Extractor(cmds, url);
-            extractor.run();
-
-            JOptionPane.showMessageDialog(this, extractor.getExtractedToCSV(
-                    separator));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, bundle.getString(
-                    "CommandEditor.message.invalidUrl"));
-            Logger.getLogger(ScriptEditorMenu.class.getName()).log(Level.WARNING,
-                    null, ex);
-        }
+                        Extractor extractor = new Extractor(
+                                getCommands(), lstUrl);
+                        extractor.run();
+                        showDataExtracted(extractor.getExtractedToCSV(separator));
+                    }
+                });
+        t.start();
     }//GEN-LAST:event_btTestScriptActionPerformed
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
@@ -382,10 +378,8 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
     private javax.swing.JButton btOk;
     private javax.swing.JButton btSaveCommand;
     private javax.swing.JButton btTestScript;
-    private ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorConsole commandEditorConsole1;
-    private javax.swing.JPanel jPanel1;
+    private ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorTable commandEditorTable;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel panFiles;
     private javax.swing.JPanel panGenerate;
     private javax.swing.JPanel panOther;
