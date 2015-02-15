@@ -277,8 +277,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSaveCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveCommandActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.commandFile.extension");
+        String description = bundle.getString(".constant.commandFile.description");
+
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getCommandScriptFilter());
+        fc.setFileFilter(ToolFiles.getFilter(extension , description));
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
@@ -287,8 +292,7 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
                 List<Command> l = Arrays.asList(
                         commandEditorTable.getCommandScript());
                 ToolFiles.writeObjectToFile(l,
-                        fc.getSelectedFile().getAbsolutePath(),
-                        ToolFiles.COMMAND_FILE_EXTENSION);
+                        fc.getSelectedFile().getAbsolutePath(),extension);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -299,8 +303,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_btSaveCommandActionPerformed
 
     private void btLoadCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadCommandActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.commandFile.extension");
+        String description = bundle.getString(".constant.commandFile.description");
+
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getCommandScriptFilter());
+        fc.setFileFilter(ToolFiles.getFilter(extension , description));
         fc.showOpenDialog(this);
 
         if (fc.getSelectedFile() != null) {

@@ -61,16 +61,20 @@ public class SummaryMenu extends javax.swing.JDialog {
     }
 
     private void writeUrlsFile(String[] urls) {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.urlFile.extension");
+        String description = bundle.getString(".constant.urlFile.description");
+
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
 
             try {
-                ToolFiles.writeStringToFile(ToolUrls.urlsToString(urls),
-                        fc.getSelectedFile().getAbsolutePath(),
-                        ToolFiles.URL_FILE_EXTENSION);
+                ToolFiles.writeStringToFile(ToolUrls.urlsToString(urls, "\n"),
+                        fc.getSelectedFile().getAbsolutePath(),extension);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -348,8 +352,11 @@ public class SummaryMenu extends javax.swing.JDialog {
     private void btSaveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveDataActionPerformed
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.urlFile.extension");
+        String description = bundle.getString(".constant.urlFile.description");
 
         JFileChooser fc = new JFileChooser();
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showSaveDialog(this);
 
         String separator = JOptionPane.showInputDialog(this,
@@ -360,8 +367,7 @@ public class SummaryMenu extends javax.swing.JDialog {
             try {
                 ToolFiles.writeStringToFile(
                         extractor.getExtractedToCSV(separator),
-                        fc.getSelectedFile().getAbsolutePath(),
-                        ToolFiles.EXTRACTED_FILE_EXTENSION);
+                        fc.getSelectedFile().getAbsolutePath(),extension);
             } catch (IOException ex) {
                 Logger.getLogger(SummaryMenu.class.getName()).log(Level.SEVERE,
                         null, ex);

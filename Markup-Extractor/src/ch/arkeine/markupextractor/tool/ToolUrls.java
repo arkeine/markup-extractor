@@ -71,18 +71,18 @@ public class ToolUrls {
         }
     }
 
-    public static String urlsToString(String[] urls) {
+    public static String urlsToString(String[] urls, String separator) {
         StringBuilder s = new StringBuilder();
 
         for (String url : urls) {
             s.append(url);
-            s.append("\n");
+            s.append(separator);
         }
 
         return s.toString();
     }
 
-    public static String[] stringToUrls(String s) {
-        return s.split("\n");
+    public static String[] stringToUrls(String s, String separator) {
+        return s.split(separator);
     }
 }

@@ -16,7 +16,6 @@
 package ch.arkeine.markupextractor.extractor;
 
 import ch.arkeine.markupextractor.tool.ToolUrls;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,9 +43,10 @@ public class Extractor implements Runnable {
     private final List<String> noExtractedDoc;
     private final List<String> extractedDoc;
 
-    public Extractor(Command[] cmd, String[] doc) {
+    public Extractor(Command[] cmd, String[] doc) {                
         this.cmd = Arrays.copyOf(cmd, cmd.length);
         this.doc = Arrays.copyOf(doc, doc.length);
+        
         extractedData = new OutputArray();
         noExtractedDoc = new LinkedList();
         extractedDoc = new LinkedList();
@@ -64,7 +64,7 @@ public class Extractor implements Runnable {
         return s;
     }
 
-    public String getExtractedToCSV(String separator) {
+    public String getExtractedToCSV(String separator) {   
         separator = separator.isEmpty() ? "," : separator;
 
         return extractedData.toCSV(separator);
@@ -135,7 +135,7 @@ public class Extractor implements Runnable {
         }
     }
 
-    private int getBeginIndex(StringBuilder s, String p) {
+    private int getBeginIndex(StringBuilder s, String p) {        
         if (isIncludeBegin) {
             return s.indexOf(p);
         } else {
@@ -163,7 +163,7 @@ public class Extractor implements Runnable {
 
     }
 
-    private void cut(StringBuilder s, String p1, String p2) {
+    private void cut(StringBuilder s, String p1, String p2) {        
         copy(s, p1, p2);
         delete(s, p1, p2);
     }
@@ -178,72 +178,69 @@ public class Extractor implements Runnable {
             extractedData.addRecordData(s.substring(val1, val2));
         }
     }
-   
+
     //--------------------------------------------------------------------------
     //  LISTENERS
     //--------------------------------------------------------------------------
-    
     //Liste of listeners
     private transient EventListenerList listeners;
-    
+
     /**
      * Check if the listeners list is instantiated
      */
-    private void instantiatedExtractorListener()
-    {
-        if(listeners == null) listeners = new EventListenerList();
+    private void instantiatedExtractorListener() {
+        if (listeners == null) {
+            listeners = new EventListenerList();
+        }
     }
 
     /**
      * Add a listener
+     * <p>
      * @param listener Listener
      */
-    public  void addExtractorListener(ExtractorListener listener)
-    {
+    public void addExtractorListener(ExtractorListener listener) {
         instantiatedExtractorListener();
         listeners.add(ExtractorListener.class, listener);
     }
 
     /**
      * Remove a listener
+     * <p>
      * @param listener Listener
      */
-    public  void removeExtractorListener(ExtractorListener listener)
-    {
+    public void removeExtractorListener(ExtractorListener listener) {
         instantiatedExtractorListener();
         listeners.remove(ExtractorListener.class, listener);
     }
-    
+
     /**
      * Return the list of the listeners
+     * <p>
      * @return List of the listeners
      */
-    public  ExtractorListener[] getExtractorListener() 
-    {
+    public ExtractorListener[] getExtractorListener() {
         instantiatedExtractorListener();
         return listeners.getListeners(ExtractorListener.class);
     }
-    
+
     /**
      * Event fired
      */
-    protected  void fireProgressUpdate(double percent)
-    {
+    protected void fireProgressUpdate(double percent) {
         instantiatedExtractorListener();
-        for(ExtractorListener listener : this.getExtractorListener())
-        {
+        for (ExtractorListener listener : this.getExtractorListener()) {
             listener.progressUpdate(percent);
         }
-    } 
+    }
+
     /**
      * Event fired
      */
-    protected  void fireExtractionFinish()
-    {
+    protected void fireExtractionFinish() {
         instantiatedExtractorListener();
-        for(ExtractorListener listener : this.getExtractorListener())
-        {
+        for (ExtractorListener listener : this.getExtractorListener()) {
             listener.extractionFinish();
         }
-    } 
+    }
 }

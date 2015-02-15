@@ -36,16 +36,19 @@ public class ToolMarkups {
      */
     public static String[] searchMarkup(String[] docs, String[] key,
             Integer[] numOccurrence) {
-        
-        assert docs.length == key.length :  "array must have same length";
-        assert docs.length == numOccurrence.length :  "array must have same length";
-        
+        if (docs.length != key.length || docs.length != numOccurrence.length) {
+            throw new IllegalArgumentException("arrays must have same length");
+        }
+
         String[][] pieces = new String[docs.length][2];
-        
+
         for (int i = 0; i < docs.length; ++i) {
-            
-            assert numOccurrence[i] > 0 : "numOccurrence must be greater than 0";
-        
+
+            if (numOccurrence[i] <= 0) {
+                throw new IllegalArgumentException(
+                        "numOccurrence at index " + i + " must be greater than 0");
+            }
+
             String[][] temp = cutDocument(key[i], docs[i]);
             pieces[i][0] = temp[numOccurrence[i] - 1][0];
             pieces[i][1] = temp[numOccurrence[i] - 1][1];
@@ -71,9 +74,8 @@ public class ToolMarkups {
      * @return Return an array of couple text which surround the key
      */
     private static String[][] cutDocument(String key, String searchDoc) {
-        
         assert !key.isEmpty() : "key serched is empty";
-        
+
         //Search the ocurences and get text before and after
         LinkedList<String> lst = new LinkedList();
         StringBuilder txt = new StringBuilder(searchDoc);
@@ -103,6 +105,7 @@ public class ToolMarkups {
      * @return Text of the beginning markup
      */
     private static String searchBeginMarkup(String[][] pieces) {
+
         int maxLength = searchLengthMarkup(pieces, 0);
         boolean doSearch = true;
         int similarIndex = 0;
@@ -175,6 +178,7 @@ public class ToolMarkups {
      * @return Maximum length of a markup
      */
     private static int searchLengthMarkup(String[][] pieces, int pos) {
+        
         //Find the maximal length of the searching 
         int maxLength = pieces[0][0].length();
 

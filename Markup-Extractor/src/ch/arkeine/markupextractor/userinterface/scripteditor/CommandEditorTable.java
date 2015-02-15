@@ -58,8 +58,8 @@ public class CommandEditorTable extends javax.swing.JPanel {
         TableColumn colParam2 = tabCommands.getColumnModel().getColumn(2);
 
         colCmd.setCellEditor(new DefaultCellEditor(cbCommand));
-        colParam1.setCellEditor(new ButtonEditor());
-        colParam2.setCellEditor(new ButtonEditor());
+        colParam1.setCellEditor(new BigTextEditor());
+        colParam2.setCellEditor(new BigTextEditor());
 
     }
 

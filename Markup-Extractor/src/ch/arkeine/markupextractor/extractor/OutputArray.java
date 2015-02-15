@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 public class OutputArray {
 
-    private ArrayList<ArrayList<String>> records;
+    private final ArrayList<ArrayList<String>> records;
     private ArrayList<String> currentRecord;
 
     public OutputArray() {
@@ -38,12 +38,12 @@ public class OutputArray {
     }
 
     public void addRecordData(String valeur) {
-        if (valeur != null) {
-            currentRecord.add(valeur);
-        }
+        valeur = valeur != null ? valeur : "";
+
+        currentRecord.add(valeur);
     }
 
-    public String toCSV(String separator) {
+    public String toCSV(String separator) {   
         StringBuilder sb = new StringBuilder();
 
         for (ArrayList<String> al : records) {

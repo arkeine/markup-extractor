@@ -38,7 +38,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
     public UrlEditorMenu(java.awt.Frame parent, boolean modal) {
         this(parent, modal, new String[0]);
     }
-    
+
     /**
      * Creates new form UrlEditorMenu
      */
@@ -46,15 +46,15 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         isOk = false;
-        txtUrls.setText(ToolUrls.urlsToString(urls));
+        txtUrls.setText(ToolUrls.urlsToString(urls, "\n"));
     }
 
     public String[] getUrls() {
-        return ToolUrls.stringToUrls(txtUrls.getText());
+        return ToolUrls.stringToUrls(txtUrls.getText(), "\n");
     }
-    
+
     public void setUrls(String[] urls) {
-        txtUrls.setText(ToolUrls.urlsToString(urls));
+        txtUrls.setText(ToolUrls.urlsToString(urls, "\n"));
     }
 
     public boolean isOk() {
@@ -254,16 +254,20 @@ public class UrlEditorMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btSaveUrlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlsActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.urlFile.extension");
+        String description = bundle.getString(".constant.urlFile.description");
+
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
-            
+
             try {
                 ToolFiles.writeStringToFile(txtUrls.getText(),
-                        fc.getSelectedFile().getAbsolutePath(),
-                        ToolFiles.URL_FILE_EXTENSION);
+                        fc.getSelectedFile().getAbsolutePath(), extension);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
@@ -274,8 +278,13 @@ public class UrlEditorMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_btSaveUrlsActionPerformed
 
     private void btOpenUrlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOpenUrlsActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String extension = bundle.getString(".constant.urlFile.extension");
+        String description = bundle.getString(".constant.urlFile.description");
+
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getUrlsFilter());
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showOpenDialog(this);
 
         if (fc.getSelectedFile() != null) {
@@ -299,7 +308,8 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         dialog.setVisible(true);
 
         if (dialog.isOk()) {
-            txtUrls.setText(ToolUrls.urlsToString(dialog.getUrlsGenerated()));
+            txtUrls.setText(ToolUrls.urlsToString(dialog.getUrlsGenerated(),
+                    "\n"));
         }
     }//GEN-LAST:event_btUrlGeneratorActionPerformed
 

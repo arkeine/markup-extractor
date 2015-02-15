@@ -34,15 +34,11 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ToolFiles {
 
-    public static final String URL_FILE_EXTENSION = "urls";
-    public static final String COMMAND_FILE_EXTENSION = "cmds";
-    public static final String EXTRACTED_FILE_EXTENSION = "csv";
-    
     /*
      * Get the extension of a file.
      */
     public static String getExtension(File f) {
-        String ext = null;
+        String ext = "";
         String s = f.getName();
         int i = s.lastIndexOf('.');
 
@@ -71,8 +67,6 @@ public class ToolFiles {
     public static String readStringFromFile(String path)
             throws IOException {
         File f = new File(path);
-        
-        if(!f.exists()) return null;
 
         try (BufferedReader in = new BufferedReader(
                 new FileReader(f))) {
@@ -82,9 +76,9 @@ public class ToolFiles {
                 s.append(line);
                 s.append("\n");
             }
-            
+
             return s.toString();
-        } 
+        }
     }
 
     public static void writeObjectToFile(Object content, String path,
@@ -107,55 +101,26 @@ public class ToolFiles {
     public static Object readObjectFromFile(String path)
             throws IOException, ClassNotFoundException {
         File f = new File(path);
-        
-        if(!f.exists()) return null;
 
-        try (ObjectInputStream  in = new ObjectInputStream (
-                new FileInputStream(f))) {            
+        try (ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(f))) {
             return in.readObject();
         } catch (IOException ex) {
             throw ex;
         }
     }
 
-    public static FileFilter getUrlsFilter() {
+    public static FileFilter getFilter(String extension, String description) {
         return new FileFilter() {
 
             @Override
             public boolean accept(File f) {
-                String extension = ToolFiles.getExtension(f);
-
-                return extension != null && extension.equals(
-                        URL_FILE_EXTENSION);
+                return ToolFiles.getExtension(f).equals(extension);
             }
 
             @Override
             public String getDescription() {
-                java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                        "ch/arkeine/markupextractor/internationalization"); // NOI18N
-                return bundle.getString(
-                        "FileTool.urls.extensionDescription");
-            }
-        };
-    }
-
-    public static FileFilter getCommandScriptFilter() {
-        return new FileFilter() {
-
-            @Override
-            public boolean accept(File f) {
-                String extension = ToolFiles.getExtension(f);
-
-                return extension != null && extension.equals(
-                        COMMAND_FILE_EXTENSION);
-            }
-
-            @Override
-            public String getDescription() {
-                java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                        "ch/arkeine/markupextractor/internationalization"); // NOI18N
-                return bundle.getString(
-                        "FileTool.commandScript.extensionDescription");
+                return description;
             }
         };
     }

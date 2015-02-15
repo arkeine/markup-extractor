@@ -17,9 +17,11 @@ package ch.arkeine.markupextractor.tool;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -42,7 +44,7 @@ public class ToolMessages {
         JOptionPane.showMessageDialog(parentComponent, panel, title,
                 messageType);
     }
-        
+
     public static String showBigInput(Component parentComponent, String summary,
             String title, String message, int messageType) {
 
@@ -54,21 +56,28 @@ public class ToolMessages {
 
     private static JPanel buildBigPane(boolean editable, String summary,
             String message) {
-        
+
         JLabel label = new JLabel(summary);
         JTextArea txtBig = new JTextArea(message);
         txtBig.setEditable(editable);
-        
-        JPanel panel = new JPanel(){
+        txtBig.setWrapStyleWord(true);
+        txtBig.setLineWrap(true);                
+
+        JPanel panel = new JPanel() {
             @Override
             public String toString() {
                 return txtBig.getText();
             }
 
         };
+        JScrollPane sp = new JScrollPane();
+        sp.setPreferredSize(new Dimension(10, 200));
+        sp.setViewportView(txtBig);
+        sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         panel.setLayout(new BorderLayout());
         panel.add(label, BorderLayout.NORTH);
-        panel.add(txtBig, BorderLayout.CENTER);
+        panel.add(sp, BorderLayout.CENTER);
 
         return panel;
     }

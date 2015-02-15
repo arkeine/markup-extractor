@@ -17,13 +17,13 @@ package ch.arkeine.markupextractor.extractor;
 
 import java.io.Serializable;
 
-public class Command implements Serializable, Cloneable{
+public class Command implements Serializable, Cloneable {
 
     public enum CommandName {
 
         DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD"),
         INCLUDE_BEGIN("INCLUDE_BEGIN"), INCLUDE_END("INCLUDE_END");
-        
+
         private final String name;
 
         private CommandName(String name) {
@@ -36,6 +36,7 @@ public class Command implements Serializable, Cloneable{
         }
     }
 
+    //IN-OUT
     private CommandName name;
     private String parameter1;
     private String parameter2;
@@ -46,22 +47,18 @@ public class Command implements Serializable, Cloneable{
         parameter2 = "";
     }
 
-    
-    public Command cloneOf()
-    {
+    public Command cloneOf() {
         Command n = new Command(name);
         n.parameter1 = this.parameter1;
         n.parameter2 = this.parameter2;
         return n;
     }
-    
+
     public CommandName getName() {
         return name;
     }
 
     public void setName(CommandName name) {
-        assert name != null : "command name is null";
-        
         this.name = name;
     }
 
