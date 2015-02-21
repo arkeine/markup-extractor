@@ -17,18 +17,15 @@ package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.extractor.Command;
 import ch.arkeine.markupextractor.extractor.Extractor;
-import ch.arkeine.markupextractor.extractor.ExtractorListener;
-import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Nils Ryter
  */
-public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
+public class MainMenu extends javax.swing.JFrame{
 
     private Command[] cmds;
     private String[] urlsToDo;
-    private Extractor extractor;
 
     /**
      * Creates new form MainMenu
@@ -37,36 +34,6 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
         initComponents();
         cmds = new Command[0];
         urlsToDo = new String[0];
-    }
-
-    @Override
-    public void extractionFinish() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                SummaryMenu dialog = new SummaryMenu(MainMenu.this, true,
-                        extractor);
-                dialog.setLocationRelativeTo(MainMenu.this);
-                dialog.setVisible(true);
-                setEnable(true);
-            }
-        });
-    }
-
-    @Override
-    public void progressUpdate(double percent) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                pbTotalProgress.setValue((int) percent);
-            }
-        });
-    }
-
-    public void setEnable(boolean b) {
-        btExtract.setEnabled(b);
-        btScript.setEnabled(b);
-        btUrl.setEnabled(b);
     }
 
     /**
@@ -93,8 +60,6 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
         titleStep3 = new javax.swing.JLabel();
         btExtract = new javax.swing.JButton();
         titleExtract = new javax.swing.JLabel();
-        pbTotalProgress = new javax.swing.JProgressBar();
-        titleProgressBar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
@@ -288,8 +253,6 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        titleProgressBar.setText(bundle.getString("MainMenu.titleProgressBar.text")); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -299,11 +262,7 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleProgressBar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pbTotalProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -315,10 +274,6 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(titleProgressBar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pbTotalProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -328,9 +283,9 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
     private void btScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btScriptActionPerformed
         Command[] newCmds = new Command[cmds.length];
         for (int i = 0; i < newCmds.length; i++) {
-            newCmds[i] = cmds[i].cloneOf();            
+            newCmds[i] = cmds[i].cloneOf();
         }
-        
+
         ScriptEditorMenu dialog = new ScriptEditorMenu(this, true, newCmds);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
@@ -351,16 +306,15 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
     }//GEN-LAST:event_btUrlActionPerformed
 
     private void btExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExtractActionPerformed
-        assert cmds != null : "command script is null";
-        assert urlsToDo != null : "urls array is null";
+        ExtractionMenu dialog1 = new ExtractionMenu(this, true,
+                new Extractor(cmds, urlsToDo, true));
+        dialog1.setLocationRelativeTo(this);
+        dialog1.setVisible(true);
 
-        setEnable(false);
-
-        extractor = new Extractor(cmds, urlsToDo);
-        extractor.addExtractorListener(this);
-
-        Thread t = new Thread(extractor);
-        t.start();
+        SummaryMenu dialog2 = new SummaryMenu(this, true);
+        dialog2.setExtractor(dialog1.getExtractor());
+        dialog2.setLocationRelativeTo(this);
+        dialog2.setVisible(true);
     }//GEN-LAST:event_btExtractActionPerformed
 
     /**
@@ -418,9 +372,7 @@ public class MainMenu extends javax.swing.JFrame implements ExtractorListener {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JProgressBar pbTotalProgress;
     private javax.swing.JLabel titleExtract;
-    private javax.swing.JLabel titleProgressBar;
     private javax.swing.JLabel titleSetScript;
     private javax.swing.JLabel titleSetUrl;
     private javax.swing.JLabel titleStep1;

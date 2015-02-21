@@ -1,3 +1,1 @@
 Adding some other methods to find beacon
-Message class
-Loggin and assert

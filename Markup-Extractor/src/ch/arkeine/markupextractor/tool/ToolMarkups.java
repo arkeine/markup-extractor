@@ -15,179 +15,154 @@
  */
 package ch.arkeine.markupextractor.tool;
 
-import java.util.LinkedList;
-
 /**
  *
  * @author Nils Ryter
  */
 public class ToolMarkups {
+    
+    public static String[] searchMinLenghtMarkup(String[] docs, String[] key,
+            Integer[] numOccurrence) throws MarkupToolException {
 
-    /**
-     * Search the maximum length of a markup around a key, between several
-     * documents.
-     * <p>
-     * @param docs Documents where search
-     * @param key Text around which search markup
-     * @param numOccurrence The occurrence number of the text key wanted (start
-     * from 1)
-     * @return An array with 2 strings, string at index 0 is the beginning
-     * markup and string at the index 1 is the ending markup
-     */
-    public static String[] searchMarkup(String[] docs, String[] key,
-            Integer[] numOccurrence) {
-        if (docs.length != key.length || docs.length != numOccurrence.length) {
-            throw new IllegalArgumentException("arrays must have same length");
-        }
+        String beginMarkup = "";
+        String endMarkup = "";
+        int[] posDataBegin = new int[docs.length];
+        int[] posDataEnd = new int[docs.length];
 
-        String[][] pieces = new String[docs.length][2];
+        for (int i = 0; i < docs.length; i++) {
+            posDataEnd[i] = searchOccurenceIndex(docs[i], key[i],
+                    numOccurrence[i]);
+            posDataBegin[i] = posDataEnd[i] - key[i].length();
+            String tempEnd = getMinLengthEndMarkup(docs[i], posDataBegin[i],
+                    posDataEnd[i]);
+            String tempBegin = getMinLengthBeginMarkup(docs[i], posDataBegin[i]);
 
-        for (int i = 0; i < docs.length; ++i) {
+            beginMarkup = checkBeginMarkup(docs, posDataBegin, i, tempBegin, beginMarkup);
 
-            if (numOccurrence[i] <= 0) {
-                throw new IllegalArgumentException(
-                        "numOccurrence at index " + i + " must be greater than 0");
-            }
-
-            String[][] temp = cutDocument(key[i], docs[i]);
-            pieces[i][0] = temp[numOccurrence[i] - 1][0];
-            pieces[i][1] = temp[numOccurrence[i] - 1][1];
+            endMarkup = checkEndMarkup(docs, posDataBegin, posDataEnd, i, tempEnd, endMarkup);
         }
 
         String[] ret = new String[2];
-        ret[0] = searchBeginMarkup(pieces);
-        ret[1] = searchEndMarkup(pieces);
+        ret[0] = beginMarkup;
+        ret[1] = endMarkup;
         return ret;
     }
 
-    /**
-     * Cut a document into pieces that can be use by the markup finder.
-     * <p>
-     * The pieces is the two text which surround the given key, the text before
-     * and the text after.<br>
-     * For example, if text key is "TOTO" and the document text is
-     * "abcTOTOdefTOTOijkTOTOlmn" it will return this array :
-     * [abc][def],[def][ijk],[ijk][lmn]
-     * <p>
-     * @param key Text key to extract
-     * @param searchDoc DocumentURL to cut
-     * @return Return an array of couple text which surround the key
-     */
-    private static String[][] cutDocument(String key, String searchDoc) {
-        assert !key.isEmpty() : "key serched is empty";
+    //Return endINDEX !!
+    public static int searchOccurenceIndex(String content,
+            String occurenceTexte, int occurenceNumber) {
+        int begin = 0;
+        int currentNum = 0;
 
-        //Search the ocurences and get text before and after
-        LinkedList<String> lst = new LinkedList();
-        StringBuilder txt = new StringBuilder(searchDoc);
+        while (currentNum < occurenceNumber) {
+            begin = content.indexOf(occurenceTexte, begin);
 
-        while (txt.indexOf(key) != -1) {
-            lst.add(txt.substring(0, txt.indexOf(key)));
-            txt.delete(0, txt.indexOf(key) + key.length());
+            if (begin == -1) {
+                return begin;
+            }
+
+            begin += occurenceTexte.length();
+            currentNum++;
         }
-
-        lst.add(txt.substring(0, txt.length()));
-
-        //Create and fill the array
-        String[][] tab = new String[lst.size() - 1][2];
-
-        for (int i = 0; i < tab.length; ++i) {
-            tab[i][0] = lst.get(i);
-            tab[i][1] = lst.get(i + 1);
-        }
-
-        return tab;
+        return begin;
     }
 
-    /**
-     * Research the best length markup for the pieces given.
-     * <p>
-     * @param pieces Pieces cut from documents where search markups
-     * @return Text of the beginning markup
-     */
-    private static String searchBeginMarkup(String[][] pieces) {
+    private static String getMinLengthBeginMarkup(String doc, int index) {
+        String markup = "";
+        boolean stop = false;
+        int increment = 1;
 
-        int maxLength = searchLengthMarkup(pieces, 0);
-        boolean doSearch = true;
-        int similarIndex = 0;
+        while (index - increment >= 0 && !stop) {
+            markup = doc.substring(index - increment, index);
+            stop = doc.indexOf(markup) + markup.length() == index;
+            increment++;
+        }
 
-        //While the search isn't stop 
-        while (doSearch) {
-            char tmp = pieces[0][0].charAt(pieces[0][0].length()
-                    - similarIndex - 1);
-            //Searche for this character in all the pieces
-            for (int i = 0; i < pieces.length; ++i) {
+        return markup;
+    }
 
-                if (pieces[i][0].charAt(pieces[i][0].length()
-                        - similarIndex - 1) != tmp) {
-                    doSearch = false;
+    private static String getMinLengthEndMarkup(String doc, int indexBegin,
+            int indexEnd) {
+        String markup = "";
+        String data = doc.substring(indexBegin, indexEnd);
+        boolean stop = false;
+        int increment = 1;
+
+        while (indexEnd + increment <= doc.length() && !stop) {
+            markup = doc.substring(indexEnd, indexEnd + increment);
+            stop = !data.contains(markup);
+            increment++;
+        }
+
+        return markup;
+    }
+
+    private static String checkBeginMarkup(String[] docs, int[] posDataBegin, int currentIndex,
+            String tempBegin, String beginMarkup) throws MarkupToolException {
+
+        String returnMarkup = beginMarkup;
+
+        if (tempBegin.length() > beginMarkup.length()) {
+
+            if (!tempBegin.endsWith(beginMarkup)) {
+                throw new MarkupToolException("Markup can not be found : the markups "
+                        + "don't match");
+            }
+
+            //Test of regression for previous documents
+            for (int j = currentIndex - 1; j >= 0; j--) {
+                if (docs[j].indexOf(tempBegin) + tempBegin.length() != posDataBegin[j]) {
+                    throw new MarkupToolException("Markup can not be found : Regression "
+                            + "test fail with document " + j);
                 }
             }
 
-            if (doSearch) {
-                ++similarIndex;
-            }
+            returnMarkup = tempBegin;
+        } else {
+            int empiriqueIndex = docs[currentIndex].indexOf(beginMarkup) + beginMarkup.length();
+            int expectedIndex = posDataBegin[currentIndex];
 
-            if (similarIndex >= maxLength) {
-                doSearch = false;
+            if (empiriqueIndex != expectedIndex) {
+                throw new MarkupToolException("Markup can not be found : the markups "
+                        + "don't match.\nEmpirique index :" + empiriqueIndex + "\n"
+                        + "Expected index : " + expectedIndex);
             }
         }
-        return pieces[0][0].substring(pieces[0][0].length()
-                - similarIndex, pieces[0][0].length());
+        return returnMarkup;
     }
 
-    /**
-     * Research the best length markup for the pieces given.
-     * <p>
-     * @param pieces Pieces cut from documents where search markups
-     * @return Text of the ending markup
-     */
-    private static String searchEndMarkup(String[][] pieces) {
+    private static String checkEndMarkup(String[] docs, int[] posDataBegin,
+            int[] posDataEnd, int currentIndex, String tempEnd, String endMarkup)
+            throws MarkupToolException {
 
-        int maxLength = searchLengthMarkup(pieces, 1);
-        boolean doSearch = true;
-        int similarIndex = 0;
+        String returnMarkup = endMarkup;
 
-        //While the search isn't stop 
-        while (doSearch) {
-            char tmp = pieces[0][1].charAt(similarIndex);
+        if (tempEnd.length() > endMarkup.length()) {
 
-            //Searche for this character in all the pieces
-            for (int i = 0; i < pieces.length; ++i) {
+            if (!tempEnd.startsWith(endMarkup)) {
+                throw new MarkupToolException("Markup can not be found : the markups "
+                        + "don't match");
+            }
 
-                if (pieces[i][1].charAt(similarIndex) != tmp) {
-                    doSearch = false;
+            //Test of regression for previous documents
+            for (int j = currentIndex - 1; j >= 0; j--) {
+                if (docs[j].indexOf(tempEnd, posDataBegin[j]) != posDataEnd[j]) {
+                    throw new MarkupToolException("Markup can not be found : Regression "
+                            + "test fail with document " + j);
                 }
             }
 
-            if (doSearch) {
-                ++similarIndex;
-            }
+            returnMarkup = tempEnd;
+        } else {
+            int empiriqueIndex = docs[currentIndex].indexOf(endMarkup, posDataBegin[currentIndex]);
+            int expectedIndex = posDataEnd[currentIndex];
 
-            if (similarIndex >= maxLength) {
-                doSearch = false;
-            }
-        }
-        return pieces[0][1].substring(0, similarIndex);
-    }
-
-    /**
-     * Search the maximum length of a markup between pieces.
-     * <p>
-     * @param pieces Pieces cut from documents where search markups
-     * @param pos 0 for the beginning markup length a 1 for the ending
-     * @return Maximum length of a markup
-     */
-    private static int searchLengthMarkup(String[][] pieces, int pos) {
-        
-        //Find the maximal length of the searching 
-        int maxLength = pieces[0][0].length();
-
-        for (int i = 0; i < pieces.length; ++i) {
-
-            if (maxLength > pieces[i][pos].length()) {
-                maxLength = pieces[i][pos].length();
+            if (empiriqueIndex != expectedIndex && !endMarkup.isEmpty()) {
+                throw new MarkupToolException("Markup can not be found : the markups "
+                        + "don't match.\nEmpirique index :" + empiriqueIndex + "\n"
+                        + "Expected index : " + expectedIndex);
             }
         }
-        return maxLength;
+        return returnMarkup;
     }
 }

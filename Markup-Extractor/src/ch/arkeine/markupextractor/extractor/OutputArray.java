@@ -16,6 +16,8 @@
 package ch.arkeine.markupextractor.extractor;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,12 +40,16 @@ public class OutputArray {
     }
 
     public void addRecordData(String valeur) {
-        valeur = valeur != null ? valeur : "";
+        if (valeur == null) {
+            valeur = "";
+            Logger.getLogger(Extractor.class.getName()).log(
+                    Level.INFO, "value has been tronqued to empty string");
+        }
 
         currentRecord.add(valeur);
     }
 
-    public String toCSV(String separator) {   
+    public String toCSV(String separator) {
         StringBuilder sb = new StringBuilder();
 
         for (ArrayList<String> al : records) {
@@ -60,5 +66,25 @@ public class OutputArray {
         }
 
         return sb.toString();
+    }
+
+    public String[][] toArray() {
+        int max = 0;
+        for (ArrayList<String> record : records) {
+            max = record.size() > max ? record.size() : max;
+        }
+
+        String[][] returnValue = new String[records.size()][max];
+
+        int i = 0;
+        for (ArrayList<String> record : records) {
+            int j = 0;
+            for (String s : record) {
+                returnValue[i][j] = s;
+                j++;
+            }
+            i++;
+        }
+        return returnValue;
     }
 }

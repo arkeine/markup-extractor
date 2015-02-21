@@ -15,6 +15,7 @@
  */
 package ch.arkeine.markupextractor.tool;
 
+import ch.arkeine.markupextractor.extractor.Extractor;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -61,7 +62,7 @@ public class ToolMessages {
         JTextArea txtBig = new JTextArea(message);
         txtBig.setEditable(editable);
         txtBig.setWrapStyleWord(true);
-        txtBig.setLineWrap(true);                
+        txtBig.setLineWrap(true);
 
         JPanel panel = new JPanel() {
             @Override

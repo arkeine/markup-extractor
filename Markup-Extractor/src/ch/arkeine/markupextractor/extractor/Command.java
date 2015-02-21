@@ -17,8 +17,15 @@ package ch.arkeine.markupextractor.extractor;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author Nils Ryter
+ */
 public class Command implements Serializable, Cloneable {
 
+    /**
+     * Type of command
+     */
     public enum CommandName {
 
         DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD"),

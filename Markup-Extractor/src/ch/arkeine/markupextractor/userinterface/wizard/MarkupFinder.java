@@ -15,10 +15,18 @@
  */
 package ch.arkeine.markupextractor.userinterface.wizard;
 
+import ch.arkeine.markupextractor.extractor.Command;
+import ch.arkeine.markupextractor.extractor.Extractor;
+import ch.arkeine.markupextractor.tool.MarkupToolException;
 import ch.arkeine.markupextractor.tool.ToolMarkups;
+import ch.arkeine.markupextractor.tool.ToolMessages;
+import ch.arkeine.markupextractor.userinterface.DisplayDataExtracted;
+import ch.arkeine.markupextractor.userinterface.ExtractionMenu;
+import ch.arkeine.markupextractor.userinterface.ScriptEditorMenu;
+import ch.arkeine.markupextractor.userinterface.SummaryMenu;
 import java.awt.Component;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -62,11 +70,35 @@ public class MarkupFinder extends javax.swing.JDialog {
         markups[1] = txtEndMarkup.getText();
         return markups;
     }
-    
+
     public boolean isOk() {
         return isOk;
-    }    
-    
+    }
+
+    private Object[][] getDataAsArray() {
+        String[] docs = new String[tabData.getTabCount()];
+        String[] keys = new String[tabData.getTabCount()];
+        Integer[] num = new Integer[tabData.getTabCount()];
+
+        int i = 0;
+        for (Component c : tabData.getComponents()) {
+            DataSelector d = (DataSelector) c;
+            docs[i] = d.getContent();
+            keys[i] = d.getOccurenceText();
+            num[i] = d.getOccurenceNumber();
+            if (d.getOccurenceText().isEmpty()) {
+                return null;
+            }
+            i++;
+        }
+        
+        Object[][] o = new Object[3][tabData.getTabCount()];
+        o[0] = docs;
+        o[1] = keys;
+        o[2] = num;
+        return o;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,8 +125,6 @@ public class MarkupFinder extends javax.swing.JDialog {
         txtBeginMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtEndMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
-        titleMaxMarkupLength = new javax.swing.JLabel();
-        spMaxMarkupLength = new javax.swing.JSpinner();
         btAddToScript = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
 
@@ -194,10 +224,6 @@ public class MarkupFinder extends javax.swing.JDialog {
         txtEndMarkup.setSyntaxEditingStyle(bundle.getString("MarkupFinder.txtEndMarkup.syntaxEditingStyle")); // NOI18N
         jScrollPane1.setViewportView(txtEndMarkup);
 
-        titleMaxMarkupLength.setText(bundle.getString("MarkupFinder.titleMaxMarkupLength.text")); // NOI18N
-
-        spMaxMarkupLength.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(15), Integer.valueOf(1), null, Integer.valueOf(1)));
-
         javax.swing.GroupLayout panOutputLayout = new javax.swing.GroupLayout(panOutput);
         panOutput.setLayout(panOutputLayout);
         panOutputLayout.setHorizontalGroup(
@@ -211,28 +237,22 @@ public class MarkupFinder extends javax.swing.JDialog {
                     .addComponent(btFindMarkup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panOutputLayout.createSequentialGroup()
                         .addGroup(panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleEndMarkup)
                             .addComponent(titleBeginMarkup)
-                            .addComponent(titleMaxMarkupLength))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(spMaxMarkupLength))
+                            .addComponent(titleEndMarkup))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panOutputLayout.setVerticalGroup(
             panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panOutputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleMaxMarkupLength)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spMaxMarkupLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titleBeginMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titleEndMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btFindMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -314,57 +334,48 @@ public class MarkupFinder extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoveDataActionPerformed
 
     private void btFindMarkupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFindMarkupActionPerformed
+        Object[][] data = getDataAsArray();
+        if (data != null) {
+            String[] arrDoc = (String[]) data[0];
+            String[] arrKey = (String[]) data[1];
+            Integer[] arrOccu = (Integer[]) data[2];
+                        
+            try {
+                String[] m = ToolMarkups.searchMinLenghtMarkup(arrDoc, arrKey, arrOccu);
+                txtBeginMarkup.setText(m[0]);
+                txtEndMarkup.setText(m[1]);
+            } catch (MarkupToolException ex) {
 
-        //Create array of page content
-        List<String> lstDoc = new LinkedList();
-        List<String> lstKey = new LinkedList();
-        List<Integer> lstNbOccurence = new LinkedList();
-        boolean isDataOk = true;
-
-        for (Component c : tabData.getComponents()) {
-            DataSelector d = (DataSelector) c;
-            lstDoc.add(d.getContent());
-            lstKey.add(d.getOccurenceText());
-            lstNbOccurence.add(d.getOccurenceNumber());
-            if (d.getOccurenceText().isEmpty()) {
-                isDataOk = false;
+                java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                        "ch/arkeine/markupextractor/internationalization"); // NOI18N
+                final String title = bundle.getString(
+                        "MarkupFinder.message.testExtractedTitle");
+                final String summary = bundle.getString(
+                        "MarkupFinder.message.testExtractedSummary");
+                ToolMessages.showBigMessage(this, summary, title, ex.getLocalizedMessage(), JOptionPane.WARNING_MESSAGE);
+                Logger.getLogger(ScriptEditorMenu.class.getName()).log(
+                        Level.WARNING, null, ex);
             }
-        }
-
-        if (isDataOk) {
-            String[] arrDoc = new String[lstDoc.size()];
-            arrDoc = lstDoc.toArray(arrDoc);
-            String[] arrKey = new String[lstKey.size()];
-            arrKey = lstKey.toArray(arrKey);
-            Integer[] arrOccu = new Integer[lstNbOccurence.size()];
-            arrOccu = lstNbOccurence.toArray(arrOccu);
-
-            //Search the best markup
-            int maxLen = (int) spMaxMarkupLength.getValue();
-            String[] m = ToolMarkups.searchMarkup(arrDoc, arrKey, arrOccu);
-            txtBeginMarkup.setText(m[0].substring(
-                    Math.max(m[0].length() - maxLen, 0), m[0].length()));
-            txtEndMarkup.setText(m[1].substring(0, Math.min(maxLen,
-                    m[1].length())));
         }
     }//GEN-LAST:event_btFindMarkupActionPerformed
 
     private void btShowDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowDataActionPerformed
-        String begin = txtBeginMarkup.getText();
-        String end = txtEndMarkup.getText();
-        StringBuilder result = new StringBuilder();
+        Object[][] data = getDataAsArray();
+        if (data != null) {
+            String[] arrDoc = (String[]) data[0];
+            Command command = new Command(Command.CommandName.COPY);
+            command.setParameter1(txtBeginMarkup.getText());
+            command.setParameter2(txtEndMarkup.getText());
+            Extractor extractor = new Extractor(new Command[]{command}, arrDoc, false);
 
-        for (Component c : tabData.getComponents()) {
-            DataSelector d = (DataSelector) c;
-            String s = d.getContent();
-            result.append(s.substring(
-                    Math.min(Math.max(s.indexOf(begin) + begin.length(), 0),
-                            s.length()), Math.max(s.indexOf(end), 0)));
-            result.append("\n");
-        }
+            ExtractionMenu dialog1 = new ExtractionMenu(null, true,extractor);
+            dialog1.setLocationRelativeTo(this);
+            dialog1.setVisible(true);
 
-        if (!result.toString().isEmpty()) {
-            JOptionPane.showMessageDialog(this, result.toString());
+            DisplayDataExtracted dialog2 = new DisplayDataExtracted(null, true);
+            dialog2.SetDataSource(extractor);
+            dialog2.setLocationRelativeTo(this);
+            dialog2.setVisible(true);
         }
     }//GEN-LAST:event_btShowDataActionPerformed
 
@@ -376,59 +387,6 @@ public class MarkupFinder extends javax.swing.JDialog {
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btCancelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MarkupFinder.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MarkupFinder.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MarkupFinder.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MarkupFinder.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                MarkupFinder dialog = new MarkupFinder(new javax.swing.JFrame(),
-                        true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddToScript;
@@ -444,12 +402,10 @@ public class MarkupFinder extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panInput;
     private javax.swing.JPanel panOutput;
-    private javax.swing.JSpinner spMaxMarkupLength;
     private javax.swing.JSplitPane split;
     private javax.swing.JTabbedPane tabData;
     private javax.swing.JLabel titleBeginMarkup;
     private javax.swing.JLabel titleEndMarkup;
-    private javax.swing.JLabel titleMaxMarkupLength;
     private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea txtBeginMarkup;
     private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea txtEndMarkup;
     // End of variables declaration//GEN-END:variables

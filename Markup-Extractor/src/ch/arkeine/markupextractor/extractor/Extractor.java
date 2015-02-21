@@ -15,6 +15,7 @@
  */
 package ch.arkeine.markupextractor.extractor;
 
+import ch.arkeine.markupextractor.UseMarkupExtractor;
 import ch.arkeine.markupextractor.tool.ToolUrls;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -32,6 +33,7 @@ public class Extractor implements Runnable {
     //INPUT
     private final Command[] cmd;
     private final String[] doc;
+    private final boolean docIsURL;
 
     //TOOL
     private boolean isWorkDone;
@@ -43,10 +45,11 @@ public class Extractor implements Runnable {
     private final List<String> noExtractedDoc;
     private final List<String> extractedDoc;
 
-    public Extractor(Command[] cmd, String[] doc) {                
+    public Extractor(Command[] cmd, String[] doc, boolean docIsURL) {
         this.cmd = Arrays.copyOf(cmd, cmd.length);
         this.doc = Arrays.copyOf(doc, doc.length);
-        
+        this.docIsURL = docIsURL;
+
         extractedData = new OutputArray();
         noExtractedDoc = new LinkedList();
         extractedDoc = new LinkedList();
@@ -64,10 +67,19 @@ public class Extractor implements Runnable {
         return s;
     }
 
-    public String getExtractedToCSV(String separator) {   
-        separator = separator.isEmpty() ? "," : separator;
+    public String getExtractedToCSV(String separator) {
 
-        return extractedData.toCSV(separator);
+        if (separator.isEmpty()) {
+            return extractedData.toCSV(separator);
+        } else {
+            Logger.getLogger(UseMarkupExtractor.class.getName()).log(
+                    Level.INFO, "the separator is empty");
+            return "";
+        }
+    }
+
+    public String[][] getExtractedToArray() {
+        return extractedData.toArray();
     }
 
     public String[] getNoExtractedDoc() {
@@ -90,14 +102,14 @@ public class Extractor implements Runnable {
         double i = 0;
         for (String doc1 : doc) {
             try {
-                String extract = ToolUrls.loadURL(doc1);
+                String extract = docIsURL ? ToolUrls.loadURL(doc1) : doc1;
                 extractData(extract);
                 extractedData.nextRecord();
                 extractedDoc.add(doc1);
             } catch (Exception ex) {
                 noExtractedDoc.add(doc1);
-                Logger.getLogger(Extractor.class.getName()).log(Level.SEVERE,
-                        null, ex);
+                Logger.getLogger(Extractor.class.getName()).log(Level.WARNING,
+                        "error while extracting data", ex);
             }
             ++i;
             fireProgressUpdate(i / doc.length * 100);
@@ -131,11 +143,14 @@ public class Extractor implements Runnable {
                     txtWork.setLength(0);
                     txtWork.append(d);
                     break;
+                default:
+                    Logger.getLogger(Extractor.class.getName()).log(
+                            Level.SEVERE, "unexpected state");
             }
         }
     }
 
-    private int getBeginIndex(StringBuilder s, String p) {        
+    private int getBeginIndex(StringBuilder s, String p) {
         if (isIncludeBegin) {
             return s.indexOf(p);
         } else {
@@ -163,7 +178,7 @@ public class Extractor implements Runnable {
 
     }
 
-    private void cut(StringBuilder s, String p1, String p2) {        
+    private void cut(StringBuilder s, String p1, String p2) {
         copy(s, p1, p2);
         delete(s, p1, p2);
     }

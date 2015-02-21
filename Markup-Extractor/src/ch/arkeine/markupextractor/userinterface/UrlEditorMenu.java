@@ -16,13 +16,13 @@
 package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.tool.ToolFiles;
+import ch.arkeine.markupextractor.tool.ToolMessages;
 import ch.arkeine.markupextractor.tool.ToolUrls;
 import ch.arkeine.markupextractor.userinterface.wizard.UrlGenerator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -258,6 +258,8 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
         String extension = bundle.getString(".constant.urlFile.extension");
         String description = bundle.getString(".constant.urlFile.description");
+        String summary = bundle.getString(".message.errorSummary");
+        String title = bundle.getString(".message.errorTitle");
 
         JFileChooser fc = new JFileChooser();
         fc.setFileFilter(ToolFiles.getFilter(extension, description));
@@ -269,10 +271,9 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 ToolFiles.writeStringToFile(txtUrls.getText(),
                         fc.getSelectedFile().getAbsolutePath(), extension);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex);
+                ToolMessages.showException(this, summary, title, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
-                        Level.WARNING,
-                        null, ex);
+                        Level.WARNING, null, ex);
             }
         }
     }//GEN-LAST:event_btSaveUrlsActionPerformed
@@ -282,6 +283,8 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
         String extension = bundle.getString(".constant.urlFile.extension");
         String description = bundle.getString(".constant.urlFile.description");
+        String summary = bundle.getString(".message.errorSummary");
+        String title = bundle.getString(".message.errorTitle");
 
         JFileChooser fc = new JFileChooser();
         fc.setFileFilter(ToolFiles.getFilter(extension, description));
@@ -294,10 +297,9 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                         fc.getSelectedFile().getAbsolutePath());
                 txtUrls.setText(textRead);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex);
+                ToolMessages.showException(this, summary, title, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
-                        Level.WARNING,
-                        null, ex);
+                        Level.WARNING, null, ex);
             }
         }
     }//GEN-LAST:event_btOpenUrlsActionPerformed
@@ -312,59 +314,6 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                     "\n"));
         }
     }//GEN-LAST:event_btUrlGeneratorActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UrlEditorMenu.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UrlEditorMenu.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UrlEditorMenu.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UrlEditorMenu.class.getName()).log(
-                    java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the dialog
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                UrlEditorMenu dialog = new UrlEditorMenu(
-                        new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

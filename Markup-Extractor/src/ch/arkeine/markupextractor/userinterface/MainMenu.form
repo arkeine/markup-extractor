@@ -35,11 +35,6 @@
                   <Component id="jPanel11" max="32767" attributes="0"/>
                   <Component id="jPanel9" max="32767" attributes="0"/>
                   <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="titleProgressBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="pbTotalProgress" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -54,10 +49,6 @@
               <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="titleProgressBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="pbTotalProgress" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -388,14 +379,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JProgressBar" name="pbTotalProgress">
-    </Component>
-    <Component class="javax.swing.JLabel" name="titleProgressBar">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MainMenu.titleProgressBar.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

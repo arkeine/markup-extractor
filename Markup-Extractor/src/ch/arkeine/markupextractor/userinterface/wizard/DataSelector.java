@@ -15,11 +15,12 @@
  */
 package ch.arkeine.markupextractor.userinterface.wizard;
 
+import ch.arkeine.markupextractor.tool.ToolMarkups;
+import ch.arkeine.markupextractor.tool.ToolMessages;
 import ch.arkeine.markupextractor.tool.ToolUrls;
-import java.io.IOException;
+import ch.arkeine.markupextractor.userinterface.ScriptEditorMenu;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -27,14 +28,26 @@ import org.apache.commons.lang3.StringUtils;
  * @author Nils Ryter
  */
 public class DataSelector extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form DataSelector
      */
     public DataSelector() {
         initComponents();
     }
-    
+
+    public String getContent() {
+        return txtContent.getText();
+    }
+
+    public int getOccurenceNumber() {
+        return (int) spOccurenceNumber.getValue();
+    }
+
+    public String getOccurenceText() {
+        return txtOccurenceText.getText();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,40 +206,41 @@ public class DataSelector extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoadUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadUrlActionPerformed
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
+                "ch/arkeine/markupextractor/internationalization"); // NOI18N
+        String summary = bundle.getString(".message.errorSummary");
+        String title = bundle.getString(".message.errorTitle");
+
         try {
             txtContent.setText(ToolUrls.loadURL(txtUrl.getText()));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
-            Logger.getLogger(DataSelector.class.getName()).log(Level.SEVERE,
-                    null, ex);
+            ToolMessages.showException(this, summary, title, ex);
+            Logger.getLogger(ScriptEditorMenu.class.getName()).log(
+                    Level.WARNING, null, ex);
         }
     }//GEN-LAST:event_btLoadUrlActionPerformed
 
     private void btLoadFromSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadFromSelectionActionPerformed
         String s = txtContent.getSelectedText();
-        String c = txtContent.getText().substring(0,
-                txtContent.getSelectionEnd());
+        if (s != null) {
+            String c = txtContent.getText().substring(0,
+                    txtContent.getSelectionEnd());
 
-        txtOccurenceText.setText(s);
-        spOccurenceNumber.setValue(StringUtils.countMatches(c, s));
+            txtOccurenceText.setText(s);
+            spOccurenceNumber.setValue(StringUtils.countMatches(c, s));
+        }
     }//GEN-LAST:event_btLoadFromSelectionActionPerformed
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         String s = txtOccurenceText.getText();
         String c = txtContent.getText();
-        int numberOcc = (int)spOccurenceNumber.getValue();
-        
-        int begin = 0;
-        int currentNum = 0;
-        
-        while(currentNum != numberOcc)
-        {
-            begin = c.indexOf(s, begin)+s.length();
-            currentNum++;
-        }
-        
-        txtContent.setSelectionStart(begin-s.length());
+        int numberOcc = (int) spOccurenceNumber.getValue();
+
+        int begin = ToolMarkups.searchOccurenceIndex(c, s, numberOcc);
+
+        txtContent.setSelectionStart(begin - s.length());
         txtContent.setSelectionEnd(begin);
+        txtContent.requestFocus();
     }//GEN-LAST:event_btSearchActionPerformed
 
 
@@ -245,16 +259,4 @@ public class DataSelector extends javax.swing.JPanel {
     private javax.swing.JTextField txtOccurenceText;
     private javax.swing.JTextField txtUrl;
     // End of variables declaration//GEN-END:variables
-
-    public String getContent() {
-        return txtContent.getText();
-    }
-
-    public int getOccurenceNumber() {
-        return (int) spOccurenceNumber.getValue();
-    }
-
-    public String getOccurenceText() {
-        return txtOccurenceText.getText();
-    }
 }

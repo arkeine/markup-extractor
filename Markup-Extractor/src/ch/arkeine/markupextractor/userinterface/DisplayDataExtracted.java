@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Nils Ryter.
+ * Copyright 2015 nils.ryter.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,41 @@
 package ch.arkeine.markupextractor.userinterface;
 
 import ch.arkeine.markupextractor.extractor.Extractor;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nils Ryter
+ * @author nils.ryter
  */
-public class SummaryMenu extends javax.swing.JDialog {
+public class DisplayDataExtracted extends javax.swing.JDialog {
+
     /**
-     * Creates new form SummaryMenu
+     * Creates new form DisplayDataExtracted
      */
-    public SummaryMenu(java.awt.Frame parent, boolean modal) {
+    public DisplayDataExtracted(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
     }
 
-    public void setExtractor(Extractor e){
-        extractedStatistic1.loadStatistic(e);
-        saveExtractedData1.setDataSource(e);
+    public void SetDataSource(Extractor e) {
+        String[][] data = e.getExtractedToArray();
+        String[] column = new String[data[0].length];
+        for (int i = 0; i < column.length; i++) {
+            column[i] = Integer.toString(i);            
+        }
+        
+        DefaultTableModel d = new DefaultTableModel(data, column);
+        tbDataExtracted.setModel(d);
+
+        for (String[] st : e.getExtractedToArray()) {
+            for (String s : st) {
+                System.out.print(s);
+                System.out.print(",");
+            }
+            System.out.println();
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,44 +60,48 @@ public class SummaryMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbDataExtracted = new javax.swing.JTable();
         btOk = new javax.swing.JButton();
-        extractedStatistic1 = new ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic();
-        saveExtractedData1 = new ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
-        setTitle(bundle.getString("SummaryMenu.title")); // NOI18N
+        setTitle("Data extracted");
 
-        btOk.setText(bundle.getString("SummaryMenu.btOk.text")); // NOI18N
+        tbDataExtracted.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tbDataExtracted);
+
+        btOk.setText("Ok");
         btOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btOkActionPerformed(evt);
             }
         });
 
-        extractedStatistic1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SummaryMenu.extractedStatistic1.border.title"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveExtractedData1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 173, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btOk))
-                    .addComponent(extractedStatistic1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(extractedStatistic1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveExtractedData1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btOk)
                 .addContainerGap())
@@ -95,7 +116,7 @@ public class SummaryMenu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btOk;
-    private ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic extractedStatistic1;
-    private ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData saveExtractedData1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbDataExtracted;
     // End of variables declaration//GEN-END:variables
 }

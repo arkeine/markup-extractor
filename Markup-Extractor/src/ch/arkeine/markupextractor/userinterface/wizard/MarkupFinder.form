@@ -220,13 +220,11 @@
                               <Component id="btFindMarkup" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="titleEndMarkup" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleBeginMarkup" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleMaxMarkupLength" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="titleBeginMarkup" min="-2" max="-2" attributes="0"/>
+                                      <Component id="titleEndMarkup" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="spMaxMarkupLength" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -236,17 +234,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="titleMaxMarkupLength" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="spMaxMarkupLength" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="titleBeginMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="47" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="72" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="titleEndMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="48" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="69" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="btFindMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -321,20 +315,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="titleMaxMarkupLength">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.titleMaxMarkupLength.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JSpinner" name="spMaxMarkupLength">
-                  <Properties>
-                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                      <SpinnerModel initial="15" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                    </Property>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JButton" name="btAddToScript">

@@ -13,34 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package ch.arkeine.markupextractor;
 
 import ch.arkeine.markupextractor.userinterface.MainMenu;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- *
+ * Launch class for the program Markup Extractor
+ * <p>
  * @author Nils Ryter
  */
 public class UseMarkupExtractor {
 
     /**
+     * Start application
+     * <p>
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         try {
             // Set System L&F
-        UIManager.setLookAndFeel(
-            UIManager.getSystemLookAndFeelClassName());
-        } 
-        catch (UnsupportedLookAndFeelException | ClassNotFoundException | 
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+            
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException |
                 InstantiationException | IllegalAccessException e) {
-           // handle exception
+            
+            Logger.getLogger(UseMarkupExtractor.class.getName()).log(
+                    Level.WARNING, "unable to set L&F", e);
         }
-        
+
         new MainMenu().show();
     }
-    
+
 }

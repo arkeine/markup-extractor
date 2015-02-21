@@ -27,7 +27,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -61,40 +60,6 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
 
     public void setCommands(Command[] cmds) {
         commandEditorTable.setCommandScript(cmds);
-    }
-
-    public void setEnable(boolean b) {
-        btCancel.setEnabled(b);
-        btLoadCommand.setEnabled(b);
-        btMarkupFinder.setEnabled(b);
-        btOk.setEnabled(b);
-        btSaveCommand.setEnabled(b);
-        btTestScript.setEnabled(b);
-        if (!b) {
-            this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        } else {
-            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        }
-    }
-
-    private void showDataExtracted(String data) {
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                "ch/arkeine/markupextractor/internationalization"); // NOI18N
-        final String title = bundle.getString(
-                "ScriptEditorMenu.message.testExtractedTitle");
-        final String summary = bundle.getString(
-                "ScriptEditorMenu.message.testExtractedSummary");
-        SwingUtilities.invokeLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        setEnable(true);
-
-                        ToolMessages.showBigMessage(ScriptEditorMenu.this,
-                                summary, title, data,
-                                JOptionPane.INFORMATION_MESSAGE);
-                    }
-                });
     }
 
     /**
@@ -280,10 +245,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
         String extension = bundle.getString(".constant.commandFile.extension");
-        String description = bundle.getString(".constant.commandFile.description");
+        String description = bundle.getString(
+                ".constant.commandFile.description");
+        String summary = bundle.getString(".message.errorSummary");
+        String title = bundle.getString(".message.errorTitle");
 
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getFilter(extension , description));
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showSaveDialog(this);
 
         if (fc.getSelectedFile() != null) {
@@ -292,12 +260,11 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
                 List<Command> l = Arrays.asList(
                         commandEditorTable.getCommandScript());
                 ToolFiles.writeObjectToFile(l,
-                        fc.getSelectedFile().getAbsolutePath(),extension);
+                        fc.getSelectedFile().getAbsolutePath(), extension);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex);
+                ToolMessages.showException(this, summary, title, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
-                        Level.WARNING,
-                        null, ex);
+                        Level.WARNING, null, ex);
             }
         }
     }//GEN-LAST:event_btSaveCommandActionPerformed
@@ -306,10 +273,13 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
         String extension = bundle.getString(".constant.commandFile.extension");
-        String description = bundle.getString(".constant.commandFile.description");
+        String description = bundle.getString(
+                ".constant.commandFile.description");
+        String summary = bundle.getString(".message.errorSummary");
+        String title = bundle.getString(".message.errorTitle");
 
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(ToolFiles.getFilter(extension , description));
+        fc.setFileFilter(ToolFiles.getFilter(extension, description));
         fc.showOpenDialog(this);
 
         if (fc.getSelectedFile() != null) {
@@ -320,10 +290,9 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
                 Command[] c = l.toArray(new Command[l.size()]);
                 setCommands(c);
             } catch (IOException | ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, ex);
+                ToolMessages.showException(this, summary, title, ex);
                 Logger.getLogger(ScriptEditorMenu.class.getName()).log(
-                        Level.WARNING,
-                        null, ex);
+                        Level.WARNING, null, ex);
             }
         }
     }//GEN-LAST:event_btLoadCommandActionPerformed
@@ -348,27 +317,18 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
     private void btTestScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTestScriptActionPerformed
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
-
         String url = JOptionPane.showInputDialog(this,
                 bundle.getString("ScriptEditorMenu.input.url"));
-        String separator = JOptionPane.showInputDialog(this,
-                bundle.getString("ScriptEditorMenu.input.separator"));
 
-        setEnable(false);
-        Thread t = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        String[] lstUrl = new String[1];
-                        lstUrl[0] = url;
+        ExtractionMenu dialog1 = new ExtractionMenu(null, true,
+                new Extractor(getCommands(), new String[]{url}, true));
+        dialog1.setLocationRelativeTo(this);
+        dialog1.setVisible(true);
 
-                        Extractor extractor = new Extractor(
-                                getCommands(), lstUrl);
-                        extractor.run();
-                        showDataExtracted(extractor.getExtractedToCSV(separator));
-                    }
-                });
-        t.start();
+        DisplayDataExtracted dialog2 = new DisplayDataExtracted(null, true);
+        dialog2.SetDataSource(dialog1.getExtractor());
+        dialog2.setLocationRelativeTo(this);
+        dialog2.setVisible(true);
     }//GEN-LAST:event_btTestScriptActionPerformed
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
