@@ -110,29 +110,29 @@ public class SaveExtractedData extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        btSaveData = new javax.swing.JButton();
-        titleSaveData = new javax.swing.JLabel();
+        buttonSaveData = new javax.swing.JButton();
+        labelSaveData = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        titleSaveAllUrl = new javax.swing.JLabel();
-        btSaveAllUrl = new javax.swing.JButton();
+        labelSaveAllUrl = new javax.swing.JLabel();
+        buttonSaveAllUrl = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        titleSaveUrlsSuccess = new javax.swing.JLabel();
-        btSaveUrlSuccess = new javax.swing.JButton();
+        labelSaveUrlsSuccess = new javax.swing.JLabel();
+        buttonSaveUrlSuccess = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        titleSaveUrlError = new javax.swing.JLabel();
-        btSaveUrlError = new javax.swing.JButton();
+        labelSaveUrlError = new javax.swing.JLabel();
+        buttonSaveUrlError = new javax.swing.JButton();
 
         setLayout(new java.awt.GridLayout(2, 2));
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
-        btSaveData.setText(bundle.getString("SaveExtractedData.btSaveData.text")); // NOI18N
-        btSaveData.addActionListener(new java.awt.event.ActionListener() {
+        buttonSaveData.setText(bundle.getString("SaveExtractedData.buttonSaveData.text")); // NOI18N
+        buttonSaveData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveDataActionPerformed(evt);
+                buttonSaveDataActionPerformed(evt);
             }
         });
 
-        titleSaveData.setText(bundle.getString("SaveExtractedData.titleSaveData.text")); // NOI18N
+        labelSaveData.setText(bundle.getString("SaveExtractedData.labelSaveData.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,28 +141,28 @@ public class SaveExtractedData extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btSaveData)
-                    .addComponent(titleSaveData))
+                    .addComponent(buttonSaveData)
+                    .addComponent(labelSaveData))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleSaveData)
+                .addComponent(labelSaveData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSaveData)
+                .addComponent(buttonSaveData)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         add(jPanel2);
 
-        titleSaveAllUrl.setText(bundle.getString("SaveExtractedData.titleSaveAllUrl.text")); // NOI18N
+        labelSaveAllUrl.setText(bundle.getString("SaveExtractedData.labelSaveAllUrl.text")); // NOI18N
 
-        btSaveAllUrl.setText(bundle.getString("SaveExtractedData.btSaveAllUrl.text")); // NOI18N
-        btSaveAllUrl.addActionListener(new java.awt.event.ActionListener() {
+        buttonSaveAllUrl.setText(bundle.getString("SaveExtractedData.buttonSaveAllUrl.text")); // NOI18N
+        buttonSaveAllUrl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveAllUrlActionPerformed(evt);
+                buttonSaveAllUrlActionPerformed(evt);
             }
         });
 
@@ -173,28 +173,28 @@ public class SaveExtractedData extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleSaveAllUrl)
-                    .addComponent(btSaveAllUrl))
+                    .addComponent(labelSaveAllUrl)
+                    .addComponent(buttonSaveAllUrl))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleSaveAllUrl)
+                .addComponent(labelSaveAllUrl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSaveAllUrl)
+                .addComponent(buttonSaveAllUrl)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         add(jPanel3);
 
-        titleSaveUrlsSuccess.setText(bundle.getString("SaveExtractedData.titleSaveUrlsSuccess.text")); // NOI18N
+        labelSaveUrlsSuccess.setText(bundle.getString("SaveExtractedData.labelSaveUrlsSuccess.text")); // NOI18N
 
-        btSaveUrlSuccess.setText(bundle.getString("SaveExtractedData.btSaveUrlSuccess.text")); // NOI18N
-        btSaveUrlSuccess.addActionListener(new java.awt.event.ActionListener() {
+        buttonSaveUrlSuccess.setText(bundle.getString("SaveExtractedData.buttonSaveUrlSuccess.text")); // NOI18N
+        buttonSaveUrlSuccess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveUrlSuccessActionPerformed(evt);
+                buttonSaveUrlSuccessActionPerformed(evt);
             }
         });
 
@@ -205,28 +205,28 @@ public class SaveExtractedData extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleSaveUrlsSuccess)
-                    .addComponent(btSaveUrlSuccess))
+                    .addComponent(labelSaveUrlsSuccess)
+                    .addComponent(buttonSaveUrlSuccess))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleSaveUrlsSuccess)
+                .addComponent(labelSaveUrlsSuccess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSaveUrlSuccess)
+                .addComponent(buttonSaveUrlSuccess)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         add(jPanel6);
 
-        titleSaveUrlError.setText(bundle.getString("SaveExtractedData.titleSaveUrlError.text")); // NOI18N
+        labelSaveUrlError.setText(bundle.getString("SaveExtractedData.labelSaveUrlError.text")); // NOI18N
 
-        btSaveUrlError.setText(bundle.getString("SaveExtractedData.btSaveUrlError.text")); // NOI18N
-        btSaveUrlError.addActionListener(new java.awt.event.ActionListener() {
+        buttonSaveUrlError.setText(bundle.getString("SaveExtractedData.buttonSaveUrlError.text")); // NOI18N
+        buttonSaveUrlError.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveUrlErrorActionPerformed(evt);
+                buttonSaveUrlErrorActionPerformed(evt);
             }
         });
 
@@ -237,51 +237,51 @@ public class SaveExtractedData extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleSaveUrlError)
-                    .addComponent(btSaveUrlError))
+                    .addComponent(labelSaveUrlError)
+                    .addComponent(buttonSaveUrlError))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleSaveUrlError)
+                .addComponent(labelSaveUrlError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSaveUrlError)
+                .addComponent(buttonSaveUrlError)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         add(jPanel4);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSaveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveDataActionPerformed
+    private void buttonSaveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveDataActionPerformed
         writeDataToFile();
-    }//GEN-LAST:event_btSaveDataActionPerformed
+    }//GEN-LAST:event_buttonSaveDataActionPerformed
 
-    private void btSaveAllUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveAllUrlActionPerformed
+    private void buttonSaveAllUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveAllUrlActionPerformed
         writeUrlsFile(extractor.getDoc());
-    }//GEN-LAST:event_btSaveAllUrlActionPerformed
+    }//GEN-LAST:event_buttonSaveAllUrlActionPerformed
 
-    private void btSaveUrlErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlErrorActionPerformed
+    private void buttonSaveUrlErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveUrlErrorActionPerformed
         writeUrlsFile(extractor.getNoExtractedDoc());
-    }//GEN-LAST:event_btSaveUrlErrorActionPerformed
+    }//GEN-LAST:event_buttonSaveUrlErrorActionPerformed
 
-    private void btSaveUrlSuccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveUrlSuccessActionPerformed
+    private void buttonSaveUrlSuccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveUrlSuccessActionPerformed
         writeUrlsFile(extractor.getExtractedDoc());
-    }//GEN-LAST:event_btSaveUrlSuccessActionPerformed
+    }//GEN-LAST:event_buttonSaveUrlSuccessActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btSaveAllUrl;
-    private javax.swing.JButton btSaveData;
-    private javax.swing.JButton btSaveUrlError;
-    private javax.swing.JButton btSaveUrlSuccess;
+    private javax.swing.JButton buttonSaveAllUrl;
+    private javax.swing.JButton buttonSaveData;
+    private javax.swing.JButton buttonSaveUrlError;
+    private javax.swing.JButton buttonSaveUrlSuccess;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel titleSaveAllUrl;
-    private javax.swing.JLabel titleSaveData;
-    private javax.swing.JLabel titleSaveUrlError;
-    private javax.swing.JLabel titleSaveUrlsSuccess;
+    private javax.swing.JLabel labelSaveAllUrl;
+    private javax.swing.JLabel labelSaveData;
+    private javax.swing.JLabel labelSaveUrlError;
+    private javax.swing.JLabel labelSaveUrlsSuccess;
     // End of variables declaration//GEN-END:variables
 }

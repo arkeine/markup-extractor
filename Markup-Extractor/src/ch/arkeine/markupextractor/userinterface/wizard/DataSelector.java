@@ -37,15 +37,15 @@ public class DataSelector extends javax.swing.JPanel {
     }
 
     public String getContent() {
-        return txtContent.getText();
+        return textAreaDocument.getText();
     }
 
     public int getOccurenceNumber() {
-        return (int) spOccurenceNumber.getValue();
+        return (int) spinnerOccurence.getValue();
     }
 
     public String getOccurenceText() {
-        return txtOccurenceText.getText();
+        return textFieldOccurence.getText();
     }
 
     /**
@@ -57,86 +57,86 @@ public class DataSelector extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panOccurence = new javax.swing.JPanel();
-        titleOccurenceNumber = new javax.swing.JLabel();
-        titleOccurenceText = new javax.swing.JLabel();
-        txtOccurenceText = new javax.swing.JTextField();
-        spOccurenceNumber = new javax.swing.JSpinner();
-        btLoadFromSelection = new javax.swing.JButton();
-        btSearch = new javax.swing.JButton();
+        panelOccurence = new javax.swing.JPanel();
+        labelOccurenceNumber = new javax.swing.JLabel();
+        labelOccurenceText = new javax.swing.JLabel();
+        textFieldOccurence = new javax.swing.JTextField();
+        spinnerOccurence = new javax.swing.JSpinner();
+        buttonLoadFromSelection = new javax.swing.JButton();
+        buttonSearch = new javax.swing.JButton();
         panContent = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtContent = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
+        textAreaDocument = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
         jPanel1 = new javax.swing.JPanel();
-        txtUrl = new javax.swing.JTextField();
-        btLoadUrl = new javax.swing.JButton();
+        textFieldUrl = new javax.swing.JTextField();
+        buttonLoadUrl = new javax.swing.JButton();
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
-        panOccurence.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.panOccurence.border.title"))); // NOI18N
+        panelOccurence.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.panelOccurence.border.title"))); // NOI18N
 
-        titleOccurenceNumber.setText(bundle.getString("DataSelector.titleOccurenceNumber.text")); // NOI18N
+        labelOccurenceNumber.setText(bundle.getString("DataSelector.labelOccurenceNumber.text")); // NOI18N
 
-        titleOccurenceText.setText(bundle.getString("DataSelector.titleOccurenceText.text")); // NOI18N
+        labelOccurenceText.setText(bundle.getString("DataSelector.labelOccurenceText.text")); // NOI18N
 
-        txtOccurenceText.setText(bundle.getString("DataSelector.txtOccurenceText.text")); // NOI18N
+        textFieldOccurence.setText(bundle.getString("DataSelector.textFieldOccurence.text")); // NOI18N
 
-        spOccurenceNumber.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        spinnerOccurence.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        btLoadFromSelection.setText(bundle.getString("DataSelector.btLoadFromSelection.text")); // NOI18N
-        btLoadFromSelection.addActionListener(new java.awt.event.ActionListener() {
+        buttonLoadFromSelection.setText(bundle.getString("DataSelector.buttonLoadFromSelection.text")); // NOI18N
+        buttonLoadFromSelection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLoadFromSelectionActionPerformed(evt);
+                buttonLoadFromSelectionActionPerformed(evt);
             }
         });
 
-        btSearch.setText(bundle.getString("DataSelector.btSearch.text")); // NOI18N
-        btSearch.addActionListener(new java.awt.event.ActionListener() {
+        buttonSearch.setText(bundle.getString("DataSelector.buttonSearch.text")); // NOI18N
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSearchActionPerformed(evt);
+                buttonSearchActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panOccurenceLayout = new javax.swing.GroupLayout(panOccurence);
-        panOccurence.setLayout(panOccurenceLayout);
-        panOccurenceLayout.setHorizontalGroup(
-            panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOccurenceLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelOccurenceLayout = new javax.swing.GroupLayout(panelOccurence);
+        panelOccurence.setLayout(panelOccurenceLayout);
+        panelOccurenceLayout.setHorizontalGroup(
+            panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOccurenceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtOccurenceText)
-                    .addComponent(spOccurenceNumber)
-                    .addComponent(btLoadFromSelection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panOccurenceLayout.createSequentialGroup()
-                        .addGroup(panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleOccurenceText)
-                            .addComponent(titleOccurenceNumber))
+                .addGroup(panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textFieldOccurence)
+                    .addComponent(spinnerOccurence)
+                    .addComponent(buttonLoadFromSelection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelOccurenceLayout.createSequentialGroup()
+                        .addGroup(panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelOccurenceText)
+                            .addComponent(labelOccurenceNumber))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panOccurenceLayout.setVerticalGroup(
-            panOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOccurenceLayout.createSequentialGroup()
-                .addComponent(titleOccurenceText)
+        panelOccurenceLayout.setVerticalGroup(
+            panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOccurenceLayout.createSequentialGroup()
+                .addComponent(labelOccurenceText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtOccurenceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleOccurenceNumber)
+                .addComponent(labelOccurenceNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spOccurenceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spinnerOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btSearch)
+                .addComponent(buttonSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btLoadFromSelection)
+                .addComponent(buttonLoadFromSelection)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         panContent.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.panContent.border.title"))); // NOI18N
 
-        txtContent.setColumns(20);
-        txtContent.setRows(5);
-        txtContent.setSyntaxEditingStyle(bundle.getString("DataSelector.txtContent.syntaxEditingStyle")); // NOI18N
-        jScrollPane2.setViewportView(txtContent);
+        textAreaDocument.setColumns(20);
+        textAreaDocument.setRows(5);
+        textAreaDocument.setSyntaxEditingStyle(bundle.getString("DataSelector.textAreaDocument.syntaxEditingStyle")); // NOI18N
+        jScrollPane2.setViewportView(textAreaDocument);
 
         javax.swing.GroupLayout panContentLayout = new javax.swing.GroupLayout(panContent);
         panContent.setLayout(panContentLayout);
@@ -151,12 +151,12 @@ public class DataSelector extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.jPanel1.border.title"))); // NOI18N
 
-        txtUrl.setText(bundle.getString("DataSelector.txtUrl.text")); // NOI18N
+        textFieldUrl.setText(bundle.getString("DataSelector.textFieldUrl.text")); // NOI18N
 
-        btLoadUrl.setText(bundle.getString("DataSelector.btLoadUrl.text")); // NOI18N
-        btLoadUrl.addActionListener(new java.awt.event.ActionListener() {
+        buttonLoadUrl.setText(bundle.getString("DataSelector.buttonLoadUrl.text")); // NOI18N
+        buttonLoadUrl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLoadUrlActionPerformed(evt);
+                buttonLoadUrlActionPerformed(evt);
             }
         });
 
@@ -166,16 +166,16 @@ public class DataSelector extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(txtUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addComponent(textFieldUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btLoadUrl)
+                .addComponent(buttonLoadUrl)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btLoadUrl))
+                .addComponent(textFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonLoadUrl))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -189,7 +189,7 @@ public class DataSelector extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,63 +200,63 @@ public class DataSelector extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panOccurence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelOccurence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLoadUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadUrlActionPerformed
+    private void buttonLoadUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoadUrlActionPerformed
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
         String summary = bundle.getString(".message.errorSummary");
         String title = bundle.getString(".message.errorTitle");
 
         try {
-            txtContent.setText(ToolUrls.loadURL(txtUrl.getText()));
+            textAreaDocument.setText(ToolUrls.loadURL(textFieldUrl.getText()));
         } catch (Exception ex) {
             ToolMessages.showException(this, summary, title, ex);
             Logger.getLogger(ScriptEditorMenu.class.getName()).log(
                     Level.WARNING, null, ex);
         }
-    }//GEN-LAST:event_btLoadUrlActionPerformed
+    }//GEN-LAST:event_buttonLoadUrlActionPerformed
 
-    private void btLoadFromSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoadFromSelectionActionPerformed
-        String s = txtContent.getSelectedText();
+    private void buttonLoadFromSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoadFromSelectionActionPerformed
+        String s = textAreaDocument.getSelectedText();
         if (s != null) {
-            String c = txtContent.getText().substring(0,
-                    txtContent.getSelectionEnd());
+            String c = textAreaDocument.getText().substring(0,
+                    textAreaDocument.getSelectionEnd());
 
-            txtOccurenceText.setText(s);
-            spOccurenceNumber.setValue(StringUtils.countMatches(c, s));
+            textFieldOccurence.setText(s);
+            spinnerOccurence.setValue(StringUtils.countMatches(c, s));
         }
-    }//GEN-LAST:event_btLoadFromSelectionActionPerformed
+    }//GEN-LAST:event_buttonLoadFromSelectionActionPerformed
 
-    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
-        String s = txtOccurenceText.getText();
-        String c = txtContent.getText();
-        int numberOcc = (int) spOccurenceNumber.getValue();
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        String s = textFieldOccurence.getText();
+        String c = textAreaDocument.getText();
+        int numberOcc = (int) spinnerOccurence.getValue();
 
         int begin = ToolMarkups.searchOccurenceIndex(c, s, numberOcc);
 
-        txtContent.setSelectionStart(begin - s.length());
-        txtContent.setSelectionEnd(begin);
-        txtContent.requestFocus();
-    }//GEN-LAST:event_btSearchActionPerformed
+        textAreaDocument.setSelectionStart(begin - s.length());
+        textAreaDocument.setSelectionEnd(begin);
+        textAreaDocument.requestFocus();
+    }//GEN-LAST:event_buttonSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btLoadFromSelection;
-    private javax.swing.JButton btLoadUrl;
-    private javax.swing.JButton btSearch;
+    private javax.swing.JButton buttonLoadFromSelection;
+    private javax.swing.JButton buttonLoadUrl;
+    private javax.swing.JButton buttonSearch;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelOccurenceNumber;
+    private javax.swing.JLabel labelOccurenceText;
     private javax.swing.JPanel panContent;
-    private javax.swing.JPanel panOccurence;
-    private javax.swing.JSpinner spOccurenceNumber;
-    private javax.swing.JLabel titleOccurenceNumber;
-    private javax.swing.JLabel titleOccurenceText;
-    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea txtContent;
-    private javax.swing.JTextField txtOccurenceText;
-    private javax.swing.JTextField txtUrl;
+    private javax.swing.JPanel panelOccurence;
+    private javax.swing.JSpinner spinnerOccurence;
+    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea textAreaDocument;
+    private javax.swing.JTextField textFieldOccurence;
+    private javax.swing.JTextField textFieldUrl;
     // End of variables declaration//GEN-END:variables
 }

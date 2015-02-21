@@ -24,16 +24,16 @@ import ch.arkeine.markupextractor.extractor.Extractor;
  */
 public class MainMenu extends javax.swing.JFrame{
 
-    private Command[] cmds;
-    private String[] urlsToDo;
+    private Command[] commandScript;
+    private String[] urlsToExtract;
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
-        cmds = new Command[0];
-        urlsToDo = new String[0];
+        commandScript = new Command[0];
+        urlsToExtract = new String[0];
     }
 
     /**
@@ -47,19 +47,19 @@ public class MainMenu extends javax.swing.JFrame{
 
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        titleStep1 = new javax.swing.JLabel();
-        btScript = new javax.swing.JButton();
-        titleSetScript = new javax.swing.JLabel();
+        labelStep1 = new javax.swing.JLabel();
+        buttonScript = new javax.swing.JButton();
+        labelScript = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        titleStep2 = new javax.swing.JLabel();
-        btUrl = new javax.swing.JButton();
-        titleSetUrl = new javax.swing.JLabel();
+        labelStep2 = new javax.swing.JLabel();
+        buttonUrl = new javax.swing.JButton();
+        labelUrl = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        titleStep3 = new javax.swing.JLabel();
-        btExtract = new javax.swing.JButton();
-        titleExtract = new javax.swing.JLabel();
+        labelStep3 = new javax.swing.JLabel();
+        buttonExtract = new javax.swing.JButton();
+        labelExtract = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
@@ -72,9 +72,9 @@ public class MainMenu extends javax.swing.JFrame{
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setPreferredSize(new java.awt.Dimension(55, 55));
 
-        titleStep1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        titleStep1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleStep1.setText(bundle.getString("MainMenu.titleStep1.text")); // NOI18N
+        labelStep1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelStep1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelStep1.setText(bundle.getString("MainMenu.labelStep1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,25 +82,25 @@ public class MainMenu extends javax.swing.JFrame{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(labelStep1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelStep1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        btScript.setText(bundle.getString("MainMenu.btScript.text")); // NOI18N
-        btScript.addActionListener(new java.awt.event.ActionListener() {
+        buttonScript.setText(bundle.getString("MainMenu.buttonScript.text")); // NOI18N
+        buttonScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btScriptActionPerformed(evt);
+                buttonScriptActionPerformed(evt);
             }
         });
 
-        titleSetScript.setText(bundle.getString("MainMenu.titleSetScript.text")); // NOI18N
+        labelScript.setText(bundle.getString("MainMenu.labelScript.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -110,9 +110,9 @@ public class MainMenu extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(titleSetScript)
+                .addComponent(labelScript)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btScript)
+                .addComponent(buttonScript)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -123,8 +123,8 @@ public class MainMenu extends javax.swing.JFrame{
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btScript)
-                            .addComponent(titleSetScript)))
+                            .addComponent(buttonScript)
+                            .addComponent(labelScript)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -134,9 +134,9 @@ public class MainMenu extends javax.swing.JFrame{
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel10.setPreferredSize(new java.awt.Dimension(55, 55));
 
-        titleStep2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        titleStep2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleStep2.setText(bundle.getString("MainMenu.titleStep2.text")); // NOI18N
+        labelStep2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelStep2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelStep2.setText(bundle.getString("MainMenu.labelStep2.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -144,25 +144,25 @@ public class MainMenu extends javax.swing.JFrame{
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(labelStep2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelStep2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        btUrl.setText(bundle.getString("MainMenu.btUrl.text")); // NOI18N
-        btUrl.addActionListener(new java.awt.event.ActionListener() {
+        buttonUrl.setText(bundle.getString("MainMenu.buttonUrl.text")); // NOI18N
+        buttonUrl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUrlActionPerformed(evt);
+                buttonUrlActionPerformed(evt);
             }
         });
 
-        titleSetUrl.setText(bundle.getString("MainMenu.titleSetUrl.text")); // NOI18N
+        labelUrl.setText(bundle.getString("MainMenu.labelUrl.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -172,9 +172,9 @@ public class MainMenu extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(titleSetUrl)
+                .addComponent(labelUrl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btUrl)
+                .addComponent(buttonUrl)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -185,8 +185,8 @@ public class MainMenu extends javax.swing.JFrame{
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btUrl)
-                            .addComponent(titleSetUrl)))
+                            .addComponent(buttonUrl)
+                            .addComponent(labelUrl)))
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,9 +196,9 @@ public class MainMenu extends javax.swing.JFrame{
         jPanel12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel12.setPreferredSize(new java.awt.Dimension(55, 55));
 
-        titleStep3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        titleStep3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleStep3.setText(bundle.getString("MainMenu.titleStep3.text")); // NOI18N
+        labelStep3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelStep3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelStep3.setText(bundle.getString("MainMenu.labelStep3.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -206,25 +206,25 @@ public class MainMenu extends javax.swing.JFrame{
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(labelStep3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleStep3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelStep3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        btExtract.setText(bundle.getString("MainMenu.btExtract.text")); // NOI18N
-        btExtract.addActionListener(new java.awt.event.ActionListener() {
+        buttonExtract.setText(bundle.getString("MainMenu.buttonExtract.text")); // NOI18N
+        buttonExtract.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExtractActionPerformed(evt);
+                buttonExtractActionPerformed(evt);
             }
         });
 
-        titleExtract.setText(bundle.getString("MainMenu.titleExtract.text")); // NOI18N
+        labelExtract.setText(bundle.getString("MainMenu.labelExtract.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -234,9 +234,9 @@ public class MainMenu extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(titleExtract)
+                .addComponent(labelExtract)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btExtract)
+                .addComponent(buttonExtract)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -247,8 +247,8 @@ public class MainMenu extends javax.swing.JFrame{
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btExtract)
-                            .addComponent(titleExtract)))
+                            .addComponent(buttonExtract)
+                            .addComponent(labelExtract)))
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -280,10 +280,10 @@ public class MainMenu extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btScriptActionPerformed
-        Command[] newCmds = new Command[cmds.length];
+    private void buttonScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScriptActionPerformed
+        Command[] newCmds = new Command[commandScript.length];
         for (int i = 0; i < newCmds.length; i++) {
-            newCmds[i] = cmds[i].cloneOf();
+            newCmds[i] = commandScript[i].cloneOf();
         }
 
         ScriptEditorMenu dialog = new ScriptEditorMenu(this, true, newCmds);
@@ -291,23 +291,23 @@ public class MainMenu extends javax.swing.JFrame{
         dialog.setVisible(true);
 
         if (dialog.isOk()) {
-            cmds = dialog.getCommands();
+            commandScript = dialog.getCommands();
         }
-    }//GEN-LAST:event_btScriptActionPerformed
+    }//GEN-LAST:event_buttonScriptActionPerformed
 
-    private void btUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUrlActionPerformed
-        UrlEditorMenu dialog = new UrlEditorMenu(this, true, urlsToDo);
+    private void buttonUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUrlActionPerformed
+        UrlEditorMenu dialog = new UrlEditorMenu(this, true, urlsToExtract);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
         if (dialog.isOk()) {
-            urlsToDo = dialog.getUrls();
+            urlsToExtract = dialog.getUrls();
         }
-    }//GEN-LAST:event_btUrlActionPerformed
+    }//GEN-LAST:event_buttonUrlActionPerformed
 
-    private void btExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExtractActionPerformed
+    private void buttonExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExtractActionPerformed
         ExtractionMenu dialog1 = new ExtractionMenu(this, true,
-                new Extractor(cmds, urlsToDo, true));
+                new Extractor(commandScript, urlsToExtract, true));
         dialog1.setLocationRelativeTo(this);
         dialog1.setVisible(true);
 
@@ -315,7 +315,7 @@ public class MainMenu extends javax.swing.JFrame{
         dialog2.setExtractor(dialog1.getExtractor());
         dialog2.setLocationRelativeTo(this);
         dialog2.setVisible(true);
-    }//GEN-LAST:event_btExtractActionPerformed
+    }//GEN-LAST:event_buttonExtractActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,20 +363,20 @@ public class MainMenu extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btExtract;
-    private javax.swing.JButton btScript;
-    private javax.swing.JButton btUrl;
+    private javax.swing.JButton buttonExtract;
+    private javax.swing.JButton buttonScript;
+    private javax.swing.JButton buttonUrl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel titleExtract;
-    private javax.swing.JLabel titleSetScript;
-    private javax.swing.JLabel titleSetUrl;
-    private javax.swing.JLabel titleStep1;
-    private javax.swing.JLabel titleStep2;
-    private javax.swing.JLabel titleStep3;
+    private javax.swing.JLabel labelExtract;
+    private javax.swing.JLabel labelScript;
+    private javax.swing.JLabel labelStep1;
+    private javax.swing.JLabel labelStep2;
+    private javax.swing.JLabel labelStep3;
+    private javax.swing.JLabel labelUrl;
     // End of variables declaration//GEN-END:variables
 }

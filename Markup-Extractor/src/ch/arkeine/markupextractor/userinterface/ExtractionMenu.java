@@ -69,8 +69,8 @@ public class ExtractionMenu extends javax.swing.JDialog implements ExtractorList
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                pbTotalProgress.setValue((int) percent);
-                extractedStatistic1.loadStatistic(extractor);
+                progressBarExtraction.setValue((int) percent);
+                panelExtractionStatistics.loadStatistic(extractor);
             }
         });
     }
@@ -89,15 +89,15 @@ public class ExtractionMenu extends javax.swing.JDialog implements ExtractorList
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleProgressBar = new javax.swing.JLabel();
-        pbTotalProgress = new javax.swing.JProgressBar();
-        extractedStatistic1 = new ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic();
+        labelProgressBar = new javax.swing.JLabel();
+        progressBarExtraction = new javax.swing.JProgressBar();
+        panelExtractionStatistics = new ch.arkeine.markupextractor.userinterface.extractor.ExtractionStatistics();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("ExtractionMenu.title")); // NOI18N
 
-        titleProgressBar.setText(bundle.getString("ExtractionMenu.titleProgressBar.text")); // NOI18N
+        labelProgressBar.setText(bundle.getString("ExtractionMenu.labelProgressBar.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,22 +106,22 @@ public class ExtractionMenu extends javax.swing.JDialog implements ExtractorList
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pbTotalProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(progressBarExtraction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleProgressBar)
+                        .addComponent(labelProgressBar)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(extractedStatistic1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelExtractionStatistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleProgressBar)
+                .addComponent(labelProgressBar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pbTotalProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(progressBarExtraction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(extractedStatistic1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelExtractionStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,8 +129,8 @@ public class ExtractionMenu extends javax.swing.JDialog implements ExtractorList
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic extractedStatistic1;
-    private javax.swing.JProgressBar pbTotalProgress;
-    private javax.swing.JLabel titleProgressBar;
+    private javax.swing.JLabel labelProgressBar;
+    private ch.arkeine.markupextractor.userinterface.extractor.ExtractionStatistics panelExtractionStatistics;
+    private javax.swing.JProgressBar progressBarExtraction;
     // End of variables declaration//GEN-END:variables
 }

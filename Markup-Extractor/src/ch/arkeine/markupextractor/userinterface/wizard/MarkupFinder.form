@@ -60,7 +60,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabData" pref="479" max="32767" attributes="0"/>
+                      <Component id="tabbedPaneData" pref="479" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -69,14 +69,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tabData" pref="422" max="32767" attributes="0"/>
+                      <Component id="tabbedPaneData" pref="422" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JTabbedPane" name="tabData">
+            <Container class="javax.swing.JTabbedPane" name="tabbedPaneData">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
@@ -108,12 +108,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panInput" max="32767" attributes="0"/>
-                          <Component id="panOutput" max="32767" attributes="0"/>
+                          <Component id="panelInput" max="32767" attributes="0"/>
+                          <Component id="panelOutput" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btAddToScript" max="32767" attributes="0"/>
+                              <Component id="buttonAddToScript" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="btCancel" max="32767" attributes="0"/>
+                              <Component id="buttonCancel" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -124,13 +124,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="panInput" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="panOutput" max="32767" attributes="0"/>
+                      <Component id="panelOutput" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btAddToScript" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonAddToScript" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -138,12 +138,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="panInput">
+            <Container class="javax.swing.JPanel" name="panelInput">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Data input">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.panInput.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.panelInput.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -155,8 +155,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btNewData" max="32767" attributes="0"/>
-                              <Component id="btRemoveData" max="32767" attributes="0"/>
+                              <Component id="buttonNewData" max="32767" attributes="0"/>
+                              <Component id="buttonRemoveData" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -166,43 +166,43 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btNewData" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonNewData" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btRemoveData" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRemoveData" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btNewData">
+                <Component class="javax.swing.JButton" name="buttonNewData">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btNewData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonNewData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNewDataActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonNewDataActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btRemoveData">
+                <Component class="javax.swing.JButton" name="buttonRemoveData">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btRemoveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonRemoveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoveDataActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRemoveDataActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panOutput">
+            <Container class="javax.swing.JPanel" name="panelOutput">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Data output">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.panOutput.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.panelOutput.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -216,12 +216,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" alignment="1" pref="170" max="32767" attributes="0"/>
                               <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btShowData" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btFindMarkup" alignment="0" max="32767" attributes="0"/>
+                              <Component id="buttonShowData" alignment="0" max="32767" attributes="0"/>
+                              <Component id="buttonFindMarkup" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="titleBeginMarkup" min="-2" max="-2" attributes="0"/>
-                                      <Component id="titleEndMarkup" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelBeginMarkup" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelEndMarkup" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -234,67 +234,67 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="titleBeginMarkup" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBeginMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" pref="72" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="titleEndMarkup" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelEndMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" pref="69" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="btFindMarkup" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonFindMarkup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="btShowData" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonShowData" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btFindMarkup">
+                <Component class="javax.swing.JButton" name="buttonFindMarkup">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btFindMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonFindMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFindMarkupActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonFindMarkupActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="titleBeginMarkup">
+                <Component class="javax.swing.JLabel" name="labelBeginMarkup">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.titleBeginMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.labelBeginMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="titleEndMarkup">
+                <Component class="javax.swing.JLabel" name="labelEndMarkup">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.titleEndMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.labelEndMarkup.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btShowData">
+                <Component class="javax.swing.JButton" name="buttonShowData">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btShowData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonShowData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btShowDataActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonShowDataActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane3">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea" name="txtBeginMarkup">
+                    <Component class="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea" name="textAreaBeginMarkup">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
                         <Property name="syntaxEditingStyle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.txtBeginMarkup.syntaxEditingStyle" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.textAreaBeginMarkup.syntaxEditingStyle" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -304,12 +304,12 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea" name="txtEndMarkup">
+                    <Component class="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea" name="textAreaEndMarkup">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
                         <Property name="syntaxEditingStyle" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.txtEndMarkup.syntaxEditingStyle" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.textAreaEndMarkup.syntaxEditingStyle" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -317,24 +317,24 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btAddToScript">
+            <Component class="javax.swing.JButton" name="buttonAddToScript">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btAddToScript.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonAddToScript.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddToScriptActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddToScriptActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btCancel">
+            <Component class="javax.swing.JButton" name="buttonCancel">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.btCancel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="MarkupFinder.buttonCancel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

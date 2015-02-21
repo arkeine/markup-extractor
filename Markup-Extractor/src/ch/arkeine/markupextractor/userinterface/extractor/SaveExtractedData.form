@@ -28,8 +28,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btSaveData" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="titleSaveData" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSaveData" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelSaveData" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
@@ -39,29 +39,29 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleSaveData" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSaveData" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btSaveData" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSaveData" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btSaveData">
+        <Component class="javax.swing.JButton" name="buttonSaveData">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.btSaveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.buttonSaveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveDataActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveDataActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="titleSaveData">
+        <Component class="javax.swing.JLabel" name="labelSaveData">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.titleSaveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.labelSaveData.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
@@ -75,8 +75,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="titleSaveAllUrl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="btSaveAllUrl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelSaveAllUrl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSaveAllUrl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
@@ -86,30 +86,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleSaveAllUrl" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSaveAllUrl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btSaveAllUrl" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSaveAllUrl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="titleSaveAllUrl">
+        <Component class="javax.swing.JLabel" name="labelSaveAllUrl">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.titleSaveAllUrl.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.labelSaveAllUrl.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btSaveAllUrl">
+        <Component class="javax.swing.JButton" name="buttonSaveAllUrl">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.btSaveAllUrl.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.buttonSaveAllUrl.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveAllUrlActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveAllUrlActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -122,8 +122,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="titleSaveUrlsSuccess" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="btSaveUrlSuccess" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelSaveUrlsSuccess" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSaveUrlSuccess" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
@@ -133,30 +133,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleSaveUrlsSuccess" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSaveUrlsSuccess" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btSaveUrlSuccess" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSaveUrlSuccess" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="titleSaveUrlsSuccess">
+        <Component class="javax.swing.JLabel" name="labelSaveUrlsSuccess">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.titleSaveUrlsSuccess.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.labelSaveUrlsSuccess.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btSaveUrlSuccess">
+        <Component class="javax.swing.JButton" name="buttonSaveUrlSuccess">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.btSaveUrlSuccess.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.buttonSaveUrlSuccess.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveUrlSuccessActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveUrlSuccessActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -169,8 +169,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="titleSaveUrlError" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="btSaveUrlError" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelSaveUrlError" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSaveUrlError" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
@@ -180,30 +180,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleSaveUrlError" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSaveUrlError" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btSaveUrlError" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSaveUrlError" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="titleSaveUrlError">
+        <Component class="javax.swing.JLabel" name="labelSaveUrlError">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.titleSaveUrlError.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.labelSaveUrlError.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btSaveUrlError">
+        <Component class="javax.swing.JButton" name="buttonSaveUrlError">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.btSaveUrlError.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="SaveExtractedData.buttonSaveUrlError.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveUrlErrorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveUrlErrorActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -30,12 +30,12 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pbTotalProgress" max="32767" attributes="0"/>
+                  <Component id="progressBarExtraction" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="titleProgressBar" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelProgressBar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="extractedStatistic1" max="32767" attributes="0"/>
+                  <Component id="panelExtractionStatistics" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -45,27 +45,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="titleProgressBar" min="-2" max="-2" attributes="0"/>
+              <Component id="labelProgressBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pbTotalProgress" min="-2" max="-2" attributes="0"/>
+              <Component id="progressBarExtraction" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="extractedStatistic1" min="-2" max="-2" attributes="0"/>
+              <Component id="panelExtractionStatistics" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="titleProgressBar">
+    <Component class="javax.swing.JLabel" name="labelProgressBar">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ExtractionMenu.titleProgressBar.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ExtractionMenu.labelProgressBar.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JProgressBar" name="pbTotalProgress">
+    <Component class="javax.swing.JProgressBar" name="progressBarExtraction">
     </Component>
-    <Component class="ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic" name="extractedStatistic1">
+    <Component class="ch.arkeine.markupextractor.userinterface.extractor.ExtractionStatistics" name="panelExtractionStatistics">
     </Component>
   </SubComponents>
 </Form>

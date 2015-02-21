@@ -62,11 +62,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panOther" max="32767" attributes="0"/>
-                          <Component id="panFiles" max="32767" attributes="0"/>
-                          <Component id="panGenerate" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btCancel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btOk" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelOther" max="32767" attributes="0"/>
+                          <Component id="panelFiles" max="32767" attributes="0"/>
+                          <Component id="panelGenerate" alignment="0" max="32767" attributes="0"/>
+                          <Component id="buttonCancel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="buttonOk" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -76,27 +76,27 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panFiles" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelFiles" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panOther" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelOther" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panGenerate" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelGenerate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="107" max="32767" attributes="0"/>
-                      <Component id="btOk" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonOk" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btCancel" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonCancel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="panFiles">
+            <Container class="javax.swing.JPanel" name="panelFiles">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Files">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panFiles.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panelFiles.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -150,12 +150,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panOther">
+            <Container class="javax.swing.JPanel" name="panelOther">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Other">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panOther.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panelOther.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -194,12 +194,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panGenerate">
+            <Container class="javax.swing.JPanel" name="panelGenerate">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Generate urls">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panGenerate.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panelGenerate.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -238,24 +238,24 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btCancel">
+            <Component class="javax.swing.JButton" name="buttonCancel">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.btCancel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.buttonCancel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btOk">
+            <Component class="javax.swing.JButton" name="buttonOk">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.btOk.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.buttonOk.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btOkActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOkActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

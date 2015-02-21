@@ -74,17 +74,17 @@ public class OutputArray {
             max = record.size() > max ? record.size() : max;
         }
 
-        String[][] returnValue = new String[records.size()][max];
+        String[][] returnedArray = new String[records.size()][max];
 
         int i = 0;
         for (ArrayList<String> record : records) {
             int j = 0;
             for (String s : record) {
-                returnValue[i][j] = s;
+                returnedArray[i][j] = s;
                 j++;
             }
             i++;
         }
-        return returnValue;
+        return returnedArray;
     }
 }

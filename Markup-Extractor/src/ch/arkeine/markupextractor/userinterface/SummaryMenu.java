@@ -30,8 +30,8 @@ public class SummaryMenu extends javax.swing.JDialog {
     }
 
     public void setExtractor(Extractor e){
-        extractedStatistic1.loadStatistic(e);
-        saveExtractedData1.setDataSource(e);
+        panelExtractionStatistics.loadStatistic(e);
+        panelSaveExtractedData.setDataSource(e);
     }
     
     /**
@@ -43,22 +43,22 @@ public class SummaryMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btOk = new javax.swing.JButton();
-        extractedStatistic1 = new ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic();
-        saveExtractedData1 = new ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData();
+        buttonOk = new javax.swing.JButton();
+        panelExtractionStatistics = new ch.arkeine.markupextractor.userinterface.extractor.ExtractionStatistics();
+        panelSaveExtractedData = new ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("SummaryMenu.title")); // NOI18N
 
-        btOk.setText(bundle.getString("SummaryMenu.btOk.text")); // NOI18N
-        btOk.addActionListener(new java.awt.event.ActionListener() {
+        buttonOk.setText(bundle.getString("SummaryMenu.buttonOk.text")); // NOI18N
+        buttonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btOkActionPerformed(evt);
+                buttonOkActionPerformed(evt);
             }
         });
 
-        extractedStatistic1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SummaryMenu.extractedStatistic1.border.title"))); // NOI18N
+        panelExtractionStatistics.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SummaryMenu.panelExtractionStatistics.border.title"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,35 +67,35 @@ public class SummaryMenu extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveExtractedData1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(panelSaveExtractedData, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 173, Short.MAX_VALUE)
-                        .addComponent(btOk))
-                    .addComponent(extractedStatistic1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(buttonOk))
+                    .addComponent(panelExtractionStatistics, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(extractedStatistic1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelExtractionStatistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveExtractedData1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(panelSaveExtractedData, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btOk)
+                .addComponent(buttonOk)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         dispose();
-    }//GEN-LAST:event_btOkActionPerformed
+    }//GEN-LAST:event_buttonOkActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btOk;
-    private ch.arkeine.markupextractor.userinterface.extractor.ExtractedStatistic extractedStatistic1;
-    private ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData saveExtractedData1;
+    private javax.swing.JButton buttonOk;
+    private ch.arkeine.markupextractor.userinterface.extractor.ExtractionStatistics panelExtractionStatistics;
+    private ch.arkeine.markupextractor.userinterface.extractor.SaveExtractedData panelSaveExtractedData;
     // End of variables declaration//GEN-END:variables
 }

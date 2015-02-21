@@ -40,7 +40,7 @@ public class DisplayDataExtracted extends javax.swing.JDialog {
         }
         
         DefaultTableModel d = new DefaultTableModel(data, column);
-        tbDataExtracted.setModel(d);
+        tableDataExtracted.setModel(d);
 
         for (String[] st : e.getExtractedToArray()) {
             for (String s : st) {
@@ -61,13 +61,13 @@ public class DisplayDataExtracted extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbDataExtracted = new javax.swing.JTable();
-        btOk = new javax.swing.JButton();
+        tableDataExtracted = new javax.swing.JTable();
+        buttonOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Data extracted");
 
-        tbDataExtracted.setModel(new javax.swing.table.DefaultTableModel(
+        tableDataExtracted.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,12 +75,12 @@ public class DisplayDataExtracted extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane1.setViewportView(tbDataExtracted);
+        jScrollPane1.setViewportView(tableDataExtracted);
 
-        btOk.setText("Ok");
-        btOk.addActionListener(new java.awt.event.ActionListener() {
+        buttonOk.setText("Ok");
+        buttonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btOkActionPerformed(evt);
+                buttonOkActionPerformed(evt);
             }
         });
 
@@ -93,7 +93,7 @@ public class DisplayDataExtracted extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btOk))
+                        .addComponent(buttonOk))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -103,20 +103,20 @@ public class DisplayDataExtracted extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btOk)
+                .addComponent(buttonOk)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         dispose();
-    }//GEN-LAST:event_btOkActionPerformed
+    }//GEN-LAST:event_buttonOkActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btOk;
+    private javax.swing.JButton buttonOk;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbDataExtracted;
+    private javax.swing.JTable tableDataExtracted;
     // End of variables declaration//GEN-END:variables
 }

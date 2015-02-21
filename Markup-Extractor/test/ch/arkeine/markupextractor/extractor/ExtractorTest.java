@@ -16,11 +16,6 @@
 
 package ch.arkeine.markupextractor.extractor;
 
-import ch.arkeine.markupextractor.tool.ToolFiles;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,26 +25,7 @@ import static org.junit.Assert.*;
  */
 public class ExtractorTest {
     
-    private String doc;
-    
     public ExtractorTest() {
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                "ch/arkeine/markupextractor/textTest"); // NOI18N
-        
-        File temp = new File("textTest.txt");
-        
-        try {
-            System.out.println("ici : "+ToolFiles.readStringFromFile(temp.getAbsolutePath()));
-            
-//        String expResult = "Ceci est un fichier de test dont le contenu"
-//                + " est totalement arbitraire\n";
-//        String result = instance.getOriginalDoc();
-//        assertEquals(expResult, result);
-        } catch (IOException ex) {
-            Logger.getLogger(ExtractorTest.class.getName()).log(Level.SEVERE,
-                    null, ex);
-            
-        }
     }
     
 
@@ -66,11 +42,11 @@ public class ExtractorTest {
         cmd[0].setParameter2("</t>");
         doc[0] = "<test>d</t>";
         
-        Extractor instance = new Extractor(cmd, doc);
+        Extractor instance = new Extractor(cmd, doc, false);
         instance.run();
         
         String expResult = "d";
-        String result = instance.getExtractedToCSV(separator).trim();
+        String result = instance.getExtractedToArray()[0][0];
         assertEquals(expResult, result);
     }   
     
@@ -87,11 +63,11 @@ public class ExtractorTest {
         cmd[0].setParameter2("<t>");
         doc[0] = "</t>d<t>";
         
-        Extractor instance = new Extractor(cmd, doc);
+        Extractor instance = new Extractor(cmd, doc, false);
         instance.run();
         
         String expResult = "d";
-        String result = instance.getExtractedToCSV(separator).trim();
+        String result = instance.getExtractedToArray()[0][0];
         assertEquals(expResult, result);
     }   
     
@@ -114,11 +90,11 @@ public class ExtractorTest {
         cmd[2].setParameter2("");
         doc[0] = "nom:toto nom:marie nom:joel";
         
-        Extractor instance = new Extractor(cmd, doc);
+        Extractor instance = new Extractor(cmd, doc, false);
         instance.run();
         
         String expResult = "marie" + separator +"joel";
-        String result = instance.getExtractedToCSV(separator).trim();
+        String result = instance.getExtractedToArray()[0][0];
         assertEquals(expResult, result);
     }    
 }

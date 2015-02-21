@@ -55,101 +55,101 @@ public class UrlGenerator extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleBaseURL = new javax.swing.JLabel();
+        labelBaseURL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtBaseURL = new javax.swing.JTextArea();
+        textAreaBaseURL = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
-        titleToken = new javax.swing.JLabel();
-        txtToken = new javax.swing.JTextField();
+        labelToken = new javax.swing.JLabel();
+        textFieldToken = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        titleInitialValue = new javax.swing.JLabel();
-        spInitalValue = new javax.swing.JSpinner();
+        labelInitialValue = new javax.swing.JLabel();
+        spinnerInitalValue = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
-        titleEndvalue = new javax.swing.JLabel();
-        spEndValue = new javax.swing.JSpinner();
-        btGenerate = new javax.swing.JButton();
-        btCancel = new javax.swing.JButton();
+        labelEndvalue = new javax.swing.JLabel();
+        spinnerEndValue = new javax.swing.JSpinner();
+        buttonGenerate = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
         setTitle(bundle.getString("UrlGenerator.title")); // NOI18N
 
-        titleBaseURL.setText(bundle.getString("UrlGenerator.titleBaseURL.text")); // NOI18N
+        labelBaseURL.setText(bundle.getString("UrlGenerator.labelBaseURL.text")); // NOI18N
 
-        txtBaseURL.setColumns(20);
-        txtBaseURL.setRows(1);
-        jScrollPane1.setViewportView(txtBaseURL);
+        textAreaBaseURL.setColumns(20);
+        textAreaBaseURL.setRows(1);
+        jScrollPane1.setViewportView(textAreaBaseURL);
 
-        titleToken.setText(bundle.getString("UrlGenerator.titleToken.text")); // NOI18N
+        labelToken.setText(bundle.getString("UrlGenerator.labelToken.text")); // NOI18N
 
-        txtToken.setText(bundle.getString("UrlGenerator.txtToken.text")); // NOI18N
+        textFieldToken.setText(bundle.getString("UrlGenerator.textFieldToken.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(titleToken)
+                .addComponent(labelToken)
                 .addGap(0, 59, Short.MAX_VALUE))
-            .addComponent(txtToken)
+            .addComponent(textFieldToken)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(titleToken)
+                .addComponent(labelToken)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtToken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textFieldToken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        titleInitialValue.setText(bundle.getString("UrlGenerator.titleInitialValue.text")); // NOI18N
+        labelInitialValue.setText(bundle.getString("UrlGenerator.labelInitialValue.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spInitalValue)
+            .addComponent(spinnerInitalValue)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(titleInitialValue)
+                .addComponent(labelInitialValue)
                 .addGap(0, 65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(titleInitialValue)
+                .addComponent(labelInitialValue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spInitalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(spinnerInitalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        titleEndvalue.setText(bundle.getString("UrlGenerator.titleEndvalue.text")); // NOI18N
+        labelEndvalue.setText(bundle.getString("UrlGenerator.labelEndvalue.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spEndValue)
+            .addComponent(spinnerEndValue)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(titleEndvalue)
+                .addComponent(labelEndvalue)
                 .addGap(0, 79, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(titleEndvalue)
+                .addComponent(labelEndvalue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spEndValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(spinnerEndValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btGenerate.setText(bundle.getString("UrlGenerator.btGenerate.text")); // NOI18N
-        btGenerate.addActionListener(new java.awt.event.ActionListener() {
+        buttonGenerate.setText(bundle.getString("UrlGenerator.buttonGenerate.text")); // NOI18N
+        buttonGenerate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGenerateActionPerformed(evt);
+                buttonGenerateActionPerformed(evt);
             }
         });
 
-        btCancel.setText(bundle.getString("UrlGenerator.btCancel.text")); // NOI18N
-        btCancel.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancel.setText(bundle.getString("UrlGenerator.buttonCancel.text")); // NOI18N
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelActionPerformed(evt);
+                buttonCancelActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class UrlGenerator extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleBaseURL)
+                        .addComponent(labelBaseURL)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,9 +172,9 @@ public class UrlGenerator extends javax.swing.JDialog {
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btGenerate)
+                        .addComponent(buttonGenerate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancel)))
+                        .addComponent(buttonCancel)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,7 +183,7 @@ public class UrlGenerator extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleBaseURL)
+                        .addComponent(labelBaseURL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -195,21 +195,21 @@ public class UrlGenerator extends javax.swing.JDialog {
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btGenerate)
-                    .addComponent(btCancel))
+                    .addComponent(buttonGenerate)
+                    .addComponent(buttonCancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGenerateActionPerformed
+    private void buttonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateActionPerformed
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
-        String base = txtBaseURL.getText();
-        String token = txtToken.getText();
+        String base = textAreaBaseURL.getText();
+        String token = textFieldToken.getText();
 
-        if ((int) spInitalValue.getValue() >= (int) spEndValue.getValue()) {
+        if ((int) spinnerInitalValue.getValue() >= (int) spinnerEndValue.getValue()) {
             JOptionPane.showMessageDialog(this, bundle.getString(
                     "UrlGeneratorMenu.message.invalidIndex"));
 
@@ -219,11 +219,11 @@ public class UrlGenerator extends javax.swing.JDialog {
 
         } else {
 
-            String[] tmpUrl = new String[(int) spEndValue.getValue()
-                    - (int) spInitalValue.getValue()];
+            String[] tmpUrl = new String[(int) spinnerEndValue.getValue()
+                    - (int) spinnerInitalValue.getValue()];
             for (int i = 0; i < tmpUrl.length; i++) {
                 tmpUrl[i] = base.replaceFirst(token, Integer.toString(
-                        i + (int) spInitalValue.getValue()));
+                        i + (int) spinnerInitalValue.getValue()));
                 System.out.println(tmpUrl[i]);
             }
 
@@ -231,26 +231,26 @@ public class UrlGenerator extends javax.swing.JDialog {
             isOk = true;
             dispose();
         }
-    }//GEN-LAST:event_btGenerateActionPerformed
+    }//GEN-LAST:event_buttonGenerateActionPerformed
 
-    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btCancelActionPerformed
+    }//GEN-LAST:event_buttonCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCancel;
-    private javax.swing.JButton btGenerate;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonGenerate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner spEndValue;
-    private javax.swing.JSpinner spInitalValue;
-    private javax.swing.JLabel titleBaseURL;
-    private javax.swing.JLabel titleEndvalue;
-    private javax.swing.JLabel titleInitialValue;
-    private javax.swing.JLabel titleToken;
-    private javax.swing.JTextArea txtBaseURL;
-    private javax.swing.JTextField txtToken;
+    private javax.swing.JLabel labelBaseURL;
+    private javax.swing.JLabel labelEndvalue;
+    private javax.swing.JLabel labelInitialValue;
+    private javax.swing.JLabel labelToken;
+    private javax.swing.JSpinner spinnerEndValue;
+    private javax.swing.JSpinner spinnerInitalValue;
+    private javax.swing.JTextArea textAreaBaseURL;
+    private javax.swing.JTextField textFieldToken;
     // End of variables declaration//GEN-END:variables
 }

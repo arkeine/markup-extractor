@@ -36,16 +36,16 @@ public class CommandEditorTable extends javax.swing.JPanel {
     }
 
     public Command[] getCommandScript() {
-        return ((CommandTableModel) tabCommands.getModel()).getCommands();
+        return ((CommandTableModel) tableCommands.getModel()).getCommands();
     }
 
     public void setCommandScript(Command[] c) {
-        ((CommandTableModel) tabCommands.getModel()).setCommands(c);
+        ((CommandTableModel) tableCommands.getModel()).setCommands(c);
     }
 
     public void insertCommandScript(Command[] c) {
         for (Command command : c) {
-            ((CommandTableModel) tabCommands.getModel()).addCommand(command);
+            ((CommandTableModel) tableCommands.getModel()).addCommand(command);
         }
     }
 
@@ -53,9 +53,9 @@ public class CommandEditorTable extends javax.swing.JPanel {
 
         JComboBox cbCommand = new JComboBox(Command.CommandName.values());
 
-        TableColumn colCmd = tabCommands.getColumnModel().getColumn(0);
-        TableColumn colParam1 = tabCommands.getColumnModel().getColumn(1);
-        TableColumn colParam2 = tabCommands.getColumnModel().getColumn(2);
+        TableColumn colCmd = tableCommands.getColumnModel().getColumn(0);
+        TableColumn colParam1 = tableCommands.getColumnModel().getColumn(1);
+        TableColumn colParam2 = tableCommands.getColumnModel().getColumn(2);
 
         colCmd.setCellEditor(new DefaultCellEditor(cbCommand));
         colParam1.setCellEditor(new BigTextEditor());
@@ -84,44 +84,44 @@ public class CommandEditorTable extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btRemoveCommand = new javax.swing.JButton();
-        btNewCommand = new javax.swing.JButton();
+        buttonRemoveCommand = new javax.swing.JButton();
+        buttonNewCommand = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabCommands = new javax.swing.JTable();
-        btUp = new javax.swing.JButton();
-        btDown = new javax.swing.JButton();
+        tableCommands = new javax.swing.JTable();
+        buttonUp = new javax.swing.JButton();
+        buttonDown = new javax.swing.JButton();
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
-        btRemoveCommand.setText(bundle.getString("CommandEditorTable.btRemoveCommand.text")); // NOI18N
-        btRemoveCommand.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemoveCommand.setText(bundle.getString("CommandEditorTable.buttonRemoveCommand.text")); // NOI18N
+        buttonRemoveCommand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRemoveCommandActionPerformed(evt);
+                buttonRemoveCommandActionPerformed(evt);
             }
         });
 
-        btNewCommand.setText(bundle.getString("CommandEditorTable.btNewCommand.text")); // NOI18N
-        btNewCommand.addActionListener(new java.awt.event.ActionListener() {
+        buttonNewCommand.setText(bundle.getString("CommandEditorTable.buttonNewCommand.text")); // NOI18N
+        buttonNewCommand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNewCommandActionPerformed(evt);
+                buttonNewCommandActionPerformed(evt);
             }
         });
 
-        tabCommands.setModel(createModel());
-        tabCommands.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabCommands.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(tabCommands);
+        tableCommands.setModel(createModel());
+        tableCommands.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableCommands.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tableCommands);
 
-        btUp.setText(bundle.getString("CommandEditorTable.btUp.text")); // NOI18N
-        btUp.addActionListener(new java.awt.event.ActionListener() {
+        buttonUp.setText(bundle.getString("CommandEditorTable.buttonUp.text")); // NOI18N
+        buttonUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUpActionPerformed(evt);
+                buttonUpActionPerformed(evt);
             }
         });
 
-        btDown.setText(bundle.getString("CommandEditorTable.btDown.text")); // NOI18N
-        btDown.addActionListener(new java.awt.event.ActionListener() {
+        buttonDown.setText(bundle.getString("CommandEditorTable.buttonDown.text")); // NOI18N
+        buttonDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDownActionPerformed(evt);
+                buttonDownActionPerformed(evt);
             }
         });
 
@@ -133,13 +133,13 @@ public class CommandEditorTable extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btUp)
+                        .addComponent(buttonUp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btDown)
+                        .addComponent(buttonDown)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNewCommand)
+                        .addComponent(buttonNewCommand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemoveCommand))
+                        .addComponent(buttonRemoveCommand))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -150,51 +150,51 @@ public class CommandEditorTable extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNewCommand)
-                    .addComponent(btRemoveCommand)
-                    .addComponent(btUp)
-                    .addComponent(btDown))
+                    .addComponent(buttonNewCommand)
+                    .addComponent(buttonRemoveCommand)
+                    .addComponent(buttonUp)
+                    .addComponent(buttonDown))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btNewCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewCommandActionPerformed
+    private void buttonNewCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewCommandActionPerformed
         Command c = new Command(Command.CommandName.CUT);
-        ((CommandTableModel) tabCommands.getModel()).addCommand(c);
-    }//GEN-LAST:event_btNewCommandActionPerformed
+        ((CommandTableModel) tableCommands.getModel()).addCommand(c);
+    }//GEN-LAST:event_buttonNewCommandActionPerformed
 
-    private void btUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpActionPerformed
-        CommandTableModel model = (CommandTableModel) tabCommands.getModel();
-        int[] rows = tabCommands.getSelectedRows();
+    private void buttonUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpActionPerformed
+        CommandTableModel model = (CommandTableModel) tableCommands.getModel();
+        int[] rows = tableCommands.getSelectedRows();
         if (rows.length > 0) {
             model.moveRow(rows[0], rows[rows.length - 1], rows[0] - 1);
-            tabCommands.setRowSelectionInterval(rows[0] - 1,
+            tableCommands.setRowSelectionInterval(rows[0] - 1,
                     rows[rows.length - 1] - 1);
         }
-    }//GEN-LAST:event_btUpActionPerformed
+    }//GEN-LAST:event_buttonUpActionPerformed
 
-    private void btDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDownActionPerformed
-        CommandTableModel model = (CommandTableModel) tabCommands.getModel();
-        int[] rows = tabCommands.getSelectedRows();
+    private void buttonDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDownActionPerformed
+        CommandTableModel model = (CommandTableModel) tableCommands.getModel();
+        int[] rows = tableCommands.getSelectedRows();
         if (rows.length > 0) {
             model.moveRow(rows[0], rows[rows.length - 1], rows[0] + 1);
-            tabCommands.setRowSelectionInterval(rows[0] + 1,
+            tableCommands.setRowSelectionInterval(rows[0] + 1,
                     rows[rows.length - 1] + 1);
         }
-    }//GEN-LAST:event_btDownActionPerformed
+    }//GEN-LAST:event_buttonDownActionPerformed
 
-    private void btRemoveCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveCommandActionPerformed
-        ((CommandTableModel) tabCommands.getModel()).removeCommand(
-                tabCommands.getSelectedRow());
-    }//GEN-LAST:event_btRemoveCommandActionPerformed
+    private void buttonRemoveCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveCommandActionPerformed
+        ((CommandTableModel) tableCommands.getModel()).removeCommand(
+                tableCommands.getSelectedRow());
+    }//GEN-LAST:event_buttonRemoveCommandActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btDown;
-    private javax.swing.JButton btNewCommand;
-    private javax.swing.JButton btRemoveCommand;
-    private javax.swing.JButton btUp;
+    private javax.swing.JButton buttonDown;
+    private javax.swing.JButton buttonNewCommand;
+    private javax.swing.JButton buttonRemoveCommand;
+    private javax.swing.JButton buttonUp;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabCommands;
+    private javax.swing.JTable tableCommands;
     // End of variables declaration//GEN-END:variables
 }

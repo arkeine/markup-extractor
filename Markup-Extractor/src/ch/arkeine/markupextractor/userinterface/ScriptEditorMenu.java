@@ -73,15 +73,15 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
-        panFiles = new javax.swing.JPanel();
+        panelFiles = new javax.swing.JPanel();
         btSaveCommand = new javax.swing.JButton();
         btLoadCommand = new javax.swing.JButton();
-        panOther = new javax.swing.JPanel();
+        panelOther = new javax.swing.JPanel();
         btTestScript = new javax.swing.JButton();
-        panGenerate = new javax.swing.JPanel();
+        panelGenerate = new javax.swing.JPanel();
         btMarkupFinder = new javax.swing.JButton();
-        btCancel = new javax.swing.JButton();
-        btOk = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
+        buttonOk = new javax.swing.JButton();
         commandEditorTable = new ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -91,7 +91,7 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         jSplitPane1.setDividerLocation(400);
         jSplitPane1.setResizeWeight(1.0);
 
-        panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panFiles.border.title"))); // NOI18N
+        panelFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panelFiles.border.title"))); // NOI18N
 
         btSaveCommand.setText(bundle.getString("ScriptEditorMenu.btSaveCommand.text")); // NOI18N
         btSaveCommand.addActionListener(new java.awt.event.ActionListener() {
@@ -107,20 +107,20 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout panFilesLayout = new javax.swing.GroupLayout(panFiles);
-        panFiles.setLayout(panFilesLayout);
-        panFilesLayout.setHorizontalGroup(
-            panFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panFilesLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelFilesLayout = new javax.swing.GroupLayout(panelFiles);
+        panelFiles.setLayout(panelFilesLayout);
+        panelFilesLayout.setHorizontalGroup(
+            panelFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFilesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSaveCommand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btLoadCommand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panFilesLayout.setVerticalGroup(
-            panFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panFilesLayout.createSequentialGroup()
+        panelFilesLayout.setVerticalGroup(
+            panelFilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFilesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btSaveCommand)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -128,7 +128,7 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panOther.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panOther.border.title"))); // NOI18N
+        panelOther.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panelOther.border.title"))); // NOI18N
 
         btTestScript.setText(bundle.getString("ScriptEditorMenu.btTestScript.text")); // NOI18N
         btTestScript.addActionListener(new java.awt.event.ActionListener() {
@@ -137,24 +137,24 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout panOtherLayout = new javax.swing.GroupLayout(panOther);
-        panOther.setLayout(panOtherLayout);
-        panOtherLayout.setHorizontalGroup(
-            panOtherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOtherLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelOtherLayout = new javax.swing.GroupLayout(panelOther);
+        panelOther.setLayout(panelOtherLayout);
+        panelOtherLayout.setHorizontalGroup(
+            panelOtherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOtherLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btTestScript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        panOtherLayout.setVerticalGroup(
-            panOtherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOtherLayout.createSequentialGroup()
+        panelOtherLayout.setVerticalGroup(
+            panelOtherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOtherLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btTestScript)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panGenerate.border.title"))); // NOI18N
+        panelGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panelGenerate.border.title"))); // NOI18N
 
         btMarkupFinder.setText(bundle.getString("ScriptEditorMenu.btMarkupFinder.text")); // NOI18N
         btMarkupFinder.addActionListener(new java.awt.event.ActionListener() {
@@ -163,34 +163,34 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout panGenerateLayout = new javax.swing.GroupLayout(panGenerate);
-        panGenerate.setLayout(panGenerateLayout);
-        panGenerateLayout.setHorizontalGroup(
-            panGenerateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panGenerateLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelGenerateLayout = new javax.swing.GroupLayout(panelGenerate);
+        panelGenerate.setLayout(panelGenerateLayout);
+        panelGenerateLayout.setHorizontalGroup(
+            panelGenerateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGenerateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btMarkupFinder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        panGenerateLayout.setVerticalGroup(
-            panGenerateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panGenerateLayout.createSequentialGroup()
+        panelGenerateLayout.setVerticalGroup(
+            panelGenerateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelGenerateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btMarkupFinder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btCancel.setText(bundle.getString("ScriptEditorMenu.btCancel.text")); // NOI18N
-        btCancel.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancel.setText(bundle.getString("ScriptEditorMenu.buttonCancel.text")); // NOI18N
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelActionPerformed(evt);
+                buttonCancelActionPerformed(evt);
             }
         });
 
-        btOk.setText(bundle.getString("ScriptEditorMenu.btOk.text")); // NOI18N
-        btOk.addActionListener(new java.awt.event.ActionListener() {
+        buttonOk.setText(bundle.getString("ScriptEditorMenu.buttonOk.text")); // NOI18N
+        buttonOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btOkActionPerformed(evt);
+                buttonOkActionPerformed(evt);
             }
         });
 
@@ -201,26 +201,26 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panOther, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panFiles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelOther, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelFiles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(btOk)
+                .addComponent(buttonOk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCancel)
+                .addComponent(buttonCancel)
                 .addContainerGap())
         );
 
@@ -331,26 +331,26 @@ public class ScriptEditorMenu extends javax.swing.JDialog {
         dialog2.setVisible(true);
     }//GEN-LAST:event_btTestScriptActionPerformed
 
-    private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
         isOk = true;
         dispose();
-    }//GEN-LAST:event_btOkActionPerformed
+    }//GEN-LAST:event_buttonOkActionPerformed
 
-    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btCancelActionPerformed
+    }//GEN-LAST:event_buttonCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCancel;
     private javax.swing.JButton btLoadCommand;
     private javax.swing.JButton btMarkupFinder;
-    private javax.swing.JButton btOk;
     private javax.swing.JButton btSaveCommand;
     private javax.swing.JButton btTestScript;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonOk;
     private ch.arkeine.markupextractor.userinterface.scripteditor.CommandEditorTable commandEditorTable;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JPanel panFiles;
-    private javax.swing.JPanel panGenerate;
-    private javax.swing.JPanel panOther;
+    private javax.swing.JPanel panelFiles;
+    private javax.swing.JPanel panelGenerate;
+    private javax.swing.JPanel panelOther;
     // End of variables declaration//GEN-END:variables
 }

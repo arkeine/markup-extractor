@@ -20,7 +20,7 @@ package ch.arkeine.markupextractor.tool;
  * @author Nils Ryter
  */
 public class ToolMarkups {
-    
+
     public static String[] searchMinLenghtMarkup(String[] docs, String[] key,
             Integer[] numOccurrence) throws MarkupToolException {
 
@@ -37,9 +37,11 @@ public class ToolMarkups {
                     posDataEnd[i]);
             String tempBegin = getMinLengthBeginMarkup(docs[i], posDataBegin[i]);
 
-            beginMarkup = checkBeginMarkup(docs, posDataBegin, i, tempBegin, beginMarkup);
+            beginMarkup = checkBeginMarkup(docs, posDataBegin, i, tempBegin,
+                    beginMarkup);
 
-            endMarkup = checkEndMarkup(docs, posDataBegin, posDataEnd, i, tempEnd, endMarkup);
+            endMarkup = checkEndMarkup(docs, posDataBegin, posDataEnd, i,
+                    tempEnd, endMarkup);
         }
 
         String[] ret = new String[2];
@@ -97,7 +99,8 @@ public class ToolMarkups {
         return markup;
     }
 
-    private static String checkBeginMarkup(String[] docs, int[] posDataBegin, int currentIndex,
+    private static String checkBeginMarkup(String[] docs, int[] posDataBegin,
+            int currentIndex,
             String tempBegin, String beginMarkup) throws MarkupToolException {
 
         String returnMarkup = beginMarkup;
@@ -105,14 +108,16 @@ public class ToolMarkups {
         if (tempBegin.length() > beginMarkup.length()) {
 
             if (!tempBegin.endsWith(beginMarkup)) {
-                throw new MarkupToolException("Markup can not be found : the markups "
+                throw new MarkupToolException(
+                        "Markup can not be found : the markups "
                         + "don't match");
             }
 
             //Test of regression for previous documents
             for (int j = currentIndex - 1; j >= 0; j--) {
                 if (docs[j].indexOf(tempBegin) + tempBegin.length() != posDataBegin[j]) {
-                    throw new MarkupToolException("Markup can not be found : Regression "
+                    throw new MarkupToolException(
+                            "Markup can not be found : Regression "
                             + "test fail with document " + j);
                 }
             }
@@ -123,7 +128,8 @@ public class ToolMarkups {
             int expectedIndex = posDataBegin[currentIndex];
 
             if (empiriqueIndex != expectedIndex) {
-                throw new MarkupToolException("Markup can not be found : the markups "
+                throw new MarkupToolException(
+                        "Markup can not be found : the markups "
                         + "don't match.\nEmpirique index :" + empiriqueIndex + "\n"
                         + "Expected index : " + expectedIndex);
             }
@@ -140,25 +146,29 @@ public class ToolMarkups {
         if (tempEnd.length() > endMarkup.length()) {
 
             if (!tempEnd.startsWith(endMarkup)) {
-                throw new MarkupToolException("Markup can not be found : the markups "
+                throw new MarkupToolException(
+                        "Markup can not be found : the markups "
                         + "don't match");
             }
 
             //Test of regression for previous documents
             for (int j = currentIndex - 1; j >= 0; j--) {
                 if (docs[j].indexOf(tempEnd, posDataBegin[j]) != posDataEnd[j]) {
-                    throw new MarkupToolException("Markup can not be found : Regression "
+                    throw new MarkupToolException(
+                            "Markup can not be found : Regression "
                             + "test fail with document " + j);
                 }
             }
 
             returnMarkup = tempEnd;
         } else {
-            int empiriqueIndex = docs[currentIndex].indexOf(endMarkup, posDataBegin[currentIndex]);
+            int empiriqueIndex = docs[currentIndex].indexOf(endMarkup,
+                    posDataBegin[currentIndex]);
             int expectedIndex = posDataEnd[currentIndex];
 
             if (empiriqueIndex != expectedIndex && !endMarkup.isEmpty()) {
-                throw new MarkupToolException("Markup can not be found : the markups "
+                throw new MarkupToolException(
+                        "Markup can not be found : the markups "
                         + "don't match.\nEmpirique index :" + empiriqueIndex + "\n"
                         + "Expected index : " + expectedIndex);
             }

@@ -53,21 +53,21 @@ public class MarkupFinder extends javax.swing.JDialog {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "ch/arkeine/markupextractor/internationalization"); // NOI18N
 
-        for (int i = 0; i < tabData.getTabCount(); i++) {
-            tabData.setTitleAt(i, bundle.getString(
+        for (int i = 0; i < tabbedPaneData.getTabCount(); i++) {
+            tabbedPaneData.setTitleAt(i, bundle.getString(
                     "MarkupFinder.dataSelector.TabConstraints.tabTitle")
                     + " " + (i + 1));
         }
     }
 
     private void enableRemoveButton() {
-        btRemoveData.setEnabled(tabData.getTabCount() > 1);
+        buttonRemoveData.setEnabled(tabbedPaneData.getTabCount() > 1);
     }
 
     public String[] getMarkups() {
         String[] markups = new String[2];
-        markups[0] = txtBeginMarkup.getText();
-        markups[1] = txtEndMarkup.getText();
+        markups[0] = textAreaBeginMarkup.getText();
+        markups[1] = textAreaEndMarkup.getText();
         return markups;
     }
 
@@ -76,12 +76,12 @@ public class MarkupFinder extends javax.swing.JDialog {
     }
 
     private Object[][] getDataAsArray() {
-        String[] docs = new String[tabData.getTabCount()];
-        String[] keys = new String[tabData.getTabCount()];
-        Integer[] num = new Integer[tabData.getTabCount()];
+        String[] docs = new String[tabbedPaneData.getTabCount()];
+        String[] keys = new String[tabbedPaneData.getTabCount()];
+        Integer[] num = new Integer[tabbedPaneData.getTabCount()];
 
         int i = 0;
-        for (Component c : tabData.getComponents()) {
+        for (Component c : tabbedPaneData.getComponents()) {
             DataSelector d = (DataSelector) c;
             docs[i] = d.getContent();
             keys[i] = d.getOccurenceText();
@@ -92,7 +92,7 @@ public class MarkupFinder extends javax.swing.JDialog {
             i++;
         }
         
-        Object[][] o = new Object[3][tabData.getTabCount()];
+        Object[][] o = new Object[3][tabbedPaneData.getTabCount()];
         o[0] = docs;
         o[1] = keys;
         o[2] = num;
@@ -110,23 +110,23 @@ public class MarkupFinder extends javax.swing.JDialog {
 
         split = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        tabData = new javax.swing.JTabbedPane();
+        tabbedPaneData = new javax.swing.JTabbedPane();
         dataSelector1 = new ch.arkeine.markupextractor.userinterface.wizard.DataSelector();
         jPanel1 = new javax.swing.JPanel();
-        panInput = new javax.swing.JPanel();
-        btNewData = new javax.swing.JButton();
-        btRemoveData = new javax.swing.JButton();
-        panOutput = new javax.swing.JPanel();
-        btFindMarkup = new javax.swing.JButton();
-        titleBeginMarkup = new javax.swing.JLabel();
-        titleEndMarkup = new javax.swing.JLabel();
-        btShowData = new javax.swing.JButton();
+        panelInput = new javax.swing.JPanel();
+        buttonNewData = new javax.swing.JButton();
+        buttonRemoveData = new javax.swing.JButton();
+        panelOutput = new javax.swing.JPanel();
+        buttonFindMarkup = new javax.swing.JButton();
+        labelBeginMarkup = new javax.swing.JLabel();
+        labelEndMarkup = new javax.swing.JLabel();
+        buttonShowData = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtBeginMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
+        textAreaBeginMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtEndMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
-        btAddToScript = new javax.swing.JButton();
-        btCancel = new javax.swing.JButton();
+        textAreaEndMarkup = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
+        buttonAddToScript = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("ch/arkeine/markupextractor/internationalization"); // NOI18N
@@ -136,7 +136,7 @@ public class MarkupFinder extends javax.swing.JDialog {
         split.setDividerLocation(500);
         split.setResizeWeight(0.8);
 
-        tabData.addTab(bundle.getString("MarkupFinder.dataSelector1.TabConstraints.tabTitle"), dataSelector1); // NOI18N
+        tabbedPaneData.addTab(bundle.getString("MarkupFinder.dataSelector1.TabConstraints.tabTitle"), dataSelector1); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,133 +144,133 @@ public class MarkupFinder extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabData, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(tabbedPaneData, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabData, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addComponent(tabbedPaneData, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         split.setLeftComponent(jPanel2);
 
-        panInput.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MarkupFinder.panInput.border.title"))); // NOI18N
+        panelInput.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MarkupFinder.panelInput.border.title"))); // NOI18N
 
-        btNewData.setText(bundle.getString("MarkupFinder.btNewData.text")); // NOI18N
-        btNewData.addActionListener(new java.awt.event.ActionListener() {
+        buttonNewData.setText(bundle.getString("MarkupFinder.buttonNewData.text")); // NOI18N
+        buttonNewData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNewDataActionPerformed(evt);
+                buttonNewDataActionPerformed(evt);
             }
         });
 
-        btRemoveData.setText(bundle.getString("MarkupFinder.btRemoveData.text")); // NOI18N
-        btRemoveData.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemoveData.setText(bundle.getString("MarkupFinder.buttonRemoveData.text")); // NOI18N
+        buttonRemoveData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRemoveDataActionPerformed(evt);
+                buttonRemoveDataActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panInputLayout = new javax.swing.GroupLayout(panInput);
-        panInput.setLayout(panInputLayout);
-        panInputLayout.setHorizontalGroup(
-            panInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panInputLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelInputLayout = new javax.swing.GroupLayout(panelInput);
+        panelInput.setLayout(panelInputLayout);
+        panelInputLayout.setHorizontalGroup(
+            panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btNewData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btRemoveData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonNewData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonRemoveData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panInputLayout.setVerticalGroup(
-            panInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panInputLayout.createSequentialGroup()
+        panelInputLayout.setVerticalGroup(
+            panelInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btNewData)
+                .addComponent(buttonNewData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btRemoveData)
+                .addComponent(buttonRemoveData)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MarkupFinder.panOutput.border.title"))); // NOI18N
+        panelOutput.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MarkupFinder.panelOutput.border.title"))); // NOI18N
 
-        btFindMarkup.setText(bundle.getString("MarkupFinder.btFindMarkup.text")); // NOI18N
-        btFindMarkup.addActionListener(new java.awt.event.ActionListener() {
+        buttonFindMarkup.setText(bundle.getString("MarkupFinder.buttonFindMarkup.text")); // NOI18N
+        buttonFindMarkup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFindMarkupActionPerformed(evt);
+                buttonFindMarkupActionPerformed(evt);
             }
         });
 
-        titleBeginMarkup.setText(bundle.getString("MarkupFinder.titleBeginMarkup.text")); // NOI18N
+        labelBeginMarkup.setText(bundle.getString("MarkupFinder.labelBeginMarkup.text")); // NOI18N
 
-        titleEndMarkup.setText(bundle.getString("MarkupFinder.titleEndMarkup.text")); // NOI18N
+        labelEndMarkup.setText(bundle.getString("MarkupFinder.labelEndMarkup.text")); // NOI18N
 
-        btShowData.setText(bundle.getString("MarkupFinder.btShowData.text")); // NOI18N
-        btShowData.addActionListener(new java.awt.event.ActionListener() {
+        buttonShowData.setText(bundle.getString("MarkupFinder.buttonShowData.text")); // NOI18N
+        buttonShowData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btShowDataActionPerformed(evt);
+                buttonShowDataActionPerformed(evt);
             }
         });
 
-        txtBeginMarkup.setColumns(20);
-        txtBeginMarkup.setRows(5);
-        txtBeginMarkup.setSyntaxEditingStyle(bundle.getString("MarkupFinder.txtBeginMarkup.syntaxEditingStyle")); // NOI18N
-        jScrollPane3.setViewportView(txtBeginMarkup);
+        textAreaBeginMarkup.setColumns(20);
+        textAreaBeginMarkup.setRows(5);
+        textAreaBeginMarkup.setSyntaxEditingStyle(bundle.getString("MarkupFinder.textAreaBeginMarkup.syntaxEditingStyle")); // NOI18N
+        jScrollPane3.setViewportView(textAreaBeginMarkup);
 
-        txtEndMarkup.setColumns(20);
-        txtEndMarkup.setRows(5);
-        txtEndMarkup.setSyntaxEditingStyle(bundle.getString("MarkupFinder.txtEndMarkup.syntaxEditingStyle")); // NOI18N
-        jScrollPane1.setViewportView(txtEndMarkup);
+        textAreaEndMarkup.setColumns(20);
+        textAreaEndMarkup.setRows(5);
+        textAreaEndMarkup.setSyntaxEditingStyle(bundle.getString("MarkupFinder.textAreaEndMarkup.syntaxEditingStyle")); // NOI18N
+        jScrollPane1.setViewportView(textAreaEndMarkup);
 
-        javax.swing.GroupLayout panOutputLayout = new javax.swing.GroupLayout(panOutput);
-        panOutput.setLayout(panOutputLayout);
-        panOutputLayout.setHorizontalGroup(
-            panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOutputLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelOutputLayout = new javax.swing.GroupLayout(panelOutput);
+        panelOutput.setLayout(panelOutputLayout);
+        panelOutputLayout.setHorizontalGroup(
+            panelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOutputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btShowData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btFindMarkup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panOutputLayout.createSequentialGroup()
-                        .addGroup(panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleBeginMarkup)
-                            .addComponent(titleEndMarkup))
+                    .addComponent(buttonShowData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonFindMarkup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelOutputLayout.createSequentialGroup()
+                        .addGroup(panelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelBeginMarkup)
+                            .addComponent(labelEndMarkup))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panOutputLayout.setVerticalGroup(
-            panOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panOutputLayout.createSequentialGroup()
+        panelOutputLayout.setVerticalGroup(
+            panelOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOutputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleBeginMarkup)
+                .addComponent(labelBeginMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleEndMarkup)
+                .addComponent(labelEndMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btFindMarkup)
+                .addComponent(buttonFindMarkup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btShowData)
+                .addComponent(buttonShowData)
                 .addContainerGap())
         );
 
-        btAddToScript.setText(bundle.getString("MarkupFinder.btAddToScript.text")); // NOI18N
-        btAddToScript.addActionListener(new java.awt.event.ActionListener() {
+        buttonAddToScript.setText(bundle.getString("MarkupFinder.buttonAddToScript.text")); // NOI18N
+        buttonAddToScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAddToScriptActionPerformed(evt);
+                buttonAddToScriptActionPerformed(evt);
             }
         });
 
-        btCancel.setText(bundle.getString("MarkupFinder.btCancel.text")); // NOI18N
-        btCancel.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancel.setText(bundle.getString("MarkupFinder.buttonCancel.text")); // NOI18N
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelActionPerformed(evt);
+                buttonCancelActionPerformed(evt);
             }
         });
 
@@ -281,25 +281,25 @@ public class MarkupFinder extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btAddToScript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonAddToScript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAddToScript)
-                    .addComponent(btCancel))
+                    .addComponent(buttonAddToScript)
+                    .addComponent(buttonCancel))
                 .addContainerGap())
         );
 
@@ -319,21 +319,21 @@ public class MarkupFinder extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btNewDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewDataActionPerformed
-        tabData.add(new DataSelector());
+    private void buttonNewDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewDataActionPerformed
+        tabbedPaneData.add(new DataSelector());
         renameTab();
         enableRemoveButton();
-    }//GEN-LAST:event_btNewDataActionPerformed
+    }//GEN-LAST:event_buttonNewDataActionPerformed
 
-    private void btRemoveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveDataActionPerformed
-        if (tabData.getTabCount() > 1) {
-            tabData.remove(tabData.getSelectedIndex());
+    private void buttonRemoveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveDataActionPerformed
+        if (tabbedPaneData.getTabCount() > 1) {
+            tabbedPaneData.remove(tabbedPaneData.getSelectedIndex());
         }
         renameTab();
         enableRemoveButton();
-    }//GEN-LAST:event_btRemoveDataActionPerformed
+    }//GEN-LAST:event_buttonRemoveDataActionPerformed
 
-    private void btFindMarkupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFindMarkupActionPerformed
+    private void buttonFindMarkupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFindMarkupActionPerformed
         Object[][] data = getDataAsArray();
         if (data != null) {
             String[] arrDoc = (String[]) data[0];
@@ -342,8 +342,8 @@ public class MarkupFinder extends javax.swing.JDialog {
                         
             try {
                 String[] m = ToolMarkups.searchMinLenghtMarkup(arrDoc, arrKey, arrOccu);
-                txtBeginMarkup.setText(m[0]);
-                txtEndMarkup.setText(m[1]);
+                textAreaBeginMarkup.setText(m[0]);
+                textAreaEndMarkup.setText(m[1]);
             } catch (MarkupToolException ex) {
 
                 java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
@@ -357,15 +357,15 @@ public class MarkupFinder extends javax.swing.JDialog {
                         Level.WARNING, null, ex);
             }
         }
-    }//GEN-LAST:event_btFindMarkupActionPerformed
+    }//GEN-LAST:event_buttonFindMarkupActionPerformed
 
-    private void btShowDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowDataActionPerformed
+    private void buttonShowDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonShowDataActionPerformed
         Object[][] data = getDataAsArray();
         if (data != null) {
             String[] arrDoc = (String[]) data[0];
             Command command = new Command(Command.CommandName.COPY);
-            command.setParameter1(txtBeginMarkup.getText());
-            command.setParameter2(txtEndMarkup.getText());
+            command.setParameter1(textAreaBeginMarkup.getText());
+            command.setParameter2(textAreaEndMarkup.getText());
             Extractor extractor = new Extractor(new Command[]{command}, arrDoc, false);
 
             ExtractionMenu dialog1 = new ExtractionMenu(null, true,extractor);
@@ -377,36 +377,36 @@ public class MarkupFinder extends javax.swing.JDialog {
             dialog2.setLocationRelativeTo(this);
             dialog2.setVisible(true);
         }
-    }//GEN-LAST:event_btShowDataActionPerformed
+    }//GEN-LAST:event_buttonShowDataActionPerformed
 
-    private void btAddToScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToScriptActionPerformed
+    private void buttonAddToScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddToScriptActionPerformed
         isOk = true;
         dispose();
-    }//GEN-LAST:event_btAddToScriptActionPerformed
+    }//GEN-LAST:event_buttonAddToScriptActionPerformed
 
-    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btCancelActionPerformed
+    }//GEN-LAST:event_buttonCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAddToScript;
-    private javax.swing.JButton btCancel;
-    private javax.swing.JButton btFindMarkup;
-    private javax.swing.JButton btNewData;
-    private javax.swing.JButton btRemoveData;
-    private javax.swing.JButton btShowData;
+    private javax.swing.JButton buttonAddToScript;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonFindMarkup;
+    private javax.swing.JButton buttonNewData;
+    private javax.swing.JButton buttonRemoveData;
+    private javax.swing.JButton buttonShowData;
     private ch.arkeine.markupextractor.userinterface.wizard.DataSelector dataSelector1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JPanel panInput;
-    private javax.swing.JPanel panOutput;
+    private javax.swing.JLabel labelBeginMarkup;
+    private javax.swing.JLabel labelEndMarkup;
+    private javax.swing.JPanel panelInput;
+    private javax.swing.JPanel panelOutput;
     private javax.swing.JSplitPane split;
-    private javax.swing.JTabbedPane tabData;
-    private javax.swing.JLabel titleBeginMarkup;
-    private javax.swing.JLabel titleEndMarkup;
-    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea txtBeginMarkup;
-    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea txtEndMarkup;
+    private javax.swing.JTabbedPane tabbedPaneData;
+    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea textAreaBeginMarkup;
+    private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea textAreaEndMarkup;
     // End of variables declaration//GEN-END:variables
 }

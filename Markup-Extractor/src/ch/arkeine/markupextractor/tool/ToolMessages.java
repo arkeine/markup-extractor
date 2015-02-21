@@ -15,7 +15,6 @@
  */
 package ch.arkeine.markupextractor.tool;
 
-import ch.arkeine.markupextractor.extractor.Extractor;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
