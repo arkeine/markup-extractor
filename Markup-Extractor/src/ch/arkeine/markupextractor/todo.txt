@@ -1,0 +1,3 @@
+Dans l'edition de commande, pour la commande goto, ajouter une saisie personnalisée ne permettant que la saisie de nombre 
+Permettre le parametrage des caractère de fin de ligne et de séparateur (caractère spéciaux inclu) pour l'exportation CSV
+Controler que le caractère CSV choisi ne soit pas déjà présent dans les données extraites !

@@ -27,6 +27,7 @@ public class SummaryMenu extends javax.swing.JDialog {
      */
     public SummaryMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
     }
 
     public void setExtractor(Extractor e){

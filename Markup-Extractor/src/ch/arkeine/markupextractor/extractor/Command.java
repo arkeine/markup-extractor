@@ -29,7 +29,7 @@ public class Command implements Serializable, Cloneable {
     public enum CommandName {
 
         DELETE("DELETE"), CUT("CUT"), COPY("COPY"), RELOAD("RELOAD"),
-        INCLUDE_BEGIN("INCLUDE_BEGIN"), INCLUDE_END("INCLUDE_END");
+        INCLUDE_BEGIN("INCLUDE_BEGIN"), INCLUDE_END("INCLUDE_END"), GOTO("GOTO");
 
         private final String name;
 

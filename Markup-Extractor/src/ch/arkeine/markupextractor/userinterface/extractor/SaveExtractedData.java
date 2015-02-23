@@ -85,7 +85,7 @@ public class SaveExtractedData extends javax.swing.JPanel {
         String separator = JOptionPane.showInputDialog(this,
             bundle.getString("SummaryMenu.input.separator"));
 
-        if (separator != null && !separator.isEmpty() && fc.getSelectedFile() != null) {
+        if (separator != null && fc.getSelectedFile() != null) {
 
             try {
                 ToolFiles.writeStringToFile(

@@ -15,6 +15,7 @@
  */
 package ch.arkeine.markupextractor.userinterface.wizard;
 
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
@@ -220,10 +221,11 @@ public class UrlGenerator extends javax.swing.JDialog {
         } else {
 
             String[] tmpUrl = new String[(int) spinnerEndValue.getValue()
-                    - (int) spinnerInitalValue.getValue()];
+                    - (int) spinnerInitalValue.getValue() + 1];
             for (int i = 0; i < tmpUrl.length; i++) {
-                tmpUrl[i] = base.replaceFirst(token, Integer.toString(
-                        i + (int) spinnerInitalValue.getValue()));
+                tmpUrl[i] = base.replaceFirst(Pattern.quote(token),
+                        Integer.toString(
+                                i + (int) spinnerInitalValue.getValue()));
                 System.out.println(tmpUrl[i]);
             }
 

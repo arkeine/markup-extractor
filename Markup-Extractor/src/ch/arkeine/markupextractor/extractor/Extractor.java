@@ -17,7 +17,9 @@ package ch.arkeine.markupextractor.extractor;
 
 import ch.arkeine.markupextractor.UseMarkupExtractor;
 import ch.arkeine.markupextractor.tool.ToolUrls;
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,6 +41,8 @@ public class Extractor implements Runnable {
     private boolean isWorkDone;
     private boolean isIncludeBegin;
     private boolean isIncludeEnd;
+    private int programCounter;
+    private final AbstractMap<Integer, Integer> gotoPassageCounter;
 
     //OUTPUT
     private final OutputArray extractedData;
@@ -55,6 +59,8 @@ public class Extractor implements Runnable {
         extractedDoc = new LinkedList();
         isIncludeBegin = false;
         isIncludeEnd = false;
+        programCounter = 0;
+        gotoPassageCounter = new HashMap<>();
     }
 
     public String[] getDoc() {
@@ -69,7 +75,7 @@ public class Extractor implements Runnable {
 
     public String getExtractedToCSV(String separator) {
 
-        if (separator.isEmpty()) {
+        if (!separator.isEmpty()) {
             return extractedData.toCSV(separator);
         } else {
             Logger.getLogger(UseMarkupExtractor.class.getName()).log(
@@ -122,7 +128,10 @@ public class Extractor implements Runnable {
     private void extractData(String d) {
         StringBuilder txtWork = new StringBuilder(d);
 
-        for (Command cmd1 : cmd) {
+        gotoPassageCounter.clear();
+        for (programCounter = 0; programCounter < cmd.length; programCounter++) {
+            Command cmd1 = cmd[programCounter];
+
             switch (cmd1.getName()) {
                 case COPY:
                     copy(txtWork, cmd1.getParameter1(), cmd1.getParameter2());
@@ -142,6 +151,10 @@ public class Extractor implements Runnable {
                 case RELOAD:
                     txtWork.setLength(0);
                     txtWork.append(d);
+                    break;
+                case GOTO:
+                    goTo(programCounter, cmd1.getParameter1(),
+                            cmd1.getParameter2());
                     break;
                 default:
                     Logger.getLogger(Extractor.class.getName()).log(
@@ -191,6 +204,22 @@ public class Extractor implements Runnable {
 
         if (val1 >= 0) {
             extractedData.addRecordData(s.substring(val1, val2));
+        }
+    }
+
+    private void goTo(int gotoNumber, String p1, String p2) {
+        try {
+            int whereToJump = Integer.valueOf(p1);
+            int forNJump = Integer.valueOf(p2);
+
+            int i = gotoPassageCounter.get(gotoNumber) != null
+                    ? gotoPassageCounter.get(gotoNumber) : 0;
+            if (i < forNJump - 1) {
+                gotoPassageCounter.put(gotoNumber, ++i);
+                programCounter = whereToJump - 1;
+            }
+        } catch (NumberFormatException ex) {
+
         }
     }
 

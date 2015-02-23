@@ -91,7 +91,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
         jSplitPane1.setDividerLocation(300);
         jSplitPane1.setResizeWeight(1.0);
 
-        panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panFiles.border.title"))); // NOI18N
+        panFiles.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("UrlEditorMenu.panFiles.border.title"))); // NOI18N
 
         btSaveUrls.setText(bundle.getString("UrlEditorMenu.btSaveUrls.text")); // NOI18N
         btSaveUrls.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +128,7 @@ public class UrlEditorMenu extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("ScriptEditorMenu.panGenerate.border.title"))); // NOI18N
+        panGenerate.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("UrlEditorMenu.panGenerate.border.title"))); // NOI18N
 
         btUrlGenerator.setText(bundle.getString("UrlEditorMenu.btUrlGenerator.text")); // NOI18N
         btUrlGenerator.addActionListener(new java.awt.event.ActionListener() {

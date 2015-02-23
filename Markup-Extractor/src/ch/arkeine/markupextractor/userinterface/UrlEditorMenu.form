@@ -89,7 +89,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Files">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panFiles.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="UrlEditorMenu.panFiles.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -147,8 +147,8 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Generate urls">
-                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="ScriptEditorMenu.panGenerate.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    <TitledBorder title="Generation">
+                      <ResourceString PropertyName="titleX" bundle="ch/arkeine/markupextractor/internationalization.properties" key="UrlEditorMenu.panGenerate.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                     </TitledBorder>
                   </Border>
                 </Property>

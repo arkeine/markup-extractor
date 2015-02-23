@@ -49,9 +49,14 @@ public class ToolMessages {
             String title, String message, int messageType) {
 
         JPanel panel = buildBigPane(true, summary, message);
-        JOptionPane.showMessageDialog(parentComponent, panel, title,
-                messageType);
-        return panel.toString();
+        int userChoice = JOptionPane.showOptionDialog(parentComponent, panel,
+                title, JOptionPane.OK_CANCEL_OPTION, messageType, null, null,
+                null);
+        if (userChoice == JOptionPane.OK_OPTION) {
+            return panel.toString();
+        } else {
+            return null;    
+        }
     }
 
     private static JPanel buildBigPane(boolean editable, String summary,
@@ -73,7 +78,8 @@ public class ToolMessages {
         JScrollPane sp = new JScrollPane();
         sp.setPreferredSize(new Dimension(10, 200));
         sp.setViewportView(txtBig);
-        sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sp.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         panel.setLayout(new BorderLayout());
         panel.add(label, BorderLayout.NORTH);

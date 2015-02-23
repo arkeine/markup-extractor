@@ -45,7 +45,7 @@ public class DataSelector extends javax.swing.JPanel {
     }
 
     public String getOccurenceText() {
-        return textFieldOccurence.getText();
+        return textAreaOccurence.getText();
     }
 
     /**
@@ -60,10 +60,11 @@ public class DataSelector extends javax.swing.JPanel {
         panelOccurence = new javax.swing.JPanel();
         labelOccurenceNumber = new javax.swing.JLabel();
         labelOccurenceText = new javax.swing.JLabel();
-        textFieldOccurence = new javax.swing.JTextField();
         spinnerOccurence = new javax.swing.JSpinner();
         buttonLoadFromSelection = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaOccurence = new javax.swing.JTextArea();
         panContent = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaDocument = new org.fife.ui.rsyntaxtextarea.RSyntaxTextArea();
@@ -77,8 +78,6 @@ public class DataSelector extends javax.swing.JPanel {
         labelOccurenceNumber.setText(bundle.getString("DataSelector.labelOccurenceNumber.text")); // NOI18N
 
         labelOccurenceText.setText(bundle.getString("DataSelector.labelOccurenceText.text")); // NOI18N
-
-        textFieldOccurence.setText(bundle.getString("DataSelector.textFieldOccurence.text")); // NOI18N
 
         spinnerOccurence.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
@@ -96,18 +95,22 @@ public class DataSelector extends javax.swing.JPanel {
             }
         });
 
+        textAreaOccurence.setColumns(20);
+        textAreaOccurence.setRows(1);
+        jScrollPane1.setViewportView(textAreaOccurence);
+
         javax.swing.GroupLayout panelOccurenceLayout = new javax.swing.GroupLayout(panelOccurence);
         panelOccurence.setLayout(panelOccurenceLayout);
         panelOccurenceLayout.setHorizontalGroup(
             panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelOccurenceLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOccurenceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldOccurence)
-                    .addComponent(spinnerOccurence)
-                    .addComponent(buttonLoadFromSelection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelOccurenceLayout.createSequentialGroup()
+                .addGroup(panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(spinnerOccurence, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonLoadFromSelection, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(buttonSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelOccurenceLayout.createSequentialGroup()
                         .addGroup(panelOccurenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelOccurenceText)
                             .addComponent(labelOccurenceNumber))
@@ -119,7 +122,7 @@ public class DataSelector extends javax.swing.JPanel {
             .addGroup(panelOccurenceLayout.createSequentialGroup()
                 .addComponent(labelOccurenceText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelOccurenceNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -128,7 +131,7 @@ public class DataSelector extends javax.swing.JPanel {
                 .addComponent(buttonSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonLoadFromSelection)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panContent.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.panContent.border.title"))); // NOI18N
@@ -146,7 +149,7 @@ public class DataSelector extends javax.swing.JPanel {
         );
         panContentLayout.setVerticalGroup(
             panContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("DataSelector.jPanel1.border.title"))); // NOI18N
@@ -166,7 +169,7 @@ public class DataSelector extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(textFieldUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addComponent(textFieldUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLoadUrl)
                 .addContainerGap())
@@ -189,7 +192,8 @@ public class DataSelector extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,13 +230,13 @@ public class DataSelector extends javax.swing.JPanel {
             String c = textAreaDocument.getText().substring(0,
                     textAreaDocument.getSelectionEnd());
 
-            textFieldOccurence.setText(s);
+            textAreaOccurence.setText(s);
             spinnerOccurence.setValue(StringUtils.countMatches(c, s));
         }
     }//GEN-LAST:event_buttonLoadFromSelectionActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        String s = textFieldOccurence.getText();
+        String s = textAreaOccurence.getText();
         String c = textAreaDocument.getText();
         int numberOcc = (int) spinnerOccurence.getValue();
 
@@ -249,6 +253,7 @@ public class DataSelector extends javax.swing.JPanel {
     private javax.swing.JButton buttonLoadUrl;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelOccurenceNumber;
     private javax.swing.JLabel labelOccurenceText;
@@ -256,7 +261,7 @@ public class DataSelector extends javax.swing.JPanel {
     private javax.swing.JPanel panelOccurence;
     private javax.swing.JSpinner spinnerOccurence;
     private org.fife.ui.rsyntaxtextarea.RSyntaxTextArea textAreaDocument;
-    private javax.swing.JTextField textFieldOccurence;
+    private javax.swing.JTextArea textAreaOccurence;
     private javax.swing.JTextField textFieldUrl;
     // End of variables declaration//GEN-END:variables
 }

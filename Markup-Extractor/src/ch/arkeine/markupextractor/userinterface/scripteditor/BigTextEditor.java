@@ -50,7 +50,7 @@ public class BigTextEditor extends AbstractCellEditor implements TableCellEditor
             public void actionPerformed(ActionEvent e) {
                 String result = ToolMessages.showBigInput(delegate, summary,
                         title, saveContent, JOptionPane.QUESTION_MESSAGE);
-                if (!result.isEmpty()) {
+                if (result != null) {
                     saveContent = result;
                     fireEditingStopped();
                 } else {
