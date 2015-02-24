@@ -34,7 +34,7 @@ public class CommandTableModel extends AbstractTableModel {
         this.cmds = new ArrayList<>(Arrays.asList(cmds));
         this.colName = colName;
     }
-    
+
     public CommandTableModel(String[] colName) {
         this.cmds = new ArrayList<>();
         this.colName = colName;
@@ -107,8 +107,10 @@ public class CommandTableModel extends AbstractTableModel {
     }
 
     public void removeCommand(int i) {
-        cmds.remove(i);
-        fireTableRowsDeleted(i, i);
+        if (i != -1) {
+            cmds.remove(i);
+            fireTableRowsDeleted(i, i);
+        }
     }
 
     public void moveRow(int start, int end, int to) {

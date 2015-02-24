@@ -73,8 +73,8 @@ public class SaveExtractedData extends javax.swing.JPanel {
     private void writeDataToFile(){
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
             "ch/arkeine/markupextractor/internationalization"); // NOI18N
-        String extension = bundle.getString(".constant.urlFile.extension");
-        String description = bundle.getString(".constant.urlFile.description");
+        String extension = bundle.getString(".constant.commandFile.extension");
+        String description = bundle.getString(".constant.commandFile.description");
         String summary = bundle.getString(".message.errorSummary");
         String title = bundle.getString(".message.errorTitle");
 
